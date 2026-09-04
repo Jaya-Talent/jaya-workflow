@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Meridian — Get Matched With Better Opportunities",
+      "hasCanvas": false,
+      "bodyTextLen": 1589,
+      "bodyTextHash": "89c52b9c7dc882eaed774a6ad4733ec75b7fe342d4ca09cf73b2fe91847d08c8",
+      "bodyTextPrefix": "Meridian How it works Browse jobs Create profile TALENT NETWORK ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Meridian — Get Matched With Better Opportunities",
+      "hasCanvas": false,
+      "bodyTextLen": 1564,
+      "bodyTextHash": "50d9926f3a76dfb31c5311392f93eca54b940a17b75f65d669bd70363142c3b9",
+      "bodyTextPrefix": "Meridian Create profile TALENT NETWORK Get matched with better o",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}
