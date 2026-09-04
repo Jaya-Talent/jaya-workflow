@@ -1,0 +1,3 @@
+notification_id,applicant_id,job_id,match_id,channel,notification_type,status,sent_at,opened_at,clicked_at,action,error,attempts,next_retry_at
+c686a02d-5ef8-4b40-a5fd-5e872d36204a,793e6c48-aa3c-4f98-a074-a85739b77cbb,job_fe_001,0403c509-5a98-489b-9ad4-dca97d09c863,email,daily_digest,failed,,,,,Email is not configured,1,
+3b0bcc99-3d2b-4ef6-b963-b2285fb1d3d7,aa8fc01d-bd91-42b5-a8dd-58c9aa90d454,job_sol_002,16f85c2a-c997-4bf7-9721-875097ffeb59,email,daily_digest,failed,,,,,Email is not configured,1,

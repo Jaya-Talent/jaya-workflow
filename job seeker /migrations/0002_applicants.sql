@@ -1,0 +1,38 @@
+create table if not exists applicants (
+  id text not null primary key,
+  user_id text references "user" ("id") on delete set null,
+  created_at timestamptz default CURRENT_TIMESTAMP not null,
+  updated_at timestamptz default CURRENT_TIMESTAMP not null,
+  full_name text not null,
+  email text not null unique,
+  telegram_username text,
+  country text,
+  city text,
+  linkedin_url text,
+  github_url text,
+  portfolio_url text,
+  job_categories text[] not null default '{}',
+  target_job_titles text[] not null default '{}',
+  experience_level text,
+  years_experience text,
+  employment_type text[] not null default '{}',
+  skills text[] not null default '{}',
+  work_preference text,
+  preferred_locations text[] not null default '{}',
+  salary_min text,
+  salary_currency text,
+  availability text,
+  professional_bio text,
+  cv_filename text,
+  profile_completion float8 not null default 0,
+  consent boolean not null default false,
+  telegram_notifications boolean not null default true,
+  email_notifications boolean not null default true,
+  notification_frequency text not null default 'weekly',
+  minimum_match_score float8 not null default 0,
+  telegram_chat_id text,
+  last_digest_at timestamptz
+);
+
+create index if not exists applicants_user_id_idx on applicants (user_id);
+create index if not exists applicants_email_idx on applicants (email);
