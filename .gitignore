@@ -1,0 +1,67 @@
+# Credentials and secrets (STRICT SECURITY RULE)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.secret
+*.pfx
+*.p12
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data & Lock files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency & Output directories
+node_modules/
+jspm_packages/
+web_modules/
+build/
+dist/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+.temp
+.cache/
+.parcel-cache
+.docusaurus
+.serverless/
+.fusebox/
+.dynamodb/
+.tanstack/
+.vercel/
+.output/
+.vinxi/
+__pycache__/
+*.pyc
+
+# Mac OS & Editor files
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# TypeScript cache
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
