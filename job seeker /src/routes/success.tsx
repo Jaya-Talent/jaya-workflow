@@ -24,7 +24,7 @@ export const Route = createFileRoute("/success")({
   }),
   component: SuccessPage,
   head: () => ({
-    meta: [{ title: "Profile created — Meridian" }],
+    meta: [{ title: "Profile Created | Jaya Talent" }],
   }),
 });
 

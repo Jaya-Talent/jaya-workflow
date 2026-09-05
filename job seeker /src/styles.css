@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Wix Madefor Text", "Wix Madefor Display", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: "Outfit", "Plus Jakarta Sans", "Wix Madefor Text", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Montserrat", "Outfit", ui-sans-serif, system-ui, sans-serif;
 
   --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-muted: #f7f7f7;
+  --color-surface-muted: #faf8f5;
   --color-ink: #2f2b36;
-  --color-muted: #76747b;
+  --color-muted: #696570;
   --color-subtle: #76747b;
-  --color-accent: #7b62df;
-  --color-accent-hover: #6348c5;
+  --color-accent: #710193;
+  --color-accent-hover: #5a0076;
   --color-accent-fg: #ffffff;
-  --color-accent-soft: rgba(123, 98, 223, 0.15);
-  --color-line: #e5e5e5;
+  --color-accent-soft: rgba(113, 1, 147, 0.08);
+  --color-sage: #7a8b7b;
+  --color-line: #e8e6e1;
   --color-danger: #ef4444;
   --color-success: #10b981;
 
@@ -64,3 +65,4 @@
     padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
 }
+

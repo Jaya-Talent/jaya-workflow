@@ -11,7 +11,7 @@ import { SITE_NAME } from "@/lib/site";
 export const Route = createFileRoute("/profile_/$id")({
   component: ProfilePage,
   head: () => ({
-    meta: [{ title: `Your matches — ${SITE_NAME}` }],
+    meta: [{ title: `Your Matches | ${SITE_NAME}` }],
   }),
 });
 

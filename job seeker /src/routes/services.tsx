@@ -101,7 +101,7 @@ function ServicesPage() {
                   href="https://calendly.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-ink hover:bg-accent/90 transition-colors shadow-sm"
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition-colors shadow-sm"
                 >
                   <Calendar className="size-4" /> Book Candidate Session
                 </a>
@@ -192,7 +192,7 @@ function ServicesPage() {
                 href="https://calendly.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-ink hover:bg-accent/90 transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
               >
                 Schedule via Calendly <ArrowRight className="size-4" />
               </a>
