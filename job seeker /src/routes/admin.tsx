@@ -10,7 +10,7 @@ import type { Applicant } from "@/lib/applicants/types";
 export const Route = createFileRoute("/admin")({
   component: AdminPage,
   head: () => ({
-    meta: [{ title: "Admin — Meridian" }],
+    meta: [{ title: "Admin | Jaya Talent" }],
   }),
 });
 

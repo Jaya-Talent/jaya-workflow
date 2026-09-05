@@ -17,7 +17,7 @@ import { SITE_NAME } from "@/lib/site";
 export const Route = createFileRoute("/admin_/jobs")({
   component: AdminJobsPage,
   head: () => ({
-    meta: [{ title: `Jobs — ${SITE_NAME}` }],
+    meta: [{ title: `Jobs | ${SITE_NAME}` }],
   }),
 });
 

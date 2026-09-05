@@ -11,7 +11,7 @@ import type { Job, StoredMatch } from "@/lib/matching/types";
 export const Route = createFileRoute("/admin_/$id")({
   component: AdminDetailPage,
   head: () => ({
-    meta: [{ title: "Applicant — Meridian" }],
+    meta: [{ title: "Applicant | Jaya Talent" }],
   }),
 });
 
