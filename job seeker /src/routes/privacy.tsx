@@ -5,7 +5,7 @@ import { SITE_NAME } from "@/lib/site";
 export const Route = createFileRoute("/privacy")({
   component: PrivacyPage,
   head: () => ({
-    meta: [{ title: `Privacy policy — ${SITE_NAME}` }],
+    meta: [{ title: `Privacy Policy | ${SITE_NAME}` }],
   }),
 });
 

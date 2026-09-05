@@ -273,7 +273,7 @@ function ProfileDashboard() {
                     <label className="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5">Frequency</label>
                     <select 
                       value={frequency} 
-                      onChange={(e) => setFrequency(e.target.value)}
+                      onChange={(e) => setFrequency(e.target.value as "instant" | "daily" | "weekly")}
                       className="block w-full rounded-xl border border-line py-2.5 pl-3 pr-10 text-ink ring-1 ring-transparent focus:ring-accent sm:text-sm bg-white"
                     >
                       <option value="instant">Instant Match</option>

@@ -39,7 +39,7 @@ export const Route = createFileRoute("/jobs_/$id")({
   },
   component: JobDetailPage,
   head: ({ loaderData }) => ({
-    meta: [{ title: loaderData?.job ? `${loaderData.job.title} at ${loaderData.job.company} — ${SITE_NAME}` : `Role — ${SITE_NAME}` }],
+    meta: [{ title: loaderData?.job ? `${loaderData.job.title} at ${loaderData.job.company} | ${SITE_NAME}` : `Role | ${SITE_NAME}` }],
   }),
 });
 
