@@ -9,7 +9,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: `${SITE_NAME} — ${SITE_TAGLINE}` },
+      { title: `${SITE_NAME} | ${SITE_TAGLINE}` },
       { name: "description", content: SITE_DESCRIPTION },
       { name: "theme-color", content: "#F6F4F1" },
     ],
@@ -22,7 +22,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Wix+Madefor+Display:wght@400..800&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700..900;1,700..900&family=Outfit:wght@400..800&family=Plus+Jakarta+Sans:wght@400..800&family=Wix+Madefor+Display:wght@400..800&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap",
       },
     ],
   }),
