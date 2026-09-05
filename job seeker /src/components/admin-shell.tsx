@@ -10,7 +10,7 @@ export function AdminShell({
   onLogout,
 }: {
   children: ReactNode;
-  current: "applicants" | "jobs" | "matching";
+  current: "applicants" | "jobs" | "matching" | "analytics";
   onLogout: () => void;
 }) {
   return (
@@ -36,6 +36,12 @@ export function AdminShell({
               className={cn("hover:text-ink", current === "matching" ? "font-medium text-ink" : "text-muted")}
             >
               Matching
+            </Link>
+            <Link
+              to="/admin/analytics"
+              className={cn("hover:text-ink", current === "analytics" ? "font-medium text-ink" : "text-muted")}
+            >
+              Analytics & Intelligence
             </Link>
             <Link to="/" className="text-muted hover:text-ink">
               Site

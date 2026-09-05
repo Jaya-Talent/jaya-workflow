@@ -21,6 +21,7 @@ import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SuccessRouteImport } from './routes/success'
 import { Route as AdminIdRouteImport } from './routes/admin_.$id'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin_.analytics'
 import { Route as AdminJobsRouteImport } from './routes/admin_.jobs'
 import { Route as AdminMatchingRouteImport } from './routes/admin_.matching'
 import { Route as ApiApplicantsRouteImport } from './routes/api/applicants'
@@ -28,6 +29,7 @@ import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as ApiJobsRouteImport } from './routes/api/jobs'
 import { Route as JobsIdRouteImport } from './routes/jobs_.$id'
 import { Route as ProfileIdRouteImport } from './routes/profile_.$id'
+import { Route as ApiAdminAnalyticsRouteImport } from './routes/api/admin.analytics'
 import { Route as ApiAdminApplicantsRouteImport } from './routes/api/admin.applicants'
 import { Route as ApiAdminJobsRouteImport } from './routes/api/admin.jobs'
 import { Route as ApiAdminLoginRouteImport } from './routes/api/admin.login'
@@ -107,6 +109,11 @@ const AdminIdRoute = AdminIdRouteImport.update({
   path: '/admin/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/admin_/analytics',
+  path: '/admin/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminJobsRoute = AdminJobsRouteImport.update({
   id: '/admin_/jobs',
   path: '/admin/jobs',
@@ -140,6 +147,11 @@ const JobsIdRoute = JobsIdRouteImport.update({
 const ProfileIdRoute = ProfileIdRouteImport.update({
   id: '/profile_/$id',
   path: '/profile/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminAnalyticsRoute = ApiAdminAnalyticsRouteImport.update({
+  id: '/api/admin/analytics',
+  path: '/api/admin/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAdminApplicantsRoute = ApiAdminApplicantsRouteImport.update({
@@ -249,6 +261,7 @@ export interface FileRoutesByFullPath {
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
   '/admin/$id': typeof AdminIdRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/jobs': typeof AdminJobsRoute
   '/admin/matching': typeof AdminMatchingRoute
   '/api/applicants': typeof ApiApplicantsRouteWithChildren
@@ -256,6 +269,7 @@ export interface FileRoutesByFullPath {
   '/api/jobs': typeof ApiJobsRouteWithChildren
   '/jobs/$id': typeof JobsIdRoute
   '/profile/$id': typeof ProfileIdRoute
+  '/api/admin/analytics': typeof ApiAdminAnalyticsRoute
   '/api/admin/applicants': typeof ApiAdminApplicantsRouteWithChildren
   '/api/admin/jobs': typeof ApiAdminJobsRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -288,6 +302,7 @@ export interface FileRoutesByTo {
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
   '/admin/$id': typeof AdminIdRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/jobs': typeof AdminJobsRoute
   '/admin/matching': typeof AdminMatchingRoute
   '/api/applicants': typeof ApiApplicantsRouteWithChildren
@@ -295,6 +310,7 @@ export interface FileRoutesByTo {
   '/api/jobs': typeof ApiJobsRouteWithChildren
   '/jobs/$id': typeof JobsIdRoute
   '/profile/$id': typeof ProfileIdRoute
+  '/api/admin/analytics': typeof ApiAdminAnalyticsRoute
   '/api/admin/applicants': typeof ApiAdminApplicantsRouteWithChildren
   '/api/admin/jobs': typeof ApiAdminJobsRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -328,6 +344,7 @@ export interface FileRoutesById {
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
   '/admin_/$id': typeof AdminIdRoute
+  '/admin_/analytics': typeof AdminAnalyticsRoute
   '/admin_/jobs': typeof AdminJobsRoute
   '/admin_/matching': typeof AdminMatchingRoute
   '/api/applicants': typeof ApiApplicantsRouteWithChildren
@@ -335,6 +352,7 @@ export interface FileRoutesById {
   '/api/jobs': typeof ApiJobsRouteWithChildren
   '/jobs_/$id': typeof JobsIdRoute
   '/profile_/$id': typeof ProfileIdRoute
+  '/api/admin/analytics': typeof ApiAdminAnalyticsRoute
   '/api/admin/applicants': typeof ApiAdminApplicantsRouteWithChildren
   '/api/admin/jobs': typeof ApiAdminJobsRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -369,6 +387,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/success'
     | '/admin/$id'
+    | '/admin/analytics'
     | '/admin/jobs'
     | '/admin/matching'
     | '/api/applicants'
@@ -376,6 +395,7 @@ export interface FileRouteTypes {
     | '/api/jobs'
     | '/jobs/$id'
     | '/profile/$id'
+    | '/api/admin/analytics'
     | '/api/admin/applicants'
     | '/api/admin/jobs'
     | '/api/admin/login'
@@ -408,6 +428,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/success'
     | '/admin/$id'
+    | '/admin/analytics'
     | '/admin/jobs'
     | '/admin/matching'
     | '/api/applicants'
@@ -415,6 +436,7 @@ export interface FileRouteTypes {
     | '/api/jobs'
     | '/jobs/$id'
     | '/profile/$id'
+    | '/api/admin/analytics'
     | '/api/admin/applicants'
     | '/api/admin/jobs'
     | '/api/admin/login'
@@ -447,6 +469,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/success'
     | '/admin_/$id'
+    | '/admin_/analytics'
     | '/admin_/jobs'
     | '/admin_/matching'
     | '/api/applicants'
@@ -454,6 +477,7 @@ export interface FileRouteTypes {
     | '/api/jobs'
     | '/jobs_/$id'
     | '/profile_/$id'
+    | '/api/admin/analytics'
     | '/api/admin/applicants'
     | '/api/admin/jobs'
     | '/api/admin/login'
@@ -487,6 +511,7 @@ export interface RootRouteChildren {
   SignUpRoute: typeof SignUpRoute
   SuccessRoute: typeof SuccessRoute
   AdminIdRoute: typeof AdminIdRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminJobsRoute: typeof AdminJobsRoute
   AdminMatchingRoute: typeof AdminMatchingRoute
   ApiApplicantsRoute: typeof ApiApplicantsRouteWithChildren
@@ -494,6 +519,7 @@ export interface RootRouteChildren {
   ApiJobsRoute: typeof ApiJobsRouteWithChildren
   JobsIdRoute: typeof JobsIdRoute
   ProfileIdRoute: typeof ProfileIdRoute
+  ApiAdminAnalyticsRoute: typeof ApiAdminAnalyticsRoute
   ApiAdminApplicantsRoute: typeof ApiAdminApplicantsRouteWithChildren
   ApiAdminJobsRoute: typeof ApiAdminJobsRoute
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
@@ -596,6 +622,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin_/analytics': {
+      id: '/admin_/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin_/jobs': {
       id: '/admin_/jobs'
       path: '/admin/jobs'
@@ -643,6 +676,13 @@ declare module '@tanstack/react-router' {
       path: '/profile/$id'
       fullPath: '/profile/$id'
       preLoaderRoute: typeof ProfileIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/analytics': {
+      id: '/api/admin/analytics'
+      path: '/api/admin/analytics'
+      fullPath: '/api/admin/analytics'
+      preLoaderRoute: typeof ApiAdminAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/admin/applicants': {
@@ -833,6 +873,7 @@ const rootRouteChildren: RootRouteChildren = {
   SignUpRoute: SignUpRoute,
   SuccessRoute: SuccessRoute,
   AdminIdRoute: AdminIdRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminJobsRoute: AdminJobsRoute,
   AdminMatchingRoute: AdminMatchingRoute,
   ApiApplicantsRoute: ApiApplicantsRouteWithChildren,
@@ -840,6 +881,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiJobsRoute: ApiJobsRouteWithChildren,
   JobsIdRoute: JobsIdRoute,
   ProfileIdRoute: ProfileIdRoute,
+  ApiAdminAnalyticsRoute: ApiAdminAnalyticsRoute,
   ApiAdminApplicantsRoute: ApiAdminApplicantsRouteWithChildren,
   ApiAdminJobsRoute: ApiAdminJobsRoute,
   ApiAdminLoginRoute: ApiAdminLoginRoute,
