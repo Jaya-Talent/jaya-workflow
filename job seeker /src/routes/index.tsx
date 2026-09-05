@@ -10,17 +10,17 @@ const STEPS = [
   {
     n: "01",
     title: "Create your profile",
-    body: "Share your background, skills and what you want next — it takes a few minutes.",
+    body: "Share your background, skills, and career goals in a few simple steps.",
   },
   {
     n: "02",
     title: "Tell us what you're looking for",
-    body: "Roles, locations, seniority and working style. The more we know, the better the match.",
+    body: "Specify your preferred roles, locations, seniority, and working style.",
   },
   {
     n: "03",
     title: "Get matched with relevant opportunities",
-    body: "We use your profile to connect you with roles that actually fit — as they become available.",
+    body: "We use your profile to connect you directly with roles that match your expertise.",
   },
 ];
 
@@ -28,22 +28,22 @@ const REASONS = [
   {
     icon: Target,
     title: "Better job matching",
-    body: "Structured skills and experience data means future matches start from who you actually are.",
+    body: "Structured skills and experience data ensure matches start from who you actually are.",
   },
   {
     icon: Bell,
     title: "Relevant opportunity alerts",
-    body: "Be first in line when a role aligns with your category, seniority and location preferences.",
+    body: "Be first in line when a role aligns with your category, seniority, and location preferences.",
   },
   {
     icon: Briefcase,
     title: "Roles that fit your experience",
-    body: "From junior engineers to operators and executives — we route opportunities by real profile depth.",
+    body: "From junior engineers to operators and executives, we route opportunities by real profile depth.",
   },
   {
     icon: Globe,
     title: "Remote and global opportunities",
-    body: "Work from anywhere, or tell us the cities and regions that matter to you.",
+    body: "Work from anywhere or specify the exact cities and regions that matter to you.",
   },
 ];
 
@@ -123,8 +123,8 @@ function Home() {
               <div className="absolute top-0 right-0 h-[500px] w-[500px] bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
               
               <div className="relative z-10 text-center max-w-2xl mx-auto mb-12">
-                <p className="text-sm font-bold tracking-[0.18em] text-accent uppercase">Expert Advisory & Sourcing</p>
-                <h2 className="mt-3 font-serif text-4xl sm:text-5xl">Consultation Services</h2>
+                <p className="text-sm font-bold tracking-[0.18em] text-purple-300 uppercase">Expert Advisory & Sourcing</p>
+                <h2 className="mt-3 font-serif text-4xl sm:text-5xl text-white">Consultation Services</h2>
                 <p className="mt-4 text-sm sm:text-base text-bg/80 leading-relaxed">
                   Tailored career guidance for job seekers and dedicated talent sourcing solutions for Web3 employers.
                 </p>
@@ -132,30 +132,30 @@ function Home() {
 
               <div className="grid md:grid-cols-2 gap-8 relative z-10">
                 {/* Job Seekers Card */}
-                <div id="job-seekers" className="rounded-2xl border border-bg/15 bg-bg/5 p-6 sm:p-8 flex flex-col justify-between backdrop-blur-sm">
+                <div id="job-seekers" className="rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8 flex flex-col justify-between backdrop-blur-sm">
                   <div>
-                    <span className="inline-flex items-center gap-2 rounded-md bg-accent/20 px-3 py-1 text-xs font-semibold text-accent uppercase tracking-wider mb-4">
+                    <span className="inline-flex items-center gap-2 rounded-md bg-purple-500/25 px-3 py-1 text-xs font-semibold text-purple-300 border border-purple-400/30 uppercase tracking-wider mb-4">
                       For Job Seekers
                     </span>
-                    <h3 className="font-serif text-2xl sm:text-3xl text-bg">Career Advisory & Prep</h3>
+                    <h3 className="font-serif text-2xl sm:text-3xl text-white">Career Advisory & Prep</h3>
                     <p className="mt-3 text-sm text-bg/80 leading-relaxed">
                       Stand out to top crypto founders and recruiters with expert CV optimization and interview prep.
                     </p>
                     <ul className="mt-6 space-y-2.5 text-sm text-bg/90">
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-accent/20 text-accent font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-purple-500/30 text-purple-200 font-bold text-xs shrink-0">✓</span>
                         CV review & resume optimization
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-accent/20 text-accent font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-purple-500/30 text-purple-200 font-bold text-xs shrink-0">✓</span>
                         Career strategy & salary consultation
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-accent/20 text-accent font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-purple-500/30 text-purple-200 font-bold text-xs shrink-0">✓</span>
                         Mock technical & behavioral interview prep
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-accent/20 text-accent font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-purple-500/30 text-purple-200 font-bold text-xs shrink-0">✓</span>
                         LinkedIn & Web3 profile optimization
                       </li>
                     </ul>
@@ -166,13 +166,13 @@ function Home() {
                       href="https://calendly.com/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex-1 text-center rounded-md border border-transparent bg-accent px-4 py-3 text-sm font-semibold text-ink hover:bg-accent/90 transition-colors"
+                      className="flex-1 text-center rounded-md border border-transparent bg-purple-600 px-4 py-3 text-sm font-semibold text-white hover:bg-purple-700 transition-colors shadow-md"
                     >
                       Book Candidate Session
                     </a>
                     <a 
                       href="mailto:marketing@jayatalent.com?subject=Job%20Seeker%20Consultation%20Inquiry"
-                      className="text-center rounded-md border border-bg/30 px-4 py-3 text-sm font-medium text-bg hover:bg-bg/10 transition-colors"
+                      className="text-center rounded-md border border-bg/30 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition-colors"
                     >
                       Email Us
                     </a>
@@ -180,30 +180,30 @@ function Home() {
                 </div>
 
                 {/* Employers Card */}
-                <div id="employers" className="rounded-2xl border border-bg/15 bg-bg/5 p-6 sm:p-8 flex flex-col justify-between backdrop-blur-sm">
+                <div id="employers" className="rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8 flex flex-col justify-between backdrop-blur-sm">
                   <div>
-                    <span className="inline-flex items-center gap-2 rounded-md bg-bg/20 px-3 py-1 text-xs font-semibold text-bg uppercase tracking-wider mb-4">
+                    <span className="inline-flex items-center gap-2 rounded-md bg-white/15 px-3 py-1 text-xs font-semibold text-white border border-white/20 uppercase tracking-wider mb-4">
                       For Employers
                     </span>
-                    <h3 className="font-serif text-2xl sm:text-3xl text-bg">Talent Sourcing & Support</h3>
+                    <h3 className="font-serif text-2xl sm:text-3xl text-white">Talent Sourcing & Support</h3>
                     <p className="mt-3 text-sm text-bg/80 leading-relaxed">
                       Partner with Jaya Talent to source vetted, high-quality candidates perfectly matched to your team.
                     </p>
                     <ul className="mt-6 space-y-2.5 text-sm text-bg/90">
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-accent/20 text-accent font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/15 text-white font-bold text-xs shrink-0">✓</span>
                         Job posting & passive candidate sourcing
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-accent/20 text-accent font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/15 text-white font-bold text-xs shrink-0">✓</span>
                         Vetted candidate matching & technical screening
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-accent/20 text-accent font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/15 text-white font-bold text-xs shrink-0">✓</span>
                         Recruitment consultation & hiring support
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-accent/20 text-accent font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/15 text-white font-bold text-xs shrink-0">✓</span>
                         Long-term talent pipeline building
                       </li>
                     </ul>
@@ -214,13 +214,13 @@ function Home() {
                       href="https://calendly.com/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex-1 text-center rounded-md border border-transparent bg-accent px-4 py-3 text-sm font-semibold text-ink hover:bg-accent/90 transition-colors"
+                      className="flex-1 text-center rounded-md border border-transparent bg-purple-600 px-4 py-3 text-sm font-semibold text-white hover:bg-purple-700 transition-colors shadow-md"
                     >
                       Book Employer Session
                     </a>
                     <a 
                       href="mailto:marketing@jayatalent.com?subject=Employer%20Sourcing%20Inquiry"
-                      className="text-center rounded-md border border-bg/30 px-4 py-3 text-sm font-medium text-bg hover:bg-bg/10 transition-colors"
+                      className="text-center rounded-md border border-bg/30 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition-colors"
                     >
                       Email Sourcing Team
                     </a>
@@ -252,3 +252,4 @@ function Home() {
     </div>
   );
 }
+

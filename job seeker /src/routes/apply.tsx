@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 export const Route = createFileRoute("/apply")({
   component: ApplyPage,
   head: () => ({
-    meta: [{ title: "Create your job profile — Meridian" }],
+    meta: [{ title: "Create Your Profile | Jaya Talent" }],
   }),
 });
 

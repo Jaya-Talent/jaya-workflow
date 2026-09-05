@@ -23,7 +23,7 @@ export const Route = createFileRoute("/jobs")({
   },
   component: JobsPage,
   head: () => ({
-    meta: [{ title: `Open Web3 Roles — ${SITE_NAME}` }],
+    meta: [{ title: `Open Web3 Roles | ${SITE_NAME}` }],
   }),
 });
 

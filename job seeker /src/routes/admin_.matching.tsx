@@ -11,7 +11,7 @@ import { SITE_NAME } from "@/lib/site";
 export const Route = createFileRoute("/admin_/matching")({
   component: AdminMatchingPage,
   head: () => ({
-    meta: [{ title: `Matching — ${SITE_NAME}` }],
+    meta: [{ title: `Matching | ${SITE_NAME}` }],
   }),
 });
 
