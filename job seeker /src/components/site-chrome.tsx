@@ -54,7 +54,6 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
             className="hover:text-ink transition-colors flex items-center gap-1.5 text-accent font-medium"
             activeProps={{ className: "text-accent font-bold" }}
           >
-            <Sparkles className="size-3.5" />
             Consultation
           </Link>
           <a
@@ -120,7 +119,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           ) : (
             <>
               <Link to="/profile">
-                <Button size="sm" className="shadow-sm hover:shadow-md transition-all bg-accent text-ink hover:bg-accent/90 border-transparent rounded-full px-5 gap-1.5">
+                <Button size="sm" className="shadow-sm hover:shadow-md transition-all bg-accent text-white hover:bg-accent-hover border-transparent rounded-full px-5 gap-1.5 font-semibold">
                   <User className="size-3.5" />
                   My Profile
                 </Button>
@@ -187,7 +186,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="flex items-center gap-3 text-accent font-semibold">
-                <Sparkles className="size-5 text-accent" /> Consultation Services
+                Consultation Services
               </span>
               <ChevronRight className="size-4 text-subtle" />
             </Link>
@@ -301,11 +300,11 @@ export function SiteFooter() {
           {/* Column 2: Menu */}
           <div className="flex flex-col gap-3">
             <h4 className="font-semibold text-ink mb-1">Menu</h4>
-            <a href="https://www.jayatalent.com" className="text-sm text-muted hover:text-accent transition-colors">Companies</a>
-            <a href="https://www.jayatalent.com/candidates" className="text-sm text-muted hover:text-accent transition-colors">Community</a>
-            <a href="https://www.jayatalent.com/team" className="text-sm text-muted hover:text-accent transition-colors">Team</a>
-            <a href="https://www.jayatalent.com/meditation" className="text-sm text-muted hover:text-accent transition-colors">Meditation</a>
-            <a href="https://www.jayatalent.com/zhannamanzyk" className="text-sm text-muted hover:text-accent transition-colors">Our CEO</a>
+            <a href="https://www.jayatalent.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Companies</a>
+            <a href="https://www.jayatalent.com/candidates" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Community</a>
+            <a href="https://www.jayatalent.com/team" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Team</a>
+            <a href="https://www.jayatalent.com/meditation" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Meditation</a>
+            <a href="https://www.jayatalent.com/zhannamanzyk" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Our CEO</a>
             <Link to="/jobs" className="text-sm text-muted hover:text-accent transition-colors">Jobs</Link>
             <Link to="/services" className="text-sm text-muted hover:text-accent transition-colors">Consultation Services</Link>
             <Link to="/apply" className="text-sm text-muted hover:text-accent transition-colors">Create Profile</Link>
@@ -314,18 +313,18 @@ export function SiteFooter() {
           {/* Column 3: Policy */}
           <div className="flex flex-col gap-3">
             <h4 className="font-semibold text-ink mb-1">Policy</h4>
-            <a href="https://www.jayatalent.com/privacy-policy" className="text-sm text-muted hover:text-accent transition-colors">Privacy Policy</a>
-            <a href="https://www.jayatalent.com/terms-and-conditions" className="text-sm text-muted hover:text-accent transition-colors">Term & Conditions</a>
-            <a href="https://www.jayatalent.com/cookie-policy" className="text-sm text-muted hover:text-accent transition-colors">Cookie Policy</a>
+            <a href="https://www.jayatalent.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Privacy Policy</a>
+            <a href="https://www.jayatalent.com/terms-and-conditions" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Term & Conditions</a>
+            <a href="https://www.jayatalent.com/cookie-policy" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Cookie Policy</a>
           </div>
 
           {/* Column 4: Social */}
           <div className="flex flex-col gap-3">
             <h4 className="font-semibold text-ink mb-1">Social</h4>
-            <a href="https://www.linkedin.com/company/jayatalent/" className="text-sm text-muted hover:text-accent transition-colors">Linkedin</a>
-            <a href="https://www.instagram.com/jaya_talent/" className="text-sm text-muted hover:text-accent transition-colors">Instagram</a>
-            <a href="https://www.youtube.com/channel/UCycN9WorUCr72kFA-JbHVTA" className="text-sm text-muted hover:text-accent transition-colors">Youtube</a>
-            <a href="https://twitter.com/JayaTalent" className="text-sm text-muted hover:text-accent transition-colors">X</a>
+            <a href="https://www.linkedin.com/company/jayatalent/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Linkedin</a>
+            <a href="https://www.instagram.com/jaya_talent/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Instagram</a>
+            <a href="https://www.youtube.com/channel/UCycN9WorUCr72kFA-JbHVTA" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Youtube</a>
+            <a href="https://twitter.com/JayaTalent" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">X</a>
           </div>
 
         </div>

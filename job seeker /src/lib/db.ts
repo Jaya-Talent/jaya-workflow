@@ -132,7 +132,7 @@ async function createPgliteSql(): Promise<Sql> {
   // double-apply.
   const migrate = async (): Promise<void> => {
     const migrations = (
-      typeof import.meta !== "undefined" && import.meta.glob
+      typeof import.meta !== "undefined" && typeof import.meta.glob === "function"
         ? import.meta.glob("/migrations/*.sql", {
             query: "?raw",
             import: "default",
