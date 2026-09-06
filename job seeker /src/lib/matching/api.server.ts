@@ -75,34 +75,63 @@ export async function handleJobMatches(jobId: string, request: Request) {
 
 export async function handleAdminMatching(request: Request) {
   if (!isAdminAuthenticated(request)) return unauthorized();
-  const [applicants, jobs, matches, notifications] = await Promise.all([
-    getApplicantRepository().listApplicants(),
-    getJobsRepository().listJobs(),
-    getMatchesRepository().listMatches(),
-    getNotificationsRepository().listNotifications(),
-  ]);
-  const people = new Map(applicants.map((row) => [row.id, row]));
-  const jobMap = new Map(jobs.map((row) => [row.id, row]));
-  const rows = matches
-    .sort((a, b) => b.match_score - a.match_score)
-    .map((match) => ({
-      ...match,
-      applicant_name: people.get(match.applicant_id)?.full_name ?? "Unknown",
-      applicant_email: people.get(match.applicant_id)?.email ?? "",
-      job_title: jobMap.get(match.job_id)?.title ?? "Unknown",
-      job_company: jobMap.get(match.job_id)?.company ?? "",
-      job_category: jobMap.get(match.job_id)?.category ?? "",
-    }));
-  return Response.json({
-    stats: {
-      applicants: applicants.length,
-      activeJobs: jobs.filter((job) => job.status === "active").length,
-      matches: matches.length,
-      above80: matches.filter((match) => match.match_score >= 80).length,
-      notificationsSent: notifications.filter((row) => row.status === "sent").length,
-    },
-    matches: rows,
-  });
+  try {
+    const [applicants, jobs, matches, notifications] = await Promise.all([
+      getApplicantRepository().listApplicants().catch((err) => {
+        console.error("[handleAdminMatching] listApplicants error:", err);
+        return [];
+      }),
+      getJobsRepository().listJobs().catch((err) => {
+        console.error("[handleAdminMatching] listJobs error:", err);
+        return [];
+      }),
+      getMatchesRepository().listMatches().catch((err) => {
+        console.error("[handleAdminMatching] listMatches error:", err);
+        return [];
+      }),
+      getNotificationsRepository().listNotifications().catch((err) => {
+        console.error("[handleAdminMatching] listNotifications error:", err);
+        return [];
+      }),
+    ]);
+
+    const people = new Map(applicants.map((row) => [row.id, row]));
+    const jobMap = new Map(jobs.map((row) => [row.id, row]));
+    const rows = (matches || [])
+      .sort((a, b) => (b.match_score || 0) - (a.match_score || 0))
+      .map((match) => ({
+        ...match,
+        applicant_name: people.get(match.applicant_id)?.full_name ?? "Unknown",
+        applicant_email: people.get(match.applicant_id)?.email ?? "",
+        job_title: jobMap.get(match.job_id)?.title ?? "Unknown",
+        job_company: jobMap.get(match.job_id)?.company ?? "",
+        job_category: jobMap.get(match.job_id)?.category ?? "",
+      }));
+
+    return Response.json({
+      stats: {
+        applicants: applicants.length,
+        activeJobs: jobs.filter((job) => job.status === "active").length,
+        matches: matches.length,
+        above80: matches.filter((match) => (match.match_score || 0) >= 80).length,
+        notificationsSent: notifications.filter((row) => row.status === "sent").length,
+      },
+      matches: rows,
+    });
+  } catch (err: any) {
+    console.error("[handleAdminMatching top-level error]", err);
+    return Response.json({
+      stats: {
+        applicants: 0,
+        activeJobs: 0,
+        matches: 0,
+        above80: 0,
+        notificationsSent: 0,
+      },
+      matches: [],
+      error: err?.message || String(err),
+    });
+  }
 }
 
 export async function handleRetryNotifications(request: Request) {
