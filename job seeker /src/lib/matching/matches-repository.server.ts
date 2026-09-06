@@ -114,9 +114,9 @@ async function readAll(): Promise<StoredMatch[]> {
     inMemoryMatches = loaded;
     void seedSqlFromMatches(loaded);
   } else {
-    inMemoryMatches = [];
+    inMemoryMatches = null;
   }
-  return inMemoryMatches;
+  return inMemoryMatches ?? [];
 }
 
 async function seedSqlFromMatches(rows: StoredMatch[]) {
@@ -272,31 +272,73 @@ export class MatchesRepository {
 
     try {
       const sql = await getSql();
-      for (let i = 0; i < inputs.length; i += 200) {
-        const chunk = inputs.slice(i, i + 200);
+      const itemsToSave: StoredMatch[] = [];
+      for (const m of inputs) {
+        const key = `${m.applicant_id}:${m.job_id}`;
+        const current = existingMap.get(key);
+        itemsToSave.push({
+          match_id: current?.match_id || m.match_id || randomUUID(),
+          applicant_id: m.applicant_id,
+          job_id: m.job_id,
+          match_score: m.match_score,
+          score_category: m.score_category || "poor",
+          matched_skills: m.matched_skills || [],
+          missing_skills: m.missing_skills || [],
+          partial_skills: m.partial_skills || [],
+          match_reasons: m.match_reasons || "",
+          created_at: current?.created_at || timestamp,
+          updated_at: timestamp,
+          notification_status: m.notification_status || "pending",
+          telegram_status: m.telegram_status || "",
+          email_status: m.email_status || "",
+        });
+      }
+
+      for (let i = 0; i < itemsToSave.length; i += 100) {
+        const chunk = itemsToSave.slice(i, i + 100);
+        const placeholders: string[] = [];
+        const params: unknown[] = [];
+        let pIdx = 1;
+
         for (const m of chunk) {
-          const key = `${m.applicant_id}:${m.job_id}`;
-          const current = existingMap.get(key);
-          const id = current?.match_id || m.match_id || randomUUID();
-          await sql`
-            INSERT INTO matches (
-              match_id, applicant_id, job_id, match_score, score_category,
-              matched_skills, missing_skills, partial_skills, match_reasons,
-              created_at, updated_at, notification_status, telegram_status, email_status
-            ) VALUES (
-              ${id}, ${m.applicant_id}, ${m.job_id}, ${m.match_score}, ${m.score_category || "poor"},
-              ${m.matched_skills || []}, ${m.missing_skills || []}, ${m.partial_skills || []}, ${m.match_reasons || ""},
-              ${timestamp}, ${timestamp}, ${m.notification_status || "pending"}, ${m.telegram_status || ""}, ${m.email_status || ""}
-            ) ON CONFLICT (applicant_id, job_id) DO UPDATE SET
-              match_score = EXCLUDED.match_score,
-              score_category = EXCLUDED.score_category,
-              matched_skills = EXCLUDED.matched_skills,
-              missing_skills = EXCLUDED.missing_skills,
-              partial_skills = EXCLUDED.partial_skills,
-              match_reasons = EXCLUDED.match_reasons,
-              updated_at = EXCLUDED.updated_at
-          `;
+          placeholders.push(
+            `($${pIdx}, $${pIdx + 1}, $${pIdx + 2}, $${pIdx + 3}, $${pIdx + 4}, $${pIdx + 5}, $${pIdx + 6}, $${pIdx + 7}, $${pIdx + 8}, $${pIdx + 9}, $${pIdx + 10}, $${pIdx + 11}, $${pIdx + 12}, $${pIdx + 13})`,
+          );
+          params.push(
+            m.match_id,
+            m.applicant_id,
+            m.job_id,
+            m.match_score,
+            m.score_category,
+            m.matched_skills,
+            m.missing_skills,
+            m.partial_skills,
+            m.match_reasons,
+            m.created_at,
+            m.updated_at,
+            m.notification_status,
+            m.telegram_status,
+            m.email_status,
+          );
+          pIdx += 14;
         }
+
+        const queryText = `
+          INSERT INTO matches (
+            match_id, applicant_id, job_id, match_score, score_category,
+            matched_skills, missing_skills, partial_skills, match_reasons,
+            created_at, updated_at, notification_status, telegram_status, email_status
+          ) VALUES ${placeholders.join(", ")}
+          ON CONFLICT (applicant_id, job_id) DO UPDATE SET
+            match_score = EXCLUDED.match_score,
+            score_category = EXCLUDED.score_category,
+            matched_skills = EXCLUDED.matched_skills,
+            missing_skills = EXCLUDED.missing_skills,
+            partial_skills = EXCLUDED.partial_skills,
+            match_reasons = EXCLUDED.match_reasons,
+            updated_at = EXCLUDED.updated_at
+        `;
+        await sql.query(queryText, params);
       }
     } catch (err) {
       console.error("SQL upsertMatchesBulk error:", err);

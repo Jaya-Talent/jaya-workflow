@@ -74,6 +74,10 @@ export async function matchJobAgainstApplicants(jobId: string): Promise<Matching
     }
     const existing = existingMap.get(applicant.id);
     const result = scoreMatch(applicant, job, weights);
+    if (result.score < 15) {
+      skipped += 1;
+      continue;
+    }
 
     toUpsert.push({
       match_id: existing?.match_id,
@@ -124,6 +128,10 @@ export async function matchApplicantAgainstJobs(applicantId: string): Promise<Ma
     }
     const existing = existingMap.get(job.id);
     const result = scoreMatch(applicant, job, weights);
+    if (result.score < 15) {
+      skipped += 1;
+      continue;
+    }
 
     toUpsert.push({
       match_id: existing?.match_id,
@@ -177,6 +185,10 @@ export async function runMatchingCycle(): Promise<MatchingRunResult & { retries:
       }
       const existing = existingMap.get(`${applicant.id}:${job.id}`);
       const result = scoreMatch(applicant, job, weights);
+      if (result.score < 15) {
+        skipped += 1;
+        continue;
+      }
 
       toUpsert.push({
         match_id: existing?.match_id,
