@@ -54,7 +54,7 @@ export async function handleCreateJob(request: Request) {
 export async function handleBulkCreateJobs(request: Request) {
   if (!isAdminAuthenticated(request)) return unauthorized();
   try {
-    const body = (await request.json()) as { jobs?: Partial<Job>[] };
+    const body = (await request.json()) as { jobs?: Partial<Job>[]; replace?: boolean };
     const items = Array.isArray(body.jobs) ? body.jobs : [];
     if (items.length === 0) {
       throw new ValidationError("No jobs provided in payload.");
@@ -66,6 +66,7 @@ export async function handleBulkCreateJobs(request: Request) {
       if (!item.title || !item.company) continue;
       inputs.push({
         id: item.id,
+        created_at: item.created_at,
         title: String(item.title),
         company: String(item.company),
         location: String(item.location || "Remote"),
@@ -88,8 +89,8 @@ export async function handleBulkCreateJobs(request: Request) {
       });
     }
 
-    const created = await repo.bulkCreateJobs(inputs);
-    return Response.json({ success: true, count: created.length }, { status: 200 });
+    const result = body.replace ? await repo.replaceJobs(inputs) : await repo.bulkCreateJobs(inputs);
+    return Response.json({ success: true, count: result.length }, { status: 200 });
   } catch (error) {
     return jsonError(error);
   }
