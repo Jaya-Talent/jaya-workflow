@@ -114,9 +114,9 @@ function AnalyticsDashboard() {
   const [copied, setCopied] = useState(false);
 
   // Timeframe Controls
-  const [timeframePreset, setTimeframePreset] = useState<"sept_2026" | "last_7" | "last_30" | "all" | "custom">("sept_2026");
-  const [startDate, setStartDate] = useState("2026-09-01");
-  const [endDate, setEndDate] = useState("2026-09-07");
+  const [timeframePreset, setTimeframePreset] = useState<"sept_2026" | "last_7" | "last_30" | "all" | "custom">("all");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -181,6 +181,7 @@ function AnalyticsDashboard() {
     }
 
     const isWithinRange = (dateStr: string) => {
+      if (!startDate && !endDate) return true;
       if (!dateStr) return true;
       const d = new Date(dateStr).getTime();
       if (isNaN(d)) return true;
@@ -205,8 +206,9 @@ function AnalyticsDashboard() {
     const savesCount = filteredInteractions.filter((i) => i.interaction_type === "save").length;
     const appSubmissions = filteredInteractions.filter((i) => i.interaction_type === "apply").length;
 
-    const conversionRate = filteredMatches.length > 0 
-      ? Math.round((clicksCount / Math.max(1, filteredMatches.length)) * 100 * 10) / 10
+    const baseCount = filteredMatches.length > 0 ? filteredMatches.length : filteredJobs.length;
+    const conversionRate = baseCount > 0 
+      ? Math.round((clicksCount / baseCount) * 100 * 10) / 10
       : 0;
 
     // Jobs per Category

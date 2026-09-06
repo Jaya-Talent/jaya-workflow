@@ -145,6 +145,14 @@ function JobDetailPage() {
                   href={job.apply_url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    void recordMatchAction({
+                      applicant_id: applicantId || "guest",
+                      job_id: job.id,
+                      match_id: search.match || undefined,
+                      action: "apply",
+                    });
+                  }}
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-bg hover:bg-ink/90 transition-all shadow-sm shrink-0"
                 >
                   Apply Now <ExternalLink className="size-4" />
@@ -236,6 +244,14 @@ function JobDetailPage() {
                       href={job.apply_url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => {
+                        void recordMatchAction({
+                          applicant_id: applicantId || "guest",
+                          job_id: job.id,
+                          match_id: search.match || undefined,
+                          action: "apply",
+                        });
+                      }}
                       className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-bg hover:bg-ink/90 transition-all shadow-sm"
                     >
                       Apply Now <ExternalLink className="size-4" />

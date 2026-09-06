@@ -148,11 +148,12 @@ export async function handleMatchAction(request: Request) {
     action?: "view" | "click" | "save" | "apply" | "not_relevant" | "dismiss" | "feedback";
     detail?: string;
   } | null;
-  if (!body?.applicant_id || !body.job_id || !body.action) {
-    return Response.json({ error: "applicant_id, job_id and action are required" }, { status: 400 });
+  if (!body?.job_id || !body.action) {
+    return Response.json({ error: "job_id and action are required" }, { status: 400 });
   }
+  const applicantId = body.applicant_id || "guest";
   const interaction = await getInteractionsRepository().record({
-    applicant_id: body.applicant_id,
+    applicant_id: applicantId,
     job_id: body.job_id,
     interaction_type: body.action,
     detail: body.detail ?? "",
@@ -160,7 +161,7 @@ export async function handleMatchAction(request: Request) {
   if (body.match_id && (body.action === "click" || body.action === "apply")) {
     const notes = await getNotificationsRepository().listNotifications();
     const related = notes.find(
-      (row) => row.match_id === body.match_id && row.applicant_id === body.applicant_id,
+      (row) => row.match_id === body.match_id && row.applicant_id === applicantId,
     );
     if (related) {
       await getNotificationsRepository().updateNotification(related.notification_id, {
