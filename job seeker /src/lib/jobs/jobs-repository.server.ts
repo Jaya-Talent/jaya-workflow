@@ -146,8 +146,61 @@ async function seedSqlFromJobs(jobs: Job[]) {
           updated_at = EXCLUDED.updated_at
       `;
     }
+async function batchInsertJobsSql(jobs: Job[]) {
+  if (jobs.length === 0) return;
+  try {
+    const sql = await getSql();
+    for (let i = 0; i < jobs.length; i += 200) {
+      const chunk = jobs.slice(i, i + 200);
+      const placeholders: string[] = [];
+      const params: unknown[] = [];
+      let paramIdx = 1;
+
+      for (const j of chunk) {
+        placeholders.push(
+          `($${paramIdx}, $${paramIdx+1}, $${paramIdx+2}, $${paramIdx+3}, $${paramIdx+4}, $${paramIdx+5}, $${paramIdx+6}, $${paramIdx+7}, $${paramIdx+8}, $${paramIdx+9}, $${paramIdx+10}, $${paramIdx+11}, $${paramIdx+12}, $${paramIdx+13}, $${paramIdx+14}, $${paramIdx+15}, $${paramIdx+16}, $${paramIdx+17}, $${paramIdx+18}, $${paramIdx+19}, $${paramIdx+20}, $${paramIdx+21})`
+        );
+        params.push(
+          j.id,
+          j.created_at || nowIso(),
+          j.updated_at || nowIso(),
+          j.title || "",
+          j.company || "",
+          j.location || "",
+          j.remote || "remote",
+          j.employment_type || "",
+          j.seniority || "",
+          j.years_min || "",
+          j.years_max || "",
+          j.salary_min || "",
+          j.salary_max || "",
+          j.salary_currency || "USD",
+          j.category || "",
+          j.required_skills || [],
+          j.preferred_skills || [],
+          j.technologies || [],
+          j.description || "",
+          j.apply_url || "",
+          j.status || "active",
+          j.source || "manual",
+        );
+        paramIdx += 22;
+      }
+
+      const queryText = `
+        INSERT INTO jobs (
+          id, created_at, updated_at, title, company, location, remote, employment_type,
+          seniority, years_min, years_max, salary_min, salary_max, salary_currency,
+          category, required_skills, preferred_skills, technologies, description, apply_url, status, source
+        ) VALUES ${placeholders.join(", ")}
+        ON CONFLICT (id) DO UPDATE SET
+          status = EXCLUDED.status,
+          updated_at = EXCLUDED.updated_at
+      `;
+      await sql.query(queryText, params);
+    }
   } catch (err) {
-    console.error("Async SQL job seed error:", err);
+    console.error("SQL batchInsertJobs error:", err);
   }
 }
 
@@ -215,64 +268,6 @@ export class JobsRepository {
 
     return job;
   }
-
-async function batchInsertJobsSql(jobs: Job[]) {
-  if (jobs.length === 0) return;
-  try {
-    const sql = await getSql();
-    for (let i = 0; i < jobs.length; i += 200) {
-      const chunk = jobs.slice(i, i + 200);
-      const placeholders: string[] = [];
-      const params: unknown[] = [];
-      let paramIdx = 1;
-
-      for (const j of chunk) {
-        placeholders.push(
-          `($${paramIdx}, $${paramIdx+1}, $${paramIdx+2}, $${paramIdx+3}, $${paramIdx+4}, $${paramIdx+5}, $${paramIdx+6}, $${paramIdx+7}, $${paramIdx+8}, $${paramIdx+9}, $${paramIdx+10}, $${paramIdx+11}, $${paramIdx+12}, $${paramIdx+13}, $${paramIdx+14}, $${paramIdx+15}, $${paramIdx+16}, $${paramIdx+17}, $${paramIdx+18}, $${paramIdx+19}, $${paramIdx+20}, $${paramIdx+21})`
-        );
-        params.push(
-          j.id,
-          j.created_at || nowIso(),
-          j.updated_at || nowIso(),
-          j.title || "",
-          j.company || "",
-          j.location || "",
-          j.remote || "remote",
-          j.employment_type || "",
-          j.seniority || "",
-          j.years_min || "",
-          j.years_max || "",
-          j.salary_min || "",
-          j.salary_max || "",
-          j.salary_currency || "USD",
-          j.category || "",
-          j.required_skills || [],
-          j.preferred_skills || [],
-          j.technologies || [],
-          j.description || "",
-          j.apply_url || "",
-          j.status || "active",
-          j.source || "manual",
-        );
-        paramIdx += 22;
-      }
-
-      const queryText = `
-        INSERT INTO jobs (
-          id, created_at, updated_at, title, company, location, remote, employment_type,
-          seniority, years_min, years_max, salary_min, salary_max, salary_currency,
-          category, required_skills, preferred_skills, technologies, description, apply_url, status, source
-        ) VALUES ${placeholders.join(", ")}
-        ON CONFLICT (id) DO UPDATE SET
-          status = EXCLUDED.status,
-          updated_at = EXCLUDED.updated_at
-      `;
-      await sql.query(queryText, params);
-    }
-  } catch (err) {
-    console.error("SQL batchInsertJobs error:", err);
-  }
-}
 
   async replaceJobs(inputs: JobInput[]) {
     const timestamp = nowIso();
