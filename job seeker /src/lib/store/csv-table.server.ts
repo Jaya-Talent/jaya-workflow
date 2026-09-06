@@ -5,6 +5,28 @@ import { getDataDir } from "../applicants/paths.server.ts";
 
 const locks = new Map<string, Promise<unknown>>();
 
+// Bundled static seed CSV files compiled at build-time by Vite/Nitro
+// Ensures serverless environments (like Vercel) have access to jobs.csv & seed data
+const seedCsvFiles = (
+  typeof import.meta !== "undefined" && typeof import.meta.glob === "function"
+    ? import.meta.glob("/data/*.csv", {
+        query: "?raw",
+        import: "default",
+        eager: true,
+      })
+    : {}
+) as Record<string, string>;
+
+function getInlinedSeedCsv(filename: string): string | null {
+  const targetKey = `/data/${filename}`;
+  for (const [key, content] of Object.entries(seedCsvFiles)) {
+    if (key.endsWith(targetKey) || key === targetKey) {
+      return content;
+    }
+  }
+  return null;
+}
+
 export function withFileLock<T>(key: string, fn: () => Promise<T>): Promise<T> {
   const prev = locks.get(key) ?? Promise.resolve();
   const run = prev.then(fn, fn);
@@ -34,7 +56,14 @@ export async function readCsvFile(filename: string): Promise<Record<string, stri
     // Ignore and fallback to seed file
   }
 
-  // Fallback to reading bundled seed CSV from project data directory
+  // 1. Fallback to inlined build-time seed CSV (Vercel serverless compatible)
+  const inlinedText = getInlinedSeedCsv(filename);
+  if (inlinedText && inlinedText.trim()) {
+    const records = parseCsv(inlinedText);
+    if (records.length > 0) return records;
+  }
+
+  // 2. Fallback to reading disk seed CSV from process.cwd()/data
   const seedPath = path.resolve(process.cwd(), "data", filename);
   try {
     const seedText = await readFile(seedPath, "utf8");
@@ -63,6 +92,17 @@ export async function ensureCsvFile(filename: string, columns: readonly string[]
     // File missing or unreadable
   }
 
+  // Check inlined seed CSV first
+  const inlinedText = getInlinedSeedCsv(filename);
+  if (inlinedText && inlinedText.trim()) {
+    try {
+      await writeFile(filePath, inlinedText, "utf8");
+      return;
+    } catch {
+      // Ignore write errors in read-only filesystems
+    }
+  }
+
   // Copy bundled seed CSV from process.cwd()/data if available
   const seedPath = path.resolve(process.cwd(), "data", filename);
   try {
@@ -75,5 +115,9 @@ export async function ensureCsvFile(filename: string, columns: readonly string[]
     // Seed file missing or unreadable
   }
 
-  await writeFile(filePath, serializeCsv(columns, []), "utf8");
+  try {
+    await writeFile(filePath, serializeCsv(columns, []), "utf8");
+  } catch {
+    // Read-only filesystem safe guard
+  }
 }

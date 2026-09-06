@@ -51,6 +51,48 @@ export async function handleCreateJob(request: Request) {
   }
 }
 
+export async function handleBulkCreateJobs(request: Request) {
+  if (!isAdminAuthenticated(request)) return unauthorized();
+  try {
+    const body = (await request.json()) as { jobs?: Partial<Job>[] };
+    const items = Array.isArray(body.jobs) ? body.jobs : [];
+    if (items.length === 0) {
+      throw new ValidationError("No jobs provided in payload.");
+    }
+    const repo = getJobsRepository();
+    const created: Job[] = [];
+    for (const item of items) {
+      if (!item.title || !item.company) continue;
+      const job = await repo.createJob({
+        id: item.id,
+        title: String(item.title),
+        company: String(item.company),
+        location: String(item.location || "Remote"),
+        remote: item.remote === "hybrid" || item.remote === "onsite" ? item.remote : "remote",
+        employment_type: String(item.employment_type || "Full-time"),
+        seniority: String(item.seniority || ""),
+        years_min: String(item.years_min || ""),
+        years_max: String(item.years_max || ""),
+        salary_min: String(item.salary_min || ""),
+        salary_max: String(item.salary_max || ""),
+        salary_currency: String(item.salary_currency || "USD"),
+        category: String(item.category || "Software Engineering"),
+        required_skills: Array.isArray(item.required_skills) ? item.required_skills.map(String) : [],
+        preferred_skills: Array.isArray(item.preferred_skills) ? item.preferred_skills.map(String) : [],
+        technologies: Array.isArray(item.technologies) ? item.technologies.map(String) : [],
+        description: String(item.description || ""),
+        apply_url: String(item.apply_url || ""),
+        status: item.status === "closed" ? "closed" : "active",
+        source: item.source || "bulk_upload",
+      });
+      created.push(job);
+    }
+    return Response.json({ success: true, count: created.length }, { status: 200 });
+  } catch (error) {
+    return jsonError(error);
+  }
+}
+
 export async function handleAdminJobs(request: Request) {
   if (!isAdminAuthenticated(request)) return unauthorized();
   const jobs = await getJobsRepository().listJobs();
