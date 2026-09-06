@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Badge } from "@/components/ui";
-import { categoryCopy, formatLocation, formatSalary, scoreTone } from "@/lib/jobs/format";
+import { categoryCopy, formatLocation, formatSalary, getJobSlug, scoreTone } from "@/lib/jobs/format";
 import type { Job } from "@/lib/matching/types";
 
 export function JobCard({
@@ -15,11 +15,11 @@ export function JobCard({
   applicantId?: string;
 }) {
   const salary = formatSalary(job);
+  const slug = getJobSlug(job);
   return (
     <Link
       to="/jobs/$id"
-      params={{ id: job.id }}
-      search={{ applicant: applicantId || "", match: "" }}
+      params={{ id: slug }}
       className="block rounded-2xl bg-surface p-6 shadow-[var(--shadow-card)] transition-transform duration-150 hover:-translate-y-0.5"
     >
       <div className="flex items-start justify-between gap-3">

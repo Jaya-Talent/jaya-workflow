@@ -4,7 +4,7 @@ import { MatchActions } from "@/components/match-actions";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { Badge, Button, Input, Label, Select } from "@/components/ui";
 import type { Applicant } from "@/lib/applicants/types";
-import { categoryCopy, formatLocation, formatSalary, scoreTone, storeProfileId } from "@/lib/jobs/format";
+import { categoryCopy, formatLocation, formatSalary, getJobSlug, scoreTone, storeProfileId } from "@/lib/jobs/format";
 import type { Job, StoredMatch } from "@/lib/matching/types";
 import { SITE_NAME } from "@/lib/site";
 
@@ -241,8 +241,7 @@ function ProfilePage() {
                           <p className="text-sm text-muted">{job.company}</p>
                           <Link
                             to="/jobs/$id"
-                            params={{ id: job.id }}
-                            search={{ applicant: id, match: row.match_id }}
+                            params={{ id: getJobSlug(job) }}
                             className="mt-1 block text-lg font-semibold text-ink hover:text-accent"
                           >
                             {job.title}

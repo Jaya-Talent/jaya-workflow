@@ -52,3 +52,23 @@ export function storeProfileId(id: string) {
   if (typeof window === "undefined" || !id) return;
   window.localStorage.setItem(PROFILE_STORAGE_KEY, id);
 }
+
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getJobSlug(job: Pick<Job, "id" | "title" | "company">): string {
+  if (!job) return "";
+  const titleSlug = slugify(job.title || "role");
+  const companySlug = slugify(job.company || "");
+  const cleanId = job.id.replace(/^job_scraped_|^job_manual_|^job_/, "");
+  if (companySlug && titleSlug) {
+    return `${titleSlug}-${companySlug}-${cleanId}`;
+  }
+  return `${titleSlug || "role"}-${cleanId}`;
+}

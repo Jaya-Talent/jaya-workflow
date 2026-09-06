@@ -4,6 +4,7 @@ import { getSql } from "../db.ts";
 import type { Job } from "../matching/types.ts";
 import { ensureCsvFile, readCsvFile, withFileLock, writeCsvFile } from "../store/csv-table.server.ts";
 import { JOB_COLUMNS } from "./columns.ts";
+import { getJobSlug } from "./format.ts";
 
 const FILE = "jobs.csv";
 
@@ -223,8 +224,28 @@ export class JobsRepository {
     return (await readAll()).filter((job) => job.status === "active");
   }
 
-  async getJob(id: string) {
-    return (await readAll()).find((job) => job.id === id) ?? null;
+  async getJob(idOrSlug: string) {
+    if (!idOrSlug) return null;
+    const all = await readAll();
+    const exact = all.find((job) => job.id === idOrSlug);
+    if (exact) return exact;
+
+    const slugMatch = all.find((job) => getJobSlug(job) === idOrSlug);
+    if (slugMatch) return slugMatch;
+
+    const cleanTarget = idOrSlug.replace(/^job_scraped_|^job_manual_|^job_/, "");
+    const targetSuffix = idOrSlug.split("-").pop() || cleanTarget;
+
+    return (
+      all.find((job) => {
+        const cleanJobId = job.id.replace(/^job_scraped_|^job_manual_|^job_/, "");
+        return (
+          job.id === cleanTarget ||
+          cleanJobId === cleanTarget ||
+          (targetSuffix.length >= 6 && cleanJobId.endsWith(targetSuffix))
+        );
+      }) ?? null
+    );
   }
 
   async createJob(input: JobInput) {
