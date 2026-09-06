@@ -50,16 +50,25 @@ import {
 // Kick (and share) PGLite bootstrap as soon as the auth server module loads.
 void ensureDbReady();
 
+const isProd = process.env.NODE_ENV === "production" || Boolean(process.env.VERCEL);
+
 /**
- * Preview secret must outlive module reloads: PGLite (and its session rows) is
- * stored on `globalThis`, so an HMR re-eval of this file must NOT mint a new
- * signing secret or every existing session becomes invalid mid-dev. Process
- * restart clears both the secret and PGLite together.
+ * Preview secret must outlive module reloads.
+ * If BETTER_AUTH_SECRET is omitted in production/Vercel, we derive a deterministic
+ * secret from DATABASE_URL so serverless cold-starts share the exact same key.
  */
 const globalAuthRef = globalThis as typeof globalThis & {
   __grokAuthPreviewSecret__?: string;
 };
-function previewAuthSecret(): string {
+function stableAuthSecret(): string {
+  const envSecret = env("BETTER_AUTH_SECRET");
+  if (envSecret) return envSecret;
+
+  const dbUrl = env("DATABASE_URL");
+  if (dbUrl) {
+    return createHash("sha256").update(`jaya-talent-auth-secret:${dbUrl}`).digest("hex");
+  }
+
   globalAuthRef.__grokAuthPreviewSecret__ ??= randomBytes(32).toString("hex");
   return globalAuthRef.__grokAuthPreviewSecret__;
 }
@@ -190,8 +199,10 @@ const database = databaseUrl
   ? new Pool({ connectionString: databaseUrl })
   : { dialect: pgliteDialect(() => getPglite()), type: "postgres" as const };
 
-/** Session token cookie name — also read by the live-preview popup completion page. */
-export const SESSION_TOKEN_COOKIE = "__Host-grok-auth.session_token";
+/** Session token cookie name — standard & backward-compatible. */
+export const SESSION_TOKEN_COOKIE = isProd
+  ? "__Secure-better-auth.session_token"
+  : "better-auth.session_token";
 
 // Built separately so the `betterAuth({...})` call stays easy to edit without
 // breaking brackets (models often trip on the conditional plugin spread).
@@ -219,9 +230,7 @@ const grokOAuthPlugin = authConfigured
 
 export const auth = betterAuth({
   baseURL,
-  // Deployed apps inject BETTER_AUTH_SECRET. Preview: process-stable secret on
-  // globalThis so HMR doesn't invalidate PGLite-backed sessions (see above).
-  secret: env("BETTER_AUTH_SECRET") ?? previewAuthSecret(),
+  secret: stableAuthSecret(),
   database,
 
   // CSRF / origin check for credentialed auth POSTs (email sign-up/sign-in, …).
@@ -254,7 +263,7 @@ export const auth = betterAuth({
   session: {
     expiresIn: 60 * 60 * 24 * 30, // 30 days session validity
     updateAge: 60 * 60 * 24,      // Auto-extend active sessions daily
-    cookieCache: { enabled: true, maxAge: 60 * 60 * 24 * 7 },
+    cookieCache: { enabled: true, maxAge: 60 * 60 * 24 * 30 },
   },
 
   // Local email/password — toggled only via `./email-password` (not a plugin).
@@ -271,26 +280,19 @@ export const auth = betterAuth({
       : {}),
   },
 
-  // `__Host-` prefixed cookies: the browser REFUSES any same-named cookie that
-  // carries a `Domain` attribute, so a sibling `*.grok.me` app cannot "toss" a
-  // `Domain=.grok.me` session cookie onto this app. `__Host-` requires Secure +
-  // Path=/ + no Domain; Better Auth otherwise uses `__Secure-` (which permits
-  // Domain), so we drop its auto prefix (`useSecureCookies: false`) and set
-  // Secure + the names ourselves. (Browsers allow Secure cookies on
-  // `http://localhost`, so local dev still works.)
   advanced: {
-    useSecureCookies: false,
+    useSecureCookies: isProd,
     defaultCookieAttributes: {
-      secure: true,
+      secure: isProd,
       sameSite: "lax",
       path: "/",
       maxAge: 60 * 60 * 24 * 30, // 30 days persistent cookie on browser disk
     },
     cookies: {
       session_token: { name: SESSION_TOKEN_COOKIE },
-      session_data: { name: "__Host-grok-auth.session_data" },
-      account_data: { name: "__Host-grok-auth.account_data" },
-      dont_remember: { name: "__Host-grok-auth.dont_remember" },
+      session_data: { name: isProd ? "__Secure-better-auth.session_data" : "better-auth.session_data" },
+      account_data: { name: isProd ? "__Secure-better-auth.account_data" : "better-auth.account_data" },
+      dont_remember: { name: isProd ? "__Secure-better-auth.dont_remember" : "better-auth.dont_remember" },
     },
   },
 
@@ -350,7 +352,13 @@ export const auth = betterAuth({
 });
 
 export function readSessionToken(): string | null {
-  return getCookie(SESSION_TOKEN_COOKIE) ?? null;
+  return (
+    getCookie(SESSION_TOKEN_COOKIE) ??
+    getCookie("__Host-grok-auth.session_token") ??
+    getCookie("__Secure-better-auth.session_token") ??
+    getCookie("better-auth.session_token") ??
+    null
+  );
 }
 
 // Re-exported for convenience; the array lives in the dependency-free

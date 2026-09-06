@@ -35,7 +35,12 @@ export async function handleAuthPopupRequest(request: Request): Promise<Response
 
   if (done) {
     const errored = url.searchParams.has("error");
-    const token = errored ? null : readCookie(request, SESSION_TOKEN_COOKIE);
+    const token = errored
+      ? null
+      : readCookie(request, SESSION_TOKEN_COOKIE) ??
+        readCookie(request, "__Host-grok-auth.session_token") ??
+        readCookie(request, "__Secure-better-auth.session_token") ??
+        readCookie(request, "better-auth.session_token");
     const message: PopupMessage = {
       source: "grok-auth-popup",
       token,
