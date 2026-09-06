@@ -91,22 +91,60 @@ export const authConfigured =
 // it derives the origin per-request from the (proxied) host, validated against the
 // preview allowlist, which makes the OAuth `redirect_uri` the concrete preview URL
 // the broker's preview client accepts.
-const explicitBaseURL = env("BETTER_AUTH_URL");
+const rawBaseURL = env("BETTER_AUTH_URL");
+// On Vercel / production environments, ignore local http://localhost fallback URLs
+const explicitBaseURL =
+  rawBaseURL && (!process.env.VERCEL || !rawBaseURL.includes("localhost"))
+    ? rawBaseURL
+    : undefined;
+
 // Explicit `string[]` (not a readonly tuple) — Better Auth's DynamicBaseURLConfig
 // requires a mutable `allowedHosts: string[]`.
 const previewAllowedHosts: string[] = [...PREVIEW_ALLOWED_HOSTS];
-// Local `npm run dev` (port 8080 contract). Browsers may send Origin as any of
+
+// Local `npm run dev` and preview ports. Browsers may send Origin as any of
 // these for the same server — trusting only `localhost` rejects `127.0.0.1` and
 // breaks email/password with "Invalid origin".
 const LOCAL_DEV_ORIGINS: string[] = [
   "http://localhost:8080",
   "http://127.0.0.1:8080",
   "http://[::1]:8080",
+  "http://localhost:8081",
+  "http://127.0.0.1:8081",
+  "http://[::1]:8081",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
 ];
+
+const PROD_ORIGINS: string[] = [
+  "https://jayatalent-job-seeker.vercel.app",
+  "http://jayatalent-job-seeker.vercel.app",
+  "https://jayatalent.com",
+  "https://www.jayatalent.com",
+  "http://jayatalent.com",
+  "http://www.jayatalent.com",
+];
+
+const vercelUrl = env("VERCEL_URL") ? `https://${env("VERCEL_URL")}` : undefined;
+const vercelProdUrl = env("VERCEL_PROJECT_PRODUCTION_URL")
+  ? `https://${env("VERCEL_PROJECT_PRODUCTION_URL")}`
+  : undefined;
+const publicAppUrl = env("PUBLIC_APP_URL");
+
 const baseURL = explicitBaseURL ?? {
   // Include loopback hosts so dynamic baseURL resolves for local email/password
   // (not only the preview wildcard).
-  allowedHosts: [...previewAllowedHosts, "localhost", "127.0.0.1", "[::1]"],
+  allowedHosts: [
+    ...previewAllowedHosts,
+    "localhost",
+    "127.0.0.1",
+    "[::1]",
+    "jayatalent-job-seeker.vercel.app",
+    "*.vercel.app",
+    "*.jayatalent.com",
+  ],
   // `auto` → trust both http:// and https:// expansions of allowedHosts
   // (preview is https; local dev is http).
   protocol: "auto" as const,
@@ -115,15 +153,22 @@ const baseURL = explicitBaseURL ?? {
 
 // Origins Better Auth accepts on credentialed POSTs (sign-up/sign-in, etc.).
 // Missing entries here surface as FORBIDDEN "Invalid origin".
-const trustedOrigins: string[] = explicitBaseURL
-  ? [explicitBaseURL, ...LOCAL_DEV_ORIGINS]
-  : [
-      // Host wildcards (matched against Origin's host)
-      ...previewAllowedHosts,
-      // Full-origin wildcards (matched against Origin)
-      ...previewAllowedHosts.flatMap((host) => [`https://${host}`, `http://${host}`]),
-      ...LOCAL_DEV_ORIGINS,
-    ];
+const trustedOrigins: string[] = Array.from(
+  new Set([
+    ...(explicitBaseURL ? [explicitBaseURL] : []),
+    ...(publicAppUrl ? [publicAppUrl] : []),
+    ...(vercelUrl ? [vercelUrl] : []),
+    ...(vercelProdUrl ? [vercelProdUrl] : []),
+    "https://*.vercel.app",
+    "http://*.vercel.app",
+    "https://*.jayatalent.com",
+    "http://*.jayatalent.com",
+    ...PROD_ORIGINS,
+    ...LOCAL_DEV_ORIGINS,
+    ...previewAllowedHosts,
+    ...previewAllowedHosts.flatMap((host) => [`https://${host}`, `http://${host}`]),
+  ]),
+);
 
 const databaseUrl = env("DATABASE_URL");
 
