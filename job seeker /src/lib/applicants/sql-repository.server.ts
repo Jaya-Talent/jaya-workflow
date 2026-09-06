@@ -1,8 +1,9 @@
 import { getSql } from "../db.ts";
+import { calculateProfileCompletion } from "./completion.ts";
 import { type Applicant, type ApplicantInput, type ApplicantPatch, type ApplicantRepository, NotFoundError, DuplicateEmailError } from "./types.ts";
 
 function fromRecord(record: any): Applicant {
-  return {
+  const applicant: Applicant = {
     id: record.id,
     created_at: record.created_at?.toISOString() || "",
     updated_at: record.updated_at?.toISOString() || "",
@@ -27,7 +28,7 @@ function fromRecord(record: any): Applicant {
     availability: record.availability || "",
     professional_bio: record.professional_bio || "",
     cv_filename: record.cv_filename || "",
-    profile_completion: record.profile_completion || 0,
+    profile_completion: Number(record.profile_completion || 0),
     consent: record.consent || false,
     telegram_notifications: record.telegram_notifications || false,
     email_notifications: record.email_notifications || false,
@@ -36,6 +37,16 @@ function fromRecord(record: any): Applicant {
     telegram_chat_id: record.telegram_chat_id || "",
     last_digest_at: record.last_digest_at?.toISOString() || "",
   };
+
+  const computed = calculateProfileCompletion({
+    ...applicant,
+    has_cv: Boolean(applicant.cv_filename),
+  });
+  if (computed > applicant.profile_completion) {
+    applicant.profile_completion = computed;
+  }
+
+  return applicant;
 }
 
 export class SqlApplicantRepository implements ApplicantRepository {
@@ -48,8 +59,11 @@ export class SqlApplicantRepository implements ApplicantRepository {
       throw new DuplicateEmailError();
     }
 
-    // Usually we would insert this properly using a parameterised query,
-    // assuming input mapping is correct.
+    const completionScore = calculateProfileCompletion({
+      ...input,
+      has_cv: Boolean(input.cv_filename),
+    });
+
     const rows = await sql`
       INSERT INTO applicants (
         id, full_name, email, telegram_username, country, city, linkedin_url, github_url, portfolio_url,
@@ -62,7 +76,7 @@ export class SqlApplicantRepository implements ApplicantRepository {
         ${input.linkedin_url}, ${input.github_url}, ${input.portfolio_url}, ${input.job_categories}, ${input.target_job_titles},
         ${input.experience_level}, ${input.years_experience}, ${input.employment_type}, ${input.skills}, ${input.work_preference},
         ${input.preferred_locations}, ${input.salary_min}, ${input.salary_currency}, ${input.availability}, ${input.professional_bio},
-        ${input.cv_filename}, ${input.profile_completion || 0}, ${input.consent}, ${input.telegram_notifications}, ${input.email_notifications},
+        ${input.cv_filename}, ${completionScore}, ${input.consent}, ${input.telegram_notifications}, ${input.email_notifications},
         ${input.notification_frequency}, ${input.minimum_match_score}, ${input.telegram_chat_id}
       ) RETURNING *
     `;
@@ -82,9 +96,11 @@ export class SqlApplicantRepository implements ApplicantRepository {
     const existing = await this.getApplicant(id);
     if (!existing) return null;
     
-    // Building a dynamic update query.
-    // For simplicity, we can fetch, merge, and update.
     const merged = { ...existing, ...patch };
+    merged.profile_completion = calculateProfileCompletion({
+      ...merged,
+      has_cv: Boolean(merged.cv_filename),
+    });
     
     const rows = await sql`
       UPDATE applicants SET
