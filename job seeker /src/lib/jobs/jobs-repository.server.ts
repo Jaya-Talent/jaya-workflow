@@ -146,6 +146,11 @@ async function seedSqlFromJobs(jobs: Job[]) {
           updated_at = EXCLUDED.updated_at
       `;
     }
+  } catch (err) {
+    console.error("Async SQL job seed error:", err);
+  }
+}
+
 async function batchInsertJobsSql(jobs: Job[]) {
   if (jobs.length === 0) return;
   try {
