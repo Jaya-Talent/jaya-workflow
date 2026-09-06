@@ -72,7 +72,7 @@ function SignUpPage() {
                     : "text-ink/60 hover:text-ink"
                 }`}
               >
-                ✨ Magic Link (Passwordless)
+                Magic Link (Passwordless)
               </button>
               <button
                 type="button"
@@ -83,7 +83,7 @@ function SignUpPage() {
                     : "text-ink/60 hover:text-ink"
                 }`}
               >
-                🔑 Password
+                Password
               </button>
             </div>
 

@@ -70,10 +70,10 @@ function ServicesPage() {
               Whether you are a Web3 professional aiming for your next career milestone or a crypto protocol building an elite team, we provide personalized guidance and talent solutions.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a href="#job-seekers" className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent hover:bg-accent/20 transition-colors">
+              <a href="#job-seekers" className="inline-flex items-center gap-2 rounded-xl bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent hover:bg-accent/20 transition-colors">
                 <User className="size-4" /> For Job Seekers
               </a>
-              <a href="#employers" className="inline-flex items-center gap-2 rounded-full bg-ink/5 px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ink/10 transition-colors">
+              <a href="#employers" className="inline-flex items-center gap-2 rounded-xl bg-ink/5 px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ink/10 transition-colors">
                 <Building2 className="size-4" /> For Employers
               </a>
             </div>

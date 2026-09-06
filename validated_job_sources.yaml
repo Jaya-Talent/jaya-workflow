@@ -1,0 +1,260 @@
+Reddit Sources:
+- name: r/ethdev (Ethereum developers JSON API)
+  url: https://www.reddit.com/r/ethdev/search.json?q=flair%3AHiring&restrict_sr=on&sort=new&limit=100
+- name: r/BlockchainJobs
+  url: https://www.reddit.com/r/BlockchainJobs/
+- name: r/CryptoTechnology (occasional job posts)
+  url: https://www.reddit.com/r/CryptoTechnology/search/?q=Hiring&restrict_sr=on&sort=new
+- name: r/Web3Jobs
+  url: https://www.reddit.com/r/Web3Jobs/
+- name: r/solidity (Solidity dev jobs)
+  url: https://www.reddit.com/r/solidity/search/?q=job%20OR%20hiring&restrict_sr=on&sort=new
+- name: r/ethdev (Ethereum developers)
+  url: https://www.reddit.com/r/ethdev/search/?q=flair%3AHiring&restrict_sr=on&sort=new
+- name: r/cryptojobs
+  url: https://www.reddit.com/r/cryptojobs/
+- name: r/JobsCrypto
+  url: https://www.reddit.com/r/JobsCrypto/
+- name: r/defi (DeFi projects hiring)
+  url: https://www.reddit.com/r/defi/search/?q=Hiring&restrict_sr=on&sort=new
+LinkedIn Searches:
+- name: LinkedIn "blockchain" jobs worldwide
+  url: https://www.linkedin.com/jobs/search/?keywords=blockchain&location=Worldwide
+- name: LinkedIn "smart contract" jobs
+  url: https://www.linkedin.com/jobs/search/?keywords=smart%20contract&location=Worldwide
+- name: LinkedIn "crypto" jobs worldwide
+  url: https://www.linkedin.com/jobs/search/?keywords=crypto&location=Worldwide
+- name: LinkedIn "web3" jobs worldwide
+  url: https://www.linkedin.com/jobs/search/?keywords=web3&location=Worldwide
+- name: LinkedIn "NFT" jobs
+  url: https://www.linkedin.com/jobs/search/?keywords=NFT&location=Worldwide
+- name: LinkedIn "solidity" developer jobs
+  url: https://www.linkedin.com/jobs/search/?keywords=solidity&location=Worldwide
+- name: LinkedIn "DeFi" jobs
+  url: https://www.linkedin.com/jobs/search/?keywords=DeFi&location=Worldwide
+Web3 Job Boards:
+- name: Wellfound (AngelList) Web3
+  url: https://wellfound.com/role/r/web3
+- name: Upwork (Blockchain)
+  url: https://www.upwork.com/freelance-jobs/blockchain/
+- name: Indeed Crypto Jobs
+  url: https://www.indeed.com/q-Crypto-jobs.html
+- name: Glassdoor Crypto/Blockchain
+  url: https://www.glassdoor.com/Job/blockchain-jobs-SRCH_KO0,10.htm
+- name: Y Combinator Jobs (Crypto/Web3)
+  url: https://www.ycombinator.com/jobs?query=crypto
+- name: Bankless Jobs
+  url: https://bankless.pallet.xyz/jobs
+- name: BeInCrypto Jobs
+  url: https://jobs.beincrypto.com
+- name: CryptoJobsList
+  url: https://cryptojobslist.com
+- name: Crypto Jobs Daily
+  url: https://cryptojobsdaily.com
+- name: CryptocurrencyJobs.co
+  url: https://cryptocurrencyjobs.co
+- name: DeFi Jobs
+  url: https://defi.jobs
+- name: Web3.career
+  url: https://web3.career
+- name: remote3.co
+  url: https://remote3.co
+Company Careers Pages:
+- name: Ethereum Foundation
+  url: https://jobs.ashbyhq.com/ethereum-foundation
+- name: Avalanche (Ava Labs)
+  url: https://www.avalabs.org/careers
+- name: Aptos
+  url: https://aptoslabs.com/careers
+- name: Cosmos (Interchain Foundation)
+  url: https://interchain.io/careers
+- name: Injective
+  url: https://jobs.ashbyhq.com/injective
+- name: NEAR Protocol
+  url: https://near.org/careers
+- name: Dymension
+  url: https://www.dymension.xyz/careers
+- name: "Manual Jobs List"
+  url: "manual_jobs.json"
+  type: "local JSON list"
+  status: "Verified (fallback/custom entries)"
+- name: "HashtagWeb3"
+  url: "https://hashtagweb3.com/"
+  type: "Rest API"
+  status: "Verified (Added to main.py fetcher)"
+  notes: "Uses pagination."
+- name: "Web3.career"
+  url: "https://web3.career/"
+  type: "HTML Scraper"
+  status: "Verified (Added to main.py fetcher)"
+  notes: "Direct apply links resolved from HTML."
+- name: "Alpaca"
+  url: "https://job-boards.greenhouse.io/alpaca"
+  type: "Greenhouse"
+  status: "Verified (Added to companies.json)"
+- name: "CoW DAO"
+  url: "https://cow.fi/careers"
+  type: "AshbyHQ"
+  status: "Verified (Added to companies.json)"
+- name: "CryptoJobsList"
+  url: "https://cryptojobslist.com/"
+  type: "Cloudflare Protected"
+  status: "Blocked by Cloudflare"
+  notes: "Requires a browser-based scraper or manual entry. Cloudflare 403 on API and RSS feeds."
+- name: Solana
+  url: https://jobs.solana.com
+- name: Flow (Dapper Labs)
+  url: https://www.dapperlabs.com/careers
+- name: Cardano (IOHK)
+  url: https://iohk.io/careers
+- name: Algorand
+  url: https://www.algorand.com/careers
+- name: Celestia
+  url: https://celestia.org/careers
+- name: Optimism (OP Labs)
+  url: https://jobs.ashbyhq.com/oplabs
+- name: Base (Coinbase)
+  url: https://www.coinbase.com/careers
+- name: Polkadot / Web3 Foundation
+  url: https://web3.bamboohr.com/jobs/
+- name: Linea (Consensys)
+  url: https://consensys.io/careers
+- name: Polygon
+  url: https://polygon.technology/careers
+- name: Sui (Mysten Labs)
+  url: https://mystenlabs.com/careers
+- name: zkSync (Matter Labs)
+  url: https://matter-labs.io/careers
+- name: Aave
+  url: https://aave.com/careers
+- name: Hedera Hashgraph
+  url: https://hedera.com/careers
+- name: StarkNet (StarkWare)
+  url: https://starkware.co/careers
+- name: Compound
+  url: https://compound.finance/careers
+- name: Uniswap Labs
+  url: https://uniswap.org/careers
+- name: dYdX
+  url: https://dydx.exchange/careers
+- name: Balancer Labs
+  url: https://balancer.fi/careers
+- name: 0x
+  url: https://0x.org/careers
+- name: Chainlink
+  url: https://chainlinklabs.com/careers
+- name: Frax Finance
+  url: https://frax.finance/careers
+- name: 1inch
+  url: https://1inch.io/careers
+- name: Arbitrum (Offchain Labs)
+  url: https://offchainlabs.com/careers
+- name: Ether.fi
+  url: https://www.ether.fi/careers
+- name: QuickNode
+  url: https://www.quicknode.com/careers
+- name: Trader Joe
+  url: https://traderjoexyz.com/careers
+- name: EigenLayer
+  url: https://www.eigenlayer.xyz/careers
+- name: Arweave
+  url: https://arweave.org/careers
+- name: Moralis
+  url: https://moralis.io/careers
+- name: Curve Finance
+  url: https://curve.fi/careers
+- name: Alchemy
+  url: https://www.alchemy.com/careers
+- name: Infura (Consensys)
+  url: https://consensys.io/careers
+- name: Biconomy
+  url: https://www.biconomy.io/careers
+- name: Avail
+  url: https://www.availproject.org/careers
+- name: Chainstack
+  url: https://chainstack.com/careers
+- name: Gelato
+  url: https://www.gelato.network/careers
+- name: LayerZero
+  url: https://layerzero.network/careers
+- name: Rainbow
+  url: https://rainbow.me/careers
+- name: Helium Foundation
+  url: https://www.helium.foundation/careers
+- name: Fetch.ai
+  url: https://fetch.ai/careers
+- name: MetaMask (Consensys)
+  url: https://consensys.io/careers
+- name: Exodus
+  url: https://www.exodus.com/careers
+- name: Binance
+  url: https://www.binance.com/en/careers
+- name: Safe (Gnosis Safe)
+  url: https://safe.global/careers
+- name: Coinbase
+  url: https://www.coinbase.com/careers
+- name: Axelar
+  url: https://axelar.network/careers
+- name: Phantom
+  url: https://phantom.app/careers
+- name: The Sandbox
+  url: https://www.sandbox.game/careers
+- name: Immutable
+  url: https://www.immutable.com/careers
+- name: Illuvium
+  url: https://illuvium.io/careers
+- name: Bybit
+  url: https://www.bybit.com/careers
+- name: Trust Wallet
+  url: https://trustwallet.com/careers
+- name: Sky Mavis (Axie Infinity)
+  url: https://skymavis.com/careers
+- name: KuCoin
+  url: https://www.kucoin.com/careers
+- name: Decentraland
+  url: https://decentraland.org/careers
+- name: Bitstamp
+  url: https://www.bitstamp.net/careers
+- name: Gemini
+  url: https://www.gemini.com/careers
+- name: a16z Crypto
+  url: https://jobs.a16z.com/jobs
+- name: Crypto.com
+  url: https://crypto.com/careers
+- name: Kraken
+  url: https://www.kraken.com/careers
+- name: Paradigm
+  url: https://www.paradigm.xyz/careers
+- name: Dragonfly
+  url: https://www.dragonfly.xyz/careers
+- name: Variant
+  url: https://variant.fund/careers
+- name: Proof of Play
+  url: https://www.proofofplay.com/careers
+- name: Pantera Capital
+  url: https://panteracapital.com/careers
+- name: Lido
+  url: https://jobs.ashbyhq.com/lido
+- name: Monad
+  url: https://jobs.ashbyhq.com/monadfoundation
+- name: Scroll
+  url: https://scroll.io/join
+- name: Ethena
+  url: https://ethena.fi/jobs
+- name: Berachain
+  url: https://careers.berachain.com
+- name: Wormhole
+  url: https://jobs.lever.co/wormhole
+- name: Jupiter
+  url: https://jobs.lever.co/jupiter
+- name: MakerDAO / Sky
+  url: https://jobs.lever.co/makerdao
+- name: Pyth Network
+  url: https://jobs.lever.co/pyth
+- name: Hyperliquid
+  url: https://hyperliquid.xyz/careers
+- name: Synthetix
+  url: https://jobs.lever.co/synthetix
+- name: Gnosis
+  url: https://jobs.lever.co/gnosis
+

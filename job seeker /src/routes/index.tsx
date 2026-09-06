@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, Briefcase, Globe, Target } from "lucide-react";
+import { Bell, Briefcase, Check, Globe, Target } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { Button } from "@/components/ui";
 import { SITE_DESCRIPTION } from "@/lib/site";
@@ -143,19 +143,27 @@ function Home() {
                     </p>
                     <ul className="mt-6 space-y-2.5 text-sm text-bg/90">
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-purple-500/30 text-purple-200 font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-md bg-purple-500/30 text-purple-200 shrink-0">
+                          <Check className="size-3 text-purple-300" strokeWidth={2.5} />
+                        </span>
                         CV review & resume optimization
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-purple-500/30 text-purple-200 font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-md bg-purple-500/30 text-purple-200 shrink-0">
+                          <Check className="size-3 text-purple-300" strokeWidth={2.5} />
+                        </span>
                         Career strategy & salary consultation
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-purple-500/30 text-purple-200 font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-md bg-purple-500/30 text-purple-200 shrink-0">
+                          <Check className="size-3 text-purple-300" strokeWidth={2.5} />
+                        </span>
                         Mock technical & behavioral interview prep
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-purple-500/30 text-purple-200 font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-md bg-purple-500/30 text-purple-200 shrink-0">
+                          <Check className="size-3 text-purple-300" strokeWidth={2.5} />
+                        </span>
                         LinkedIn & Web3 profile optimization
                       </li>
                     </ul>
@@ -191,19 +199,27 @@ function Home() {
                     </p>
                     <ul className="mt-6 space-y-2.5 text-sm text-bg/90">
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/15 text-white font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-md bg-white/15 text-white shrink-0">
+                          <Check className="size-3 text-white" strokeWidth={2.5} />
+                        </span>
                         Job posting & passive candidate sourcing
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/15 text-white font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-md bg-white/15 text-white shrink-0">
+                          <Check className="size-3 text-white" strokeWidth={2.5} />
+                        </span>
                         Vetted candidate matching & technical screening
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/15 text-white font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-md bg-white/15 text-white shrink-0">
+                          <Check className="size-3 text-white" strokeWidth={2.5} />
+                        </span>
                         Recruitment consultation & hiring support
                       </li>
                       <li className="flex items-center gap-2.5">
-                        <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/15 text-white font-bold text-xs shrink-0">✓</span>
+                        <span className="flex items-center justify-center h-5 w-5 rounded-md bg-white/15 text-white shrink-0">
+                          <Check className="size-3 text-white" strokeWidth={2.5} />
+                        </span>
                         Long-term talent pipeline building
                       </li>
                     </ul>

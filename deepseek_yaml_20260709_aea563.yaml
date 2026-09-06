@@ -1,0 +1,14 @@
+- name: LinkedIn "web3" jobs worldwide
+  url: https://www.linkedin.com/jobs/search/?keywords=web3&location=Worldwide
+- name: LinkedIn "crypto" jobs worldwide
+  url: https://www.linkedin.com/jobs/search/?keywords=crypto&location=Worldwide
+- name: LinkedIn "blockchain" jobs worldwide
+  url: https://www.linkedin.com/jobs/search/?keywords=blockchain&location=Worldwide
+- name: LinkedIn "solidity" developer jobs
+  url: https://www.linkedin.com/jobs/search/?keywords=solidity&location=Worldwide
+- name: LinkedIn "DeFi" jobs
+  url: https://www.linkedin.com/jobs/search/?keywords=DeFi&location=Worldwide
+- name: LinkedIn "smart contract" jobs
+  url: https://www.linkedin.com/jobs/search/?keywords=smart%20contract&location=Worldwide
+- name: LinkedIn "NFT" jobs
+  url: https://www.linkedin.com/jobs/search/?keywords=NFT&location=Worldwide

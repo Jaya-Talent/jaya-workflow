@@ -111,7 +111,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
                 Log In
               </Link>
               <Link to="/apply">
-                <Button size="sm" className="shadow-sm hover:shadow-md transition-all gap-1.5 rounded-full px-5">
+                <Button size="sm" className="shadow-sm hover:shadow-md transition-all gap-1.5 rounded-xl px-5">
                   Create profile
                 </Button>
               </Link>
@@ -119,7 +119,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           ) : (
             <>
               <Link to="/profile">
-                <Button size="sm" className="shadow-sm hover:shadow-md transition-all bg-accent text-white hover:bg-accent-hover border-transparent rounded-full px-5 gap-1.5 font-semibold">
+                <Button size="sm" className="shadow-sm hover:shadow-md transition-all bg-accent text-white hover:bg-accent-hover border-transparent rounded-xl px-5 gap-1.5 font-semibold">
                   <User className="size-3.5" />
                   My Profile
                 </Button>
@@ -128,7 +128,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
                 size="sm"
                 variant="outline"
                 onClick={handleSignOut}
-                className="rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
+                className="rounded-xl hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
                 title="Sign Out"
               >
                 <LogOut className="size-3.5" />
@@ -141,13 +141,13 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         <div className="flex items-center gap-2 md:hidden">
           {!session?.user ? (
             <Link to="/apply">
-              <Button size="sm" className="rounded-full px-4 text-xs">
+              <Button size="sm" className="rounded-xl px-4 text-xs">
                 Create profile
               </Button>
             </Link>
           ) : (
             <Link to="/profile">
-              <Button size="sm" className="rounded-full px-3 text-xs bg-accent text-ink">
+              <Button size="sm" className="rounded-xl px-3 text-xs bg-accent text-ink">
                 Profile
               </Button>
             </Link>

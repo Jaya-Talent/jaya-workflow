@@ -1,0 +1,237 @@
+# Layer 1
+- name: Ethereum Foundation
+  url: https://jobs.lever.co/ethereumfoundation
+- name: Solana
+  url: https://jobs.solana.com
+- name: Polkadot / Web3 Foundation
+  url: https://web3.foundation/careers
+- name: Cosmos (Interchain Foundation)
+  url: https://interchain.io/careers
+- name: Avalanche (Ava Labs)
+  url: https://www.avalabs.org/careers
+- name: NEAR Protocol
+  url: https://near.org/careers
+- name: Algorand
+  url: https://www.algorand.com/careers
+- name: Tezos
+  url: https://tezos.com/careers
+- name: Cardano (IOHK)
+  url: https://iohk.io/careers
+- name: Aptos
+  url: https://aptoslabs.com/careers
+- name: Sui (Mysten Labs)
+  url: https://mystenlabs.com/careers
+- name: Sei
+  url: https://www.seinetwork.io/careers
+- name: Injective
+  url: https://injective.com/careers
+- name: Celestia
+  url: https://celestia.org/careers
+- name: Dymension
+  url: https://www.dymension.xyz/careers
+- name: Mina Protocol
+  url: https://minaprotocol.com/careers
+- name: Flow (Dapper Labs)
+  url: https://www.dapperlabs.com/careers
+- name: Zilliqa
+  url: https://www.zilliqa.com/careers
+- name: Hedera Hashgraph
+  url: https://hedera.com/careers
+
+# Layer 2 / Rollups
+- name: Arbitrum (Offchain Labs)
+  url: https://offchainlabs.com/careers
+- name: Optimism (OP Labs)
+  url: https://oplabs.co/careers
+- name: zkSync (Matter Labs)
+  url: https://matter-labs.io/careers
+- name: StarkNet (StarkWare)
+  url: https://starkware.co/careers
+- name: Polygon
+  url: https://polygon.technology/careers
+- name: Scroll
+  url: https://scroll.io/careers
+- name: Linea (Consensys)
+  url: https://consensys.io/careers
+- name: Base (Coinbase)
+  url: https://www.coinbase.com/careers
+
+# DeFi Protocols
+- name: Uniswap Labs
+  url: https://uniswap.org/careers
+- name: Aave
+  url: https://aave.com/careers
+- name: Compound
+  url: https://compound.finance/careers
+- name: MakerDAO / Sky
+  url: https://sky.money/careers
+- name: Lido
+  url: https://lido.fi/careers
+- name: Balancer Labs
+  url: https://balancer.fi/careers
+- name: Sushi
+  url: https://www.sushi.com/careers
+- name: Frax Finance
+  url: https://frax.finance/careers
+- name: dYdX
+  url: https://dydx.exchange/careers
+- name: Synthetix
+  url: https://synthetix.io/careers
+- name: 1inch
+  url: https://1inch.io/careers
+- name: 0x
+  url: https://0x.org/careers
+- name: Chainlink
+  url: https://chainlinklabs.com/careers
+- name: PancakeSwap
+  url: https://pancakeswap.finance/careers
+- name: Curve Finance
+  url: https://curve.fi/careers  # verify
+- name: Pendle
+  url: https://www.pendle.finance/careers
+- name: Instadapp
+  url: https://instadapp.io/careers
+- name: Trader Joe
+  url: https://traderjoexyz.com/careers
+
+# Restaking / Liquid Staking / Modular
+- name: EigenLayer
+  url: https://www.eigenlayer.xyz/careers
+- name: Renzo
+  url: https://www.renzoprotocol.com/careers
+- name: Ether.fi
+  url: https://www.ether.fi/careers
+- name: Puffer Finance
+  url: https://www.puffer.fi/careers
+- name: Avail
+  url: https://www.availproject.org/careers
+- name: Espresso Systems
+  url: https://www.espressosys.com/careers
+
+# Infrastructure & Middleware
+- name: Alchemy
+  url: https://www.alchemy.com/careers
+- name: QuickNode
+  url: https://www.quicknode.com/careers
+- name: Moralis
+  url: https://moralis.io/careers
+- name: Infura (Consensys)
+  url: https://consensys.io/careers
+- name: Pocket Network
+  url: https://www.pokt.network/careers
+- name: Chainstack
+  url: https://chainstack.com/careers
+- name: The Graph
+  url: https://thegraph.com/careers
+- name: Arweave
+  url: https://arweave.org/careers
+- name: Filecoin / IPFS (Protocol Labs)
+  url: https://protocol.ai/careers
+- name: Livepeer
+  url: https://livepeer.org/careers
+- name: Helium Foundation
+  url: https://www.helium.foundation/careers
+- name: Render Network
+  url: https://rendertoken.com/careers
+- name: Ocean Protocol
+  url: https://oceanprotocol.com/careers
+- name: Fetch.ai
+  url: https://fetch.ai/careers
+- name: Biconomy
+  url: https://www.biconomy.io/careers
+- name: Gelato
+  url: https://www.gelato.network/careers
+- name: Pyth Network
+  url: https://pyth.network/careers
+- name: Wormhole
+  url: https://wormhole.com/careers
+- name: LayerZero
+  url: https://layerzero.network/careers
+- name: Axelar
+  url: https://axelar.network/careers
+- name: Chainflip
+  url: https://chainflip.io/careers
+- name: Li.Fi
+  url: https://li.fi/careers
+- name: Socket / Bungee
+  url: https://www.socket.tech/careers
+
+# Wallets
+- name: MetaMask (Consensys)
+  url: https://consensys.io/careers
+- name: Phantom
+  url: https://phantom.app/careers
+- name: Rainbow
+  url: https://rainbow.me/careers
+- name: Ledger
+  url: https://www.ledger.com/careers
+- name: Trezor
+  url: https://trezor.io/careers
+- name: Trust Wallet
+  url: https://trustwallet.com/careers
+- name: Exodus
+  url: https://www.exodus.com/careers
+- name: Safe (Gnosis Safe)
+  url: https://safe.global/careers
+
+# Exchanges / Centralised Platforms
+- name: Coinbase
+  url: https://www.coinbase.com/careers
+- name: Binance
+  url: https://www.binance.com/en/careers
+- name: Kraken
+  url: https://www.kraken.com/careers
+- name: Gemini
+  url: https://www.gemini.com/careers
+- name: Crypto.com
+  url: https://crypto.com/careers
+- name: OKX
+  url: https://www.okx.com/careers
+- name: Bybit
+  url: https://www.bybit.com/careers
+- name: Bitget
+  url: https://www.bitget.com/careers
+- name: KuCoin
+  url: https://www.kucoin.com/careers
+- name: Bitstamp
+  url: https://www.bitstamp.net/careers
+
+# Gaming / Metaverse
+- name: Immutable
+  url: https://www.immutable.com/careers
+- name: Sky Mavis (Axie Infinity)
+  url: https://skymavis.com/careers
+- name: The Sandbox
+  url: https://www.sandbox.game/careers
+- name: Decentraland
+  url: https://decentraland.org/careers
+- name: Illuvium
+  url: https://illuvium.io/careers
+- name: Gala Games
+  url: https://www.gala.games/careers
+- name: Proof of Play
+  url: https://www.proofofplay.com/careers
+- name: Parallel
+  url: https://parallel.life/careers
+
+# Venture / Research
+- name: Paradigm
+  url: https://www.paradigm.xyz/careers
+- name: a16z Crypto
+  url: https://a16z.com/careers
+- name: Pantera Capital
+  url: https://panteracapital.com/careers
+- name: Multicoin Capital
+  url: https://multicoin.capital/careers
+- name: Electric Capital
+  url: https://www.electriccapital.com/careers
+- name: Variant
+  url: https://variant.fund/careers
+- name: Dragonfly
+  url: https://www.dragonfly.xyz/careers
+- name: Blockchain Capital
+  url: https://blockchain.capital/careers
+- name: Haun Ventures
+  url: https://www.haunventures.com/careers
+- name: Framework Ventures
+  url: https://www.framework.ventures/careers

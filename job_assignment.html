@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web3 Job Research Assignment</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+
+  .header { background: linear-gradient(135deg, #1a1f2e 0%, #0f1117 100%); border-bottom: 1px solid #2d3748; padding: 32px 40px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .header p { color: #94a3b8; font-size: 15px; }
+
+  .container { max-width: 1400px; margin: 0 auto; padding: 32px 40px; }
+
+  .section { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+  .section-header { background: #212736; padding: 16px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #2d3748; }
+  .section-header h2 { font-size: 16px; font-weight: 600; color: #e2e8f0; }
+  .section-body { padding: 20px 24px; }
+
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .rule-box { border-radius: 8px; padding: 14px 16px; }
+  .rule-box.good { background: #0d2318; border: 1px solid #1a4731; }
+  .rule-box.bad { background: #2d1515; border: 1px solid #5c2323; }
+  .rule-box .label { font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+  .rule-box.good .label { color: #34d399; }
+  .rule-box.bad .label { color: #f87171; }
+  .rule-box code { font-size: 12px; font-family: monospace; color: #cbd5e1; background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 4px; display: block; }
+
+  .checklist { list-style: none; }
+  .checklist li { padding: 8px 0; border-bottom: 1px solid #2d3748; font-size: 14px; color: #94a3b8; display: flex; align-items: center; gap: 10px; }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before { content: '☐'; font-size: 16px; color: #4a5568; }
+
+  .format-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .format-table th { background: #212736; color: #94a3b8; font-weight: 600; text-align: left; padding: 10px 14px; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .format-table td { padding: 10px 14px; border-bottom: 1px solid #2d3748; color: #64748b; font-style: italic; }
+
+  /* Main table */
+  .tabs { display: flex; gap: 8px; padding: 20px 24px 0; flex-wrap: wrap; }
+  .tab { padding: 8px 16px; border-radius: 8px 8px 0 0; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid #2d3748; border-bottom: none; color: #94a3b8; background: #151922; transition: all 0.15s; }
+  .tab.active { background: #1a1f2e; color: #e2e8f0; border-color: #3b4a6b; }
+  .tab:hover:not(.active) { color: #cbd5e1; background: #1a1f2e; }
+
+  .table-wrapper { padding: 0 24px 24px; overflow-x: auto; }
+  .main-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 900px; }
+  .main-table th { background: #212736; color: #94a3b8; font-weight: 600; text-align: left; padding: 12px 14px; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; position: sticky; top: 0; white-space: nowrap; }
+  .main-table td { padding: 11px 14px; border-bottom: 1px solid #1e2535; color: #e2e8f0; vertical-align: top; }
+  .main-table tr:hover td { background: #1e2535; }
+
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .badge-active { background: #0d2318; color: #34d399; border: 1px solid #1a4731; }
+  .badge-soon { background: #1c1a2e; color: #818cf8; border: 1px solid #3730a3; }
+
+  .num { color: #4a5568; font-weight: 600; }
+  .channel-link { color: #60a5fa; font-size: 12px; }
+
+  .examples-cell { color: #94a3b8; font-size: 12px; line-height: 1.6; }
+  .examples-cell .tag { display: inline-block; background: #1e2535; border: 1px solid #2d3748; border-radius: 4px; padding: 1px 7px; margin: 2px 2px 2px 0; font-size: 11px; color: #cbd5e1; }
+
+  .copy-btn { background: #3b82f6; color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap-8px; transition: background 0.15s; }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn.copied { background: #059669; }
+
+  .toolbar { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #2d3748; flex-wrap: wrap; gap: 12px; }
+  .toolbar-left { display: flex; align-items: center; gap: 12px; }
+  .search-box { background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; padding: 8px 14px; color: #e2e8f0; font-size: 13px; width: 220px; outline: none; }
+  .search-box:focus { border-color: #3b82f6; }
+  .search-box::placeholder { color: #4a5568; }
+  .filter-select { background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; padding: 8px 14px; color: #e2e8f0; font-size: 13px; outline: none; cursor: pointer; }
+
+  .count-badge { background: #212736; border: 1px solid #2d3748; border-radius: 20px; padding: 4px 12px; font-size: 12px; color: #94a3b8; }
+
+  .icon { font-size: 16px; }
+
+  @media (max-width: 768px) {
+    .container { padding: 16px; }
+    .header { padding: 20px 16px; }
+    .rules-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🌐 Web3 Job Research Assignment</h1>
+  <p>Find 5 fresh, direct job postings per category and post to the correct Telegram channel</p>
+</div>
+
+<div class="container">
+
+  <!-- Objective -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">🎯</span>
+      <h2>Objective</h2>
+    </div>
+    <div class="section-body">
+      <p style="color:#94a3b8; line-height:1.7; font-size:14px;">
+        Build a spreadsheet of <strong style="color:#e2e8f0;">fresh, relevant Web3/crypto job postings</strong> — one sheet per job category. 
+        For each category, find <strong style="color:#e2e8f0;">5 current job listings</strong>, verify the direct company link, and post to the matching Telegram channel.
+      </p>
+    </div>
+  </div>
+
+  <!-- Link Rules -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">⚠️</span>
+      <h2>Link Rules — Always Use the Best Available Link</h2>
+    </div>
+    <div class="section-body">
+      <p style="color:#94a3b8; font-size:14px; margin-bottom:16px;">
+        The goal is to save job seekers clicks. <strong style="color:#e2e8f0;">Always check if "Apply" leads to a company website.</strong> If it does — use that. If it doesn't — the job board link is fine.
+      </p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px;">
+        <div class="rule-box good">
+          <div class="label">✅ BEST — Direct company link</div>
+          <code>ripple.com/careers/opening/123</code>
+          <p style="color:#64748b; font-size:11px; margin-top:8px;">Job board "Apply" button led here → use this link</p>
+        </div>
+        <div class="rule-box" style="background:#1a1f0d; border:1px solid #3a4a1a;">
+          <div class="label" style="color:#facc15;">✅ OK — Job board link</div>
+          <code>cryptojobslist.com/jobs/ripple-bd</code>
+          <p style="color:#64748b; font-size:11px; margin-top:8px;">"Apply" button stayed on the job board → this link is acceptable</p>
+        </div>
+        <div class="rule-box bad">
+          <div class="label">❌ NEVER — Extra clicks for no reason</div>
+          <code>cryptojobslist.com/jobs/ripple-bd</code>
+          <p style="color:#64748b; font-size:11px; margin-top:8px;">You found the direct company link but posted the job board link anyway</p>
+        </div>
+      </div>
+
+      <div style="background:#212736; border-radius:8px; padding:14px 16px; border-left:3px solid #3b82f6;">
+        <p style="color:#94a3b8; font-size:13px; line-height:1.8;">
+          <strong style="color:#60a5fa;">Decision flow:</strong><br>
+          1. Find job on any job board<br>
+          2. Click "Apply" or "View Job"<br>
+          3. <strong style="color:#e2e8f0;">Did it open the company's own website?</strong><br>
+          &nbsp;&nbsp;&nbsp;→ <span style="color:#34d399;">Yes</span> — copy that company URL and use it<br>
+          &nbsp;&nbsp;&nbsp;→ <span style="color:#facc15;">No (stayed on job board)</span> — the job board link is fine to use
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Where to Find Jobs -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">🔍</span>
+      <h2>Where to Find Jobs</h2>
+    </div>
+    <div class="section-body">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <div>
+          <p style="color:#34d399; font-size:12px; font-weight:700; letter-spacing:1px; margin-bottom:10px;">PRIMARY SOURCES (use these links)</p>
+          <ul style="list-style:none; color:#94a3b8; font-size:13px; line-height:2;">
+            <li>• Company career pages directly</li>
+            <li>• company.com/careers</li>
+            <li>• Greenhouse / Lever / Ashby job pages</li>
+          </ul>
+        </div>
+        <div>
+          <p style="color:#818cf8; font-size:12px; font-weight:700; letter-spacing:1px; margin-bottom:10px;">DISCOVERY TOOLS (find jobs, then get direct link)</p>
+          <ul style="list-style:none; color:#94a3b8; font-size:13px; line-height:2;">
+            <li>• CryptoJobsList.com</li>
+            <li>• Web3.career</li>
+            <li>• Wellfound / AngelList</li>
+            <li>• Cryptocurrency Jobs</li>
+            <li>• LinkedIn (filter: Web3 / Crypto)</li>
+            <li>• Pompcryptojobs.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spreadsheet Format -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">📊</span>
+      <h2>Spreadsheet Format — Use This for Each Sheet</h2>
+    </div>
+    <div class="section-body">
+      <table class="format-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Company</th>
+            <th>Role Title</th>
+            <th>Location / Remote</th>
+            <th>Direct Job Link</th>
+            <th>Date Found</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>e.g. Ripple</td><td>e.g. BD Manager APAC</td><td>e.g. Singapore / Remote</td><td>ripple.com/careers/...</td><td>29 Jun 2025</td><td>Optional notes</td></tr>
+          <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Quality Checklist -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">✅</span>
+      <h2>Quality Checklist — Before Submitting Each Job</h2>
+    </div>
+    <div class="section-body">
+      <ul class="checklist">
+        <li>Link goes directly to the <strong style="color:#e2e8f0;">company's own job posting</strong> (not a job board)</li>
+        <li>Job was posted <strong style="color:#e2e8f0;">within the last 1–2 weeks</strong> (check the date on the listing)</li>
+        <li>Role clearly matches the <strong style="color:#e2e8f0;">category of the channel</strong></li>
+        <li>No <strong style="color:#e2e8f0;">duplicate companies</strong> within the same sheet (5 different companies)</li>
+        <li>Job is in <strong style="color:#e2e8f0;">Web3 / Crypto / Blockchain</strong> industry (not traditional finance or tech)</li>
+        <li>Link actually <strong style="color:#e2e8f0;">opens and works</strong> — not expired or 404</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Table -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">📋</span>
+      <h2>All Categories, Channels & Example Roles</h2>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <input type="text" class="search-box" placeholder="🔍 Search categories or roles..." oninput="filterTable(this.value)" />
+        <select class="filter-select" onchange="filterStatus(this.value)">
+          <option value="all">All Status</option>
+          <option value="active">✅ Active</option>
+          <option value="soon">🔜 Coming Soon</option>
+        </select>
+        <span class="count-badge" id="countBadge">31 categories</span>
+      </div>
+      <button class="copy-btn" onclick="copyTable()" id="copyBtn">
+        📋 Copy Sheet to Clipboard
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="main-table" id="mainTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Category</th>
+            <th>Telegram Channel</th>
+            <th>Status</th>
+            <th>Example Job Titles to Search For</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const data = [
+  {
+    num: 1,
+    category: "BD / Sales / Partnerships",
+    channel: "t.me/web3bds",
+    status: "active",
+    examples: ["Business Development Manager","Partnerships Lead","Sales Director","BD Associate","Strategic Partnerships Manager","Account Executive","Head of Business Development","Sales Representative","Ecosystem Growth Manager","Channel Partner Manager","Enterprise Sales Lead","VP of Sales","Institutional Sales Manager","Crypto Sales Specialist","DeFi Partnerships Manager"]
+  },
+  {
+    num: 2,
+    category: "Marketing",
+    channel: "t.me/marketersjobs",
+    status: "active",
+    examples: ["Growth Marketing Manager","Head of Marketing","Social Media Manager","Content Strategist","Brand Manager","Performance Marketing Lead","CMO","Email Marketing Specialist","SEO Manager","PR Manager","Crypto Marketing Lead","Web3 Growth Hacker","Community Marketing Manager","Influencer Marketing Manager","Marketing Analyst"]
+  },
+  {
+    num: 3,
+    category: "Compliance / Legal",
+    channel: "t.me/compliancejobs",
+    status: "active",
+    examples: ["Compliance Officer","AML Analyst","Legal Counsel","Regulatory Affairs Manager","KYC Analyst","Chief Compliance Officer","MLRO","Sanctions Analyst","Crypto Legal Advisor","Regulatory Compliance Specialist","Privacy Counsel","Risk & Compliance Manager","BSA Officer","Licensing Manager","Compliance Associate"]
+  },
+  {
+    num: 4,
+    category: "HR & Talent Acquisition",
+    channel: "t.me/web3headhunters",
+    status: "soon",
+    examples: ["Recruiter","Talent Acquisition Manager","HR Business Partner","People Operations Manager","Head of People","Technical Recruiter","Sourcing Specialist","HR Generalist","Compensation & Benefits Manager","L&D Manager","People Analytics Manager","Recruiting Coordinator","HRBP","Chief People Officer","Employer Branding Manager"]
+  },
+  {
+    num: 5,
+    category: "Product & Project Management",
+    channel: "t.me/productjobscrypto",
+    status: "soon",
+    examples: ["Product Manager","Senior PM","Project Manager","Product Owner","Head of Product","Technical Product Manager","CPO","DeFi Product Manager","Protocol Product Lead","Scrum Master","Agile Coach","Product Analyst","Associate PM","Director of Product","Program Manager"]
+  },
+  {
+    num: 6,
+    category: "Developers",
+    channel: "t.me/web3devs3",
+    status: "soon",
+    examples: ["Smart Contract Developer","Solidity Engineer","Backend Engineer","Full Stack Developer","Blockchain Engineer","Protocol Engineer","Rust Developer","Go Engineer","TypeScript Developer","EVM Developer","ZK Engineer","Layer 2 Engineer","Crypto Infrastructure Engineer","DevOps Engineer","Security Engineer"]
+  },
+  {
+    num: 7,
+    category: "Design",
+    channel: "t.me/web3designerjobs",
+    status: "soon",
+    examples: ["UI/UX Designer","Product Designer","Motion Designer","Brand Designer","Web Designer","Design Lead","Head of Design","Visual Designer","Graphic Designer","Interaction Designer","3D Designer","NFT Artist","Creative Director","Design System Engineer","Figma Designer"]
+  },
+  {
+    num: 8,
+    category: "Trading & Hedge Funds",
+    channel: "t.me/AlphaHires",
+    status: "soon",
+    examples: ["Quantitative Trader","Algorithmic Trader","Portfolio Manager","Market Maker","Quant Researcher","Derivatives Trader","Crypto Trader","Options Trader","Prop Trader","Risk Manager","Trading Analyst","Execution Trader","HFT Engineer","Systematic Trader","Head of Trading"]
+  },
+  {
+    num: 9,
+    category: "C-Level / Executive",
+    channel: "t.me/+FPxA5a5gdlQ3MTY6",
+    status: "soon",
+    examples: ["CEO","CTO","COO","CMO","CPO","General Manager","Managing Director","Country Manager","CFO","CRO","VP Engineering","VP Product","SVP Sales","Executive Director","President"]
+  },
+  {
+    num: 10,
+    category: "VC / Investment",
+    channel: "t.me/web3vcjobs",
+    status: "soon",
+    examples: ["Investment Analyst","VC Associate","Deal Sourcing Manager","Portfolio Manager","Venture Partner","Investment Manager","Principal","General Partner","Fund Manager","Investment Director","Research Analyst VC","Crypto VC Analyst","Token Investment Analyst","LP Relations Manager","Investment Associate"]
+  },
+  {
+    num: 11,
+    category: "Dubai Jobs",
+    channel: "t.me/dubaijobscrypto",
+    status: "soon",
+    examples: ["Any Web3 role in Dubai or UAE","BD Manager — Dubai","Compliance Officer — UAE","Marketing Manager — Dubai","Operations Lead — Abu Dhabi","Crypto Trader — UAE","Product Manager — Dubai","Engineer — UAE (Remote OK)","Legal Counsel — DIFC","Finance Manager — Dubai"]
+  },
+  {
+    num: 12,
+    category: "Singapore / APAC",
+    channel: "t.me/+n3TE8PhdosQ1YTcy",
+    status: "soon",
+    examples: ["Any Web3 role in APAC","BD Manager — Singapore","Compliance Officer — Singapore","Marketing Lead — Southeast Asia","Operations Manager — APAC","Engineer — Singapore","Product Manager — Korea","Quant Trader — Singapore","Legal Counsel — Singapore","Growth Lead — APAC"]
+  },
+  {
+    num: 13,
+    category: "Signal Board (All Roles)",
+    channel: "t.me/+LuTusmxidno1MmQy",
+    status: "soon",
+    examples: ["All roles across all categories","No filtering needed — broad signal feed","Post best picks from every other category here too"]
+  },
+  {
+    num: 14,
+    category: "Finance / CFO / Treasury",
+    channel: "t.me/+I28fCco1oV1jMjFi",
+    status: "soon",
+    examples: ["CFO","Financial Controller","Treasury Manager","FP&A Analyst","Finance Director","Accountant","Crypto Accountant","Finance Manager","VP Finance","Treasury Analyst","Tax Manager","Finance Operations Lead","Financial Analyst","Head of Finance","Crypto Tax Specialist"]
+  },
+  {
+    num: 15,
+    category: "Customer Support / Trust & Safety",
+    channel: "t.me/+4vaSF4Pa9y1iMzJi",
+    status: "soon",
+    examples: ["Customer Support Agent","Trust & Safety Analyst","Community Support Lead","Fraud Analyst","Support Engineer","Head of Support","Customer Success Manager","KYC Support Agent","Live Chat Support","Dispute Resolution Specialist","Safety Reviewer","Content Moderator","Support Team Lead","CX Manager","User Operations Analyst"]
+  },
+  {
+    num: 16,
+    category: "Operations / COO / Chief of Staff",
+    channel: "t.me/+_SCikTdlBJU2MjAy",
+    status: "soon",
+    examples: ["COO","Chief of Staff","Operations Manager","Head of Operations","Business Operations Analyst","Strategy & Ops Lead","VP Operations","Operations Associate","Process Improvement Manager","BizOps Manager","Operational Excellence Lead","Office Manager","Executive Operations Lead","Strategic Operations Director","Ops Specialist"]
+  },
+  {
+    num: 17,
+    category: "San Francisco Crypto Jobs",
+    channel: "t.me/+KuA8mS1Rju1hMzcy",
+    status: "soon",
+    examples: ["Any Web3 role in SF / Bay Area","Engineer — San Francisco","Product Manager — SF","BD Lead — Bay Area","Marketing Manager — San Francisco","Compliance Officer — SF","Designer — Bay Area","Operations — San Francisco","VC Analyst — SF","Legal Counsel — Bay Area"]
+  },
+  {
+    num: 18,
+    category: "NYC Crypto Jobs",
+    channel: "t.me/+ExouurtaF8JjNTli",
+    status: "soon",
+    examples: ["Any Web3 role in New York City","Trading Analyst — NYC","Legal Counsel — New York","BD Manager — NYC","Finance Director — New York","Compliance — NYC","Product Manager — New York","Marketing Lead — NYC","Quant Trader — New York","Engineer — NYC"]
+  },
+  {
+    num: 19,
+    category: "London Crypto Jobs",
+    channel: "t.me/+KPy0IcQLBnVlNGYy",
+    status: "soon",
+    examples: ["Any Web3 role in London / UK","Compliance Officer — London","Legal Counsel — UK","BD Manager — London","Marketing Lead — UK","Engineer — London","Finance Manager — UK","Product Manager — London","Operations Lead — UK","Trader — London"]
+  },
+  {
+    num: 20,
+    category: "Swiss Crypto Jobs",
+    channel: "t.me/+TOZl7q7MmwhiNDc6",
+    status: "soon",
+    examples: ["Any Web3 role in Switzerland","Legal Counsel — Zug","BD Manager — Zurich","Compliance Officer — Geneva","Finance Lead — Crypto Valley","Engineer — Switzerland","Product Manager — Zug","Operations Manager — Zurich","Marketing Lead — Switzerland","Foundation Manager — Zug"]
+  },
+  {
+    num: 21,
+    category: "Stablecoin Jobs",
+    channel: "t.me/+gYai1mbLnIA5ODUy",
+    status: "soon",
+    examples: ["Stablecoin Product Manager","Stablecoin BD Lead","DeFi Engineer","Payments Engineer","Monetary Policy Analyst","Stablecoin Risk Analyst","CBDC Specialist","Stablecoin Legal Counsel","Crypto Payments Manager","Yield Product Manager","Stablecoin Compliance Officer","Treasury & Reserves Analyst","Stablecoin Growth Lead","On-chain Payments Specialist","Liquidity Manager"]
+  },
+  {
+    num: 22,
+    category: "KOL Jobs",
+    channel: "t.me/+epk8zFJx3mM5ODE6",
+    status: "soon",
+    examples: ["KOL Manager","Influencer Marketing Manager","Creator Partnerships Lead","Ambassador Program Manager","KOL Outreach Specialist","Crypto Influencer Manager","Social Media Partnerships","YouTube Partnership Manager","Twitter / X Growth Lead","Community Ambassador Manager","Influencer Relations Lead","KOL Strategy Manager","Content Creator Partnerships","Growth via Influencers Lead","Viral Marketing Manager"]
+  },
+  {
+    num: 23,
+    category: "Crypto Research Jobs",
+    channel: "t.me/+FAi6UOcaLNUyMWMy",
+    status: "soon",
+    examples: ["Research Analyst","Protocol Researcher","Tokenomics Researcher","On-Chain Analyst","DeFi Researcher","Head of Research","Blockchain Researcher","Crypto Macro Analyst","Fundamental Analyst","Market Research Lead","Research Associate","Token Economics Lead","Security Researcher","MEV Researcher","Zero Knowledge Researcher"]
+  },
+  {
+    num: 24,
+    category: "Crypto Analytics Jobs",
+    channel: "t.me/+hGgSP7mv36tlMzky",
+    status: "soon",
+    examples: ["Data Analyst","Blockchain Analyst","On-Chain Data Scientist","Analytics Engineer","BI Developer","Data Engineer","Head of Analytics","Dune Analytics Expert","SQL / Python Data Analyst","Product Analytics Manager","Growth Analyst","Revenue Analytics Lead","Risk Data Analyst","Crypto Quant Analyst","Dashboard Developer"]
+  },
+  {
+    num: 25,
+    category: "India Crypto Jobs",
+    channel: "t.me/+6YoGHP7FLyRjZDgy",
+    status: "soon",
+    examples: ["Any Web3 role in India","Engineer — Bangalore","Product Manager — Mumbai","BD Lead — India Remote","Marketing Manager — Delhi","Compliance — India","Designer — Hyderabad","Operations — Bangalore","Finance Analyst — India","Customer Support — India"]
+  },
+  {
+    num: 26,
+    category: "Latam Crypto Jobs",
+    channel: "t.me/+EJRVUtvGKjAwODU6",
+    status: "soon",
+    examples: ["Any Web3 role in Latin America","BD Manager — Brazil","Marketing Lead — Mexico","Operations — Colombia","Engineer — Argentina","Compliance — Latam","Finance Manager — Brazil","Product Manager — Latam","Growth Lead — Mexico","Community Manager — Spanish"]
+  },
+  {
+    num: 27,
+    category: "Hong Kong Crypto Jobs",
+    channel: "t.me/+cEVjTA5HfhhmZDNi",
+    status: "soon",
+    examples: ["Any Web3 role in Hong Kong","Compliance Officer — HK","BD Manager — Hong Kong","Trader — HK","Legal Counsel — Hong Kong","Finance Director — HK","Operations Lead — Hong Kong","Product Manager — HK","Marketing Lead — Hong Kong","Engineer — Hong Kong"]
+  },
+  {
+    num: 28,
+    category: "Community Manager Jobs",
+    channel: "t.me/+b3phRT_N51M5NWIy",
+    status: "soon",
+    examples: ["Community Manager","Discord Manager","Telegram Community Lead","Head of Community","Community Growth Manager","Community Moderator","Forum Manager","DAO Community Lead","Web3 Community Builder","Community Operations Manager","Social Community Manager","Global Community Lead","Community Engagement Specialist","Community Strategy Manager","Ambassador Lead"]
+  },
+  {
+    num: 29,
+    category: "DevRel Jobs",
+    channel: "t.me/+EdL0eIFUvIw5Yjdi",
+    status: "soon",
+    examples: ["Developer Relations Engineer","DevRel Advocate","Developer Evangelist","Technical Community Manager","SDK Engineer","Head of DevRel","Developer Experience Engineer","API Evangelist","Technical Writer","Developer Marketing Manager","Hackathon Manager","Open Source Developer Lead","Dev Community Lead","Protocol Developer Advocate","Web3 Educator"]
+  },
+  {
+    num: 30,
+    category: "AI x Web3 Jobs",
+    channel: "t.me/+hrGsMucd6s5mN2Ey",
+    status: "soon",
+    examples: ["AI Engineer","ML Engineer","AI Product Manager","AI x Blockchain Researcher","LLM Engineer","AI Infrastructure Engineer","AI Safety Researcher","NLP Engineer","AI Agent Developer","Crypto x AI BD Lead","Decentralized AI Researcher","AI Tokenomics Designer","On-chain AI Developer","AI Protocol Engineer","Web3 AI Growth Lead"]
+  },
+  {
+    num: 31,
+    category: "Digital Assets Jobs",
+    channel: "t.me/+1v2qJM6gKLZiYWUy",
+    status: "soon",
+    examples: ["Digital Assets Manager","Crypto Custody Analyst","Asset Manager","Digital Asset Trader","Tokenization Specialist","Digital Assets Legal Counsel","Crypto Asset Strategist","Digital Asset Risk Manager","Institutional Digital Assets Lead","RWA Tokenization Manager","Digital Assets Compliance","Custody Operations Lead","Digital Asset Portfolio Manager","Crypto Fund Manager","Blockchain Asset Specialist"]
+  }
+];
+
+function renderTable(rows) {
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  rows.forEach(row => {
+    const statusBadge = row.status === 'active'
+      ? '<span class="badge badge-active">✅ Active</span>'
+      : '<span class="badge badge-soon">🔜 Coming Soon</span>';
+    const tags = row.examples.map(e => `<span class="tag">${e}</span>`).join('');
+    tbody.innerHTML += `
+      <tr data-status="${row.status}" data-search="${row.category.toLowerCase()} ${row.examples.join(' ').toLowerCase()}">
+        <td class="num">${row.num}</td>
+        <td style="font-weight:600; color:#e2e8f0; white-space:nowrap;">${row.category}</td>
+        <td><a href="https://${row.channel}" class="channel-link" target="_blank">${row.channel}</a></td>
+        <td>${statusBadge}</td>
+        <td class="examples-cell">${tags}</td>
+      </tr>`;
+  });
+  document.getElementById('countBadge').textContent = `${rows.length} categories`;
+}
+
+let currentStatus = 'all';
+let currentSearch = '';
+
+function filterTable(query) {
+  currentSearch = query.toLowerCase();
+  applyFilters();
+}
+
+function filterStatus(val) {
+  currentStatus = val;
+  applyFilters();
+}
+
+function applyFilters() {
+  const filtered = data.filter(row => {
+    const matchSearch = !currentSearch || row.category.toLowerCase().includes(currentSearch) || row.examples.join(' ').toLowerCase().includes(currentSearch);
+    const matchStatus = currentStatus === 'all' || row.status === currentStatus;
+    return matchSearch && matchStatus;
+  });
+  renderTable(filtered);
+}
+
+function copyTable() {
+  const headers = ['#', 'Category', 'Telegram Channel', 'Status', 'Example Job Titles'];
+  const rows = data.map(r => [
+    r.num,
+    r.category,
+    r.channel,
+    r.status === 'active' ? 'Active' : 'Coming Soon',
+    r.examples.join(' | ')
+  ]);
+  const tsv = [headers, ...rows].map(r => r.join('\t')).join('\n');
+  navigator.clipboard.writeText(tsv).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✅ Copied to Clipboard!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy Sheet to Clipboard';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
+renderTable(data);
+</script>
+</body>
+</html>

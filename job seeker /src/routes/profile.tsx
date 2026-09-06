@@ -1,6 +1,6 @@
 import { createFileRoute, redirect, Link, useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { useState, useRef } from "react";
+import { AlertTriangle } from "lucide-react";
 import { Button } from "../components/ui.tsx";
 import { SiteHeader, SiteFooter } from "../components/site-chrome.tsx";
 
@@ -114,8 +114,8 @@ function ProfileDashboard() {
         
         {!applicant ? (
           <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-8 text-center backdrop-blur-sm shadow-xs space-y-4">
-            <div className="mx-auto size-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-xl font-bold">
-              ⚠️
+            <div className="mx-auto size-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center">
+              <AlertTriangle className="size-6 text-amber-800" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-amber-950 font-serif">Profile Completeness Below Minimum (0%)</h2>
@@ -158,9 +158,9 @@ function ProfileDashboard() {
                   <div>
                     <span className="text-xs text-muted block uppercase tracking-wider">Profile Completeness</span>
                     <div className="flex items-center gap-3 mt-1">
-                      <div className="flex-1 h-2 rounded-full bg-line overflow-hidden">
+                      <div className="flex-1 h-2 rounded-md bg-line overflow-hidden">
                         <div 
-                          className={`h-full rounded-full transition-all ${applicant.profile_completion >= 50 ? "bg-emerald-600" : "bg-amber-500"}`} 
+                          className={`h-full rounded-md transition-all ${applicant.profile_completion >= 50 ? "bg-emerald-600" : "bg-amber-500"}`} 
                           style={{ width: `${applicant.profile_completion}%` }}
                         />
                       </div>
@@ -171,7 +171,7 @@ function ProfileDashboard() {
                   {applicant.profile_completion < 50 ? (
                     <div className="pt-4 mt-4 border-t border-line space-y-2">
                       <div className="flex items-start gap-2.5 text-xs text-amber-900 bg-amber-50 p-3 rounded-xl border border-amber-200 leading-relaxed">
-                        <span className="text-base shrink-0">⚠️</span>
+                        <AlertTriangle className="size-4 text-amber-800 shrink-0 mt-0.5" />
                         <span>
                           Profile completeness (<strong>{applicant.profile_completion}%</strong>) is below the <strong>50% minimum threshold</strong> required to view tailored job matches.
                         </span>
@@ -203,7 +203,7 @@ function ProfileDashboard() {
                   {applicant.cv_filename ? (
                     <div className="flex items-center justify-between p-3 border border-line rounded-xl bg-white">
                       <span className="text-sm truncate mr-4 text-ink">{applicant.cv_filename}</span>
-                      <span className="text-xs font-semibold px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full">Uploaded</span>
+                      <span className="text-xs font-semibold px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md">Uploaded</span>
                     </div>
                   ) : (
                     <p className="text-sm text-muted">No CV uploaded yet.</p>
@@ -221,7 +221,7 @@ function ProfileDashboard() {
                       variant="outline" 
                       onClick={() => cvInputRef.current?.click()}
                       disabled={uploadingCv}
-                      className="rounded-full"
+                      className="rounded-xl"
                     >
                       {uploadingCv ? "Uploading..." : "Upload New CV"}
                     </Button>
@@ -283,7 +283,7 @@ function ProfileDashboard() {
                   </div>
 
                   <div className="pt-2">
-                    <Button type="submit" disabled={savingPrefs} className="rounded-full">
+                    <Button type="submit" disabled={savingPrefs} className="rounded-xl">
                       {savingPrefs ? "Saving..." : "Save Preferences"}
                     </Button>
                     {prefsMessage && <span className="ml-3 text-sm text-muted">{prefsMessage}</span>}
@@ -301,13 +301,13 @@ function ProfileDashboard() {
                     href="https://calendly.com/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full text-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-bg hover:bg-ink/90 transition-colors shadow-xs"
+                    className="block w-full text-center rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-bg hover:bg-ink/90 transition-colors shadow-xs"
                   >
                     Book a Consultation via Calendly
                   </a>
                   <a 
                     href="mailto:marketing@jayatalent.com?subject=Consultation%20Inquiry"
-                    className="block w-full text-center rounded-full border border-line px-4 py-2.5 text-sm font-medium hover:bg-surface transition-colors"
+                    className="block w-full text-center rounded-xl border border-line px-4 py-2.5 text-sm font-medium hover:bg-surface transition-colors"
                   >
                     Email us at marketing@jayatalent.com
                   </a>

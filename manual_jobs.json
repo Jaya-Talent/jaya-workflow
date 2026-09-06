@@ -1,0 +1,42 @@
+[
+    {
+        "company": "Arbitrum",
+        "title": "Senior Product Manager",
+        "location": "Remote / NY",
+        "link": "https://jobs.lever.co/arbitrumfoundation/123",
+        "date_found": "08 Jul 2026",
+        "notes": "First manual custom entry"
+    },
+    {
+        "company": "Citadel Securities",
+        "title": "Quantitative Researcher",
+        "location": "New York / London / Singapore",
+        "link": "https://www.citadelsecurities.com/careers/",
+        "date_found": "31 Aug 2026",
+        "notes": "Tier 1 Quantitative Researcher role"
+    },
+    {
+        "company": "Hudson River Trading",
+        "title": "Quantitative Trader",
+        "location": "New York / London",
+        "link": "https://www.hudsonrivertrading.com/careers/",
+        "date_found": "31 Aug 2026",
+        "notes": "Tier 1 Quantitative Trader role"
+    },
+    {
+        "company": "DRW",
+        "title": "DeFi Quantitative Trader",
+        "location": "Chicago / London / Singapore",
+        "link": "https://drw.com/careers",
+        "date_found": "31 Aug 2026",
+        "notes": "Tier 1 DeFi Quantitative Trader role at DRW/Cumberland"
+    },
+    {
+        "company": "Jane Street",
+        "title": "Quantitative Researcher",
+        "location": "New York / London / Hong Kong",
+        "link": "https://www.janestreet.com/join-jane-street/",
+        "date_found": "31 Aug 2026",
+        "notes": "Tier 1 Quantitative Researcher role"
+    }
+]

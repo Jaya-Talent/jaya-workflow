@@ -86,7 +86,7 @@ export function MagicLoginForm({ callbackURL = "/profile" }: { callbackURL?: str
 
       {error && (
         <div className="text-xs text-red-600 font-medium bg-red-50 p-2.5 rounded-lg border border-red-100 leading-relaxed">
-          ⚠️ {error}
+          {error}
         </div>
       )}
 
@@ -99,7 +99,7 @@ export function MagicLoginForm({ callbackURL = "/profile" }: { callbackURL?: str
           <span>Signing in instantly...</span>
         ) : (
           <>
-            <span>✨ 1-Click Instant Sign In</span>
+            <span>1-Click Instant Sign In</span>
           </>
         )}
       </button>

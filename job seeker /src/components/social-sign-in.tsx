@@ -68,7 +68,7 @@ export function SocialSignIn({ callbackURL = "/profile" }: { callbackURL?: strin
 
       {error && (
         <div className="text-xs text-amber-800 text-center font-medium bg-amber-50 p-2.5 rounded-lg border border-amber-200 leading-relaxed">
-          ⚠️ {error}
+          {error}
         </div>
       )}
 

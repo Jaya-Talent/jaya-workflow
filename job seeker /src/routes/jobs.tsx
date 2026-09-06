@@ -298,7 +298,7 @@ function JobsPage() {
                 <Button
                   onClick={resetFilters}
                   variant="outline"
-                  className="mt-6 rounded-full px-5 text-xs"
+                  className="mt-6 rounded-xl px-5 text-xs"
                 >
                   Clear All Filters
                 </Button>
@@ -324,7 +324,7 @@ function JobsPage() {
             <div className="mt-12 text-center">
               <Button
                 onClick={() => setPage((p) => p + 1)}
-                className="rounded-full px-8 py-3 text-sm font-semibold shadow-sm hover:shadow-md transition-all"
+                className="rounded-xl px-8 py-3 text-sm font-semibold shadow-sm hover:shadow-md transition-all"
               >
                 Load More Roles ({filteredAndSorted.length - visibleJobs.length} remaining)
               </Button>

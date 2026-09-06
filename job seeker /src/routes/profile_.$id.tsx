@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { AlertTriangle } from "lucide-react";
 import { MatchActions } from "@/components/match-actions";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { Badge, Button, Input, Label, Select } from "@/components/ui";
@@ -114,7 +115,7 @@ function ProfilePage() {
               {applicant.profile_completion < 50 && (
                 <div className="mt-8 rounded-2xl border border-amber-300 bg-amber-50 p-6 shadow-xs">
                   <div className="flex items-start gap-4">
-                    <div className="text-2xl shrink-0">⚠️</div>
+                    <AlertTriangle className="size-6 text-amber-800 shrink-0 mt-0.5" />
                     <div className="space-y-2">
                       <h3 className="text-lg font-bold text-amber-950 font-serif">Profile Completeness Below Requirement</h3>
                       <p className="text-sm text-amber-900/90 leading-relaxed">

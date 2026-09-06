@@ -391,18 +391,18 @@ export function formatExplanation(result: MatchResult) {
     "",
     `Strong matches:`,
     ...(result.strongReasons.length
-      ? result.strongReasons.map((item) => `✓ ${item}`)
-      : ["✓ Profile captured"]),
+      ? result.strongReasons.map((item) => `+ ${item}`)
+      : ["+ Profile captured"]),
   ];
   if (result.partialSkills.length || result.partialReasons.length) {
     lines.push("", "Partial match:");
     for (const item of [...new Set([...result.partialSkills, ...result.partialReasons])]) {
-      lines.push(`~ ${item}`);
+      lines.push(`- ${item}`);
     }
   }
   if (result.gaps.length) {
     lines.push("", "Potential gap:");
-    for (const item of result.gaps) lines.push(`! ${item}`);
+    for (const item of result.gaps) lines.push(`* ${item}`);
   }
   lines.push("", "Why this job matches:", result.summary);
   return lines.join("\n");

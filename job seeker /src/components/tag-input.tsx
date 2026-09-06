@@ -53,7 +53,7 @@ export function TagInput({ value, onChange, suggestions, placeholder, id }: TagI
         {value.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center gap-1 rounded-full bg-accent-soft px-2.5 py-1 text-sm text-accent"
+            className="inline-flex items-center gap-1 rounded-md bg-accent-soft px-2.5 py-1 text-sm text-accent"
           >
             {tag}
             <button

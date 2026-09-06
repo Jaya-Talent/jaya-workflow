@@ -46,7 +46,7 @@ export function ChipGroup({
             onClick={() => toggle(option)}
             aria-pressed={active}
             className={cn(
-              "min-h-11 rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-150",
+              "min-h-11 rounded-xl border px-4 py-2 text-sm font-medium transition-colors duration-150",
               active
                 ? "border-accent bg-accent text-accent-fg"
                 : "border-line bg-surface text-ink hover:border-ink/20 hover:bg-surface-muted",
@@ -60,7 +60,7 @@ export function ChipGroup({
         <button
           type="button"
           onClick={() => setIsExpanded(true)}
-          className="min-h-11 rounded-full border border-dashed border-ink/30 px-4 py-2 text-sm font-medium text-ink/70 hover:border-ink/50 hover:text-ink transition-colors duration-150"
+          className="min-h-11 rounded-xl border border-dashed border-ink/30 px-4 py-2 text-sm font-medium text-ink/70 hover:border-ink/50 hover:text-ink transition-colors duration-150"
         >
           +{options.length - maxVisible} more
         </button>
@@ -69,7 +69,7 @@ export function ChipGroup({
         <button
           type="button"
           onClick={() => setIsExpanded(false)}
-          className="min-h-11 rounded-full border border-dashed border-ink/30 px-4 py-2 text-sm font-medium text-ink/70 hover:border-ink/50 hover:text-ink transition-colors duration-150"
+          className="min-h-11 rounded-xl border border-dashed border-ink/30 px-4 py-2 text-sm font-medium text-ink/70 hover:border-ink/50 hover:text-ink transition-colors duration-150"
         >
           Show less
         </button>

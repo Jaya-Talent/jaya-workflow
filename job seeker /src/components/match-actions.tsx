@@ -102,7 +102,7 @@ export function MatchActions({
             <button
               key={reason}
               type="button"
-              className="rounded-full bg-surface-muted px-3 py-2 text-xs font-medium text-ink hover:bg-line"
+              className="rounded-lg bg-surface-muted px-3 py-2 text-xs font-medium text-ink hover:bg-line"
               onClick={() => void act("not_relevant", reason)}
             >
               {reason}

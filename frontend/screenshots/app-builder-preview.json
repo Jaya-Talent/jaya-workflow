@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Uche's workflow",
+      "hasCanvas": false,
+      "bodyTextLen": 2179,
+      "bodyTextHash": "76352568ec65f85001c5827e1424f1228a0781d972449de9a3fd8c117a892049",
+      "bodyTextPrefix": "Skip to jobs WEB3 ROLES Uche's workflow A calm weekly digest of ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Uche's workflow",
+      "hasCanvas": false,
+      "bodyTextLen": 861,
+      "bodyTextHash": "980e2f9a675b8b9d8f5b974bd13267da18effd5174a6cbf6755ae39cc418c346",
+      "bodyTextPrefix": "Skip to jobs WEB3 ROLES Uche's workflow A calm weekly digest of ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [
+    "BRAND NOTE: no custom public/og.jpg — the platform will serve the og.grok.me placeholder. Custom cards are the default for games of every kind (DOM board/word games included), whimsical apps, creative tools, and brand-forward pages — only plain utilities (converters, CRUD trackers, admin dashboards) keep the placeholder. If this app is not a plain utility, finish the brand-asset pass per /workspace/.grok/skills/og/SKILL.md."
+  ],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

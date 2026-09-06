@@ -1,0 +1,30 @@
+- name: Web3.career
+  url: https://web3.career
+- name: CryptoJobsList
+  url: https://cryptojobslist.com
+- name: CryptocurrencyJobs.co
+  url: https://cryptocurrencyjobs.co
+- name: Web3Jobs (by Remote3)
+  url: https://web3jobs.so
+- name: Wellfound (AngelList) Web3
+  url: https://wellfound.com/role/r/web3
+- name: Indeed Crypto Jobs
+  url: https://www.indeed.com/q-Crypto-jobs.html
+- name: Glassdoor Crypto/Blockchain
+  url: https://www.glassdoor.com/Job/blockchain-jobs-SRCH_KO0,10.htm
+- name: remote3.co
+  url: https://remote3.co
+- name: DeFi Jobs
+  url: https://defi.jobs
+- name: Crypto Jobs Daily
+  url: https://cryptojobsdaily.com
+- name: Upwork (Blockchain)
+  url: https://www.upwork.com/freelance-jobs/blockchain/
+- name: Y Combinator Jobs (Crypto/Web3)
+  url: https://www.ycombinator.com/jobs?query=crypto
+- name: BeInCrypto Jobs
+  url: https://jobs.beincrypto.com
+- name: Bankless Jobs
+  url: https://bankless.pallet.xyz/jobs  # or bankless.com/jobs
+- name: Consensys Mesh
+  url: https://mesh.xyz/careers

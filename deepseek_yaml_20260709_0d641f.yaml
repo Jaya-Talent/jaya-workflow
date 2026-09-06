@@ -1,0 +1,16 @@
+- name: r/ethdev (Ethereum developers)
+  url: https://www.reddit.com/r/ethdev/search/?q=flair%3AHiring&restrict_sr=on&sort=new
+- name: r/cryptojobs
+  url: https://www.reddit.com/r/cryptojobs/
+- name: r/Web3Jobs
+  url: https://www.reddit.com/r/Web3Jobs/
+- name: r/JobsCrypto
+  url: https://www.reddit.com/r/JobsCrypto/
+- name: r/BlockchainJobs
+  url: https://www.reddit.com/r/BlockchainJobs/
+- name: r/CryptoTechnology (occasional job posts)
+  url: https://www.reddit.com/r/CryptoTechnology/search/?q=Hiring&restrict_sr=on&sort=new
+- name: r/defi (DeFi projects hiring)
+  url: https://www.reddit.com/r/defi/search/?q=Hiring&restrict_sr=on&sort=new
+- name: r/solidity (Solidity dev jobs)
+  url: https://www.reddit.com/r/solidity/search/?q=job%20OR%20hiring&restrict_sr=on&sort=new

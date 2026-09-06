@@ -199,8 +199,9 @@ function JobDetailPage() {
             </div>
 
             {notice && (
-              <div className="mt-6 p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-sm font-medium">
-                ✓ {notice}
+              <div className="mt-6 p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-sm font-medium flex items-center gap-2">
+                <Check className="size-4 text-emerald-600 shrink-0" />
+                <span>{notice}</span>
               </div>
             )}
 
@@ -233,13 +234,13 @@ function JobDetailPage() {
                           action: "apply",
                         });
                       }}
-                      className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-bg hover:bg-ink/90 transition-all shadow-sm"
+                      className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-bg hover:bg-ink/90 transition-all shadow-sm"
                     >
                       Apply Now <ExternalLink className="size-4" />
                     </a>
                   )}
                   <Link to="/apply" className="flex-1">
-                    <Button variant="outline" className="w-full rounded-full py-3">
+                    <Button variant="outline" className="w-full rounded-xl py-3">
                       Create Profile for Match Score
                     </Button>
                   </Link>
