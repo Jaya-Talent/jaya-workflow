@@ -65,9 +65,18 @@ function fromRecord(record: Record<string, string>): Job {
   };
 }
 
-async function readAll() {
+let inMemoryJobs: Job[] | null = null;
+
+async function readAll(): Promise<Job[]> {
+  if (inMemoryJobs && inMemoryJobs.length > 0) {
+    return inMemoryJobs;
+  }
   await ensureCsvFile(FILE, JOB_COLUMNS);
-  return (await readCsvFile(FILE)).map(fromRecord).filter((row) => row.id && row.title);
+  const loaded = (await readCsvFile(FILE)).map(fromRecord).filter((row) => row.id && row.title);
+  if (loaded.length > 0) {
+    inMemoryJobs = loaded;
+  }
+  return loaded;
 }
 
 export type JobInput = Omit<Job, "id" | "created_at" | "updated_at"> & {
@@ -103,6 +112,7 @@ export class JobsRepository {
         salary_currency: input.salary_currency || "USD",
       };
       jobs.push(job);
+      inMemoryJobs = jobs;
       await writeCsvFile(FILE, JOB_COLUMNS, jobs.map(toRecord));
       return job;
     });
@@ -132,6 +142,7 @@ export class JobsRepository {
         jobs.push(job);
       }
 
+      inMemoryJobs = jobs;
       await writeCsvFile(FILE, JOB_COLUMNS, jobs.map(toRecord));
       return jobs;
     });
@@ -173,6 +184,7 @@ export class JobsRepository {
         created.push(job);
       }
 
+      inMemoryJobs = jobs;
       await writeCsvFile(FILE, JOB_COLUMNS, jobs.map(toRecord));
       return created;
     });
@@ -187,6 +199,7 @@ export class JobsRepository {
       if (!current) return null;
       const next: Job = { ...current, ...patch, id, updated_at: nowIso() };
       jobs[index] = next;
+      inMemoryJobs = jobs;
       await writeCsvFile(FILE, JOB_COLUMNS, jobs.map(toRecord));
       return next;
     });

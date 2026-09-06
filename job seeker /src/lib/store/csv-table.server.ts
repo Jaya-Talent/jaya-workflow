@@ -9,7 +9,7 @@ const locks = new Map<string, Promise<unknown>>();
 // Ensures serverless environments (like Vercel) have access to jobs.csv & seed data
 const seedCsvFiles = (
   typeof import.meta !== "undefined" && typeof import.meta.glob === "function"
-    ? import.meta.glob("/data/*.csv", {
+    ? import.meta.glob(["../../../data/*.csv", "../../data/*.csv", "../data/*.csv", "/data/*.csv", "**/data/*.csv"], {
         query: "?raw",
         import: "default",
         eager: true,
@@ -18,10 +18,11 @@ const seedCsvFiles = (
 ) as Record<string, string>;
 
 function getInlinedSeedCsv(filename: string): string | null {
-  const targetKey = `/data/${filename}`;
   for (const [key, content] of Object.entries(seedCsvFiles)) {
-    if (key.endsWith(targetKey) || key === targetKey) {
-      return content;
+    if (key.endsWith(`/${filename}`) || key.endsWith(`\\${filename}`) || key === filename) {
+      if (typeof content === "string" && content.trim().length > 0) {
+        return content;
+      }
     }
   }
   return null;
@@ -63,14 +64,25 @@ export async function readCsvFile(filename: string): Promise<Record<string, stri
     if (records.length > 0) return records;
   }
 
-  // 2. Fallback to reading disk seed CSV from process.cwd()/data
-  const seedPath = path.resolve(process.cwd(), "data", filename);
-  try {
-    const seedText = await readFile(seedPath, "utf8");
-    return parseCsv(seedText);
-  } catch {
-    return [];
+  // 2. Fallback to reading disk seed CSV from process.cwd() candidate paths
+  const candidateSeedPaths = [
+    path.resolve(process.cwd(), "data", filename),
+    path.resolve(process.cwd(), "..", "data", filename),
+    path.resolve(process.cwd(), "job seeker ", "data", filename),
+    path.resolve(process.cwd(), "job seeker", "data", filename),
+    path.resolve(__dirname, "..", "..", "..", "data", filename),
+  ];
+  for (const seedPath of candidateSeedPaths) {
+    try {
+      const seedText = await readFile(seedPath, "utf8");
+      const records = parseCsv(seedText);
+      if (records.length > 0) return records;
+    } catch {
+      // try next candidate
+    }
   }
+
+  return [];
 }
 
 export async function writeCsvFile(
