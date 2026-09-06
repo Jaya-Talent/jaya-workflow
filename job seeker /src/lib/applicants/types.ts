@@ -39,6 +39,7 @@ export type ApplicantInput = Omit<
   Applicant,
   "id" | "created_at" | "updated_at" | "profile_completion" | "cv_filename"
 > & {
+  id?: string;
   cv_filename?: string;
 };
 
