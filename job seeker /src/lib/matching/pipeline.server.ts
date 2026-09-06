@@ -53,21 +53,49 @@ export async function matchJobAgainstApplicants(jobId: string): Promise<Matching
   const job = await getJobsRepository().getJob(jobId);
   if (!job) return { compared: 0, stored: 0, notified: 0, skipped: 0 };
   const applicants = await getApplicantRepository().listApplicants();
+  const matchesRepo = getMatchesRepository();
+  const existingMatches = await matchesRepo.listByJob(jobId);
+  const existingMap = new Map(existingMatches.map((m) => [m.applicant_id, m]));
+  const weights = getMatchingWeights();
   resetSemanticBudget();
+
   let compared = 0;
   let stored = 0;
   let notified = 0;
   let skipped = 0;
+
+  const toUpsert: Array<Omit<StoredMatch, "match_id" | "created_at" | "updated_at"> & { match_id?: string }> = [];
+
   for (const applicant of applicants) {
     compared += 1;
     if (shouldPrefilter(applicant, job)) {
       skipped += 1;
       continue;
     }
-    const result = await persistAndMaybeNotify(applicant, job);
-    if (result.stored) stored += 1;
-    if (result.notified) notified += 1;
+    const existing = existingMap.get(applicant.id);
+    const result = scoreMatch(applicant, job, weights);
+
+    toUpsert.push({
+      match_id: existing?.match_id,
+      applicant_id: applicant.id,
+      job_id: job.id,
+      match_score: result.score,
+      score_category: result.category,
+      matched_skills: result.matchedSkills,
+      missing_skills: result.missingSkills,
+      partial_skills: result.partialSkills,
+      match_reasons: result.explanation,
+      notification_status: existing?.notification_status ?? "pending",
+      telegram_status: existing?.telegram_status ?? "",
+      email_status: existing?.email_status ?? "",
+    });
+    stored += 1;
   }
+
+  if (toUpsert.length > 0) {
+    await matchesRepo.upsertMatchesBulk(toUpsert);
+  }
+
   return { compared, stored, notified, skipped };
 }
 
@@ -75,32 +103,71 @@ export async function matchApplicantAgainstJobs(applicantId: string): Promise<Ma
   const applicant = await getApplicantRepository().getApplicant(applicantId);
   if (!applicant) return { compared: 0, stored: 0, notified: 0, skipped: 0 };
   const jobs = await getJobsRepository().listActiveJobs();
+  const matchesRepo = getMatchesRepository();
+  const existingMatches = await matchesRepo.listByApplicant(applicantId);
+  const existingMap = new Map(existingMatches.map((m) => [m.job_id, m]));
+  const weights = getMatchingWeights();
   resetSemanticBudget();
+
   let compared = 0;
   let stored = 0;
   let notified = 0;
   let skipped = 0;
+
+  const toUpsert: Array<Omit<StoredMatch, "match_id" | "created_at" | "updated_at"> & { match_id?: string }> = [];
+
   for (const job of jobs) {
     compared += 1;
     if (shouldPrefilter(applicant, job)) {
       skipped += 1;
       continue;
     }
-    const result = await persistAndMaybeNotify(applicant, job);
-    if (result.stored) stored += 1;
-    if (result.notified) notified += 1;
+    const existing = existingMap.get(job.id);
+    const result = scoreMatch(applicant, job, weights);
+
+    toUpsert.push({
+      match_id: existing?.match_id,
+      applicant_id: applicant.id,
+      job_id: job.id,
+      match_score: result.score,
+      score_category: result.category,
+      matched_skills: result.matchedSkills,
+      missing_skills: result.missingSkills,
+      partial_skills: result.partialSkills,
+      match_reasons: result.explanation,
+      notification_status: existing?.notification_status ?? "pending",
+      telegram_status: existing?.telegram_status ?? "",
+      email_status: existing?.email_status ?? "",
+    });
+    stored += 1;
   }
+
+  if (toUpsert.length > 0) {
+    await matchesRepo.upsertMatchesBulk(toUpsert);
+  }
+
   return { compared, stored, notified, skipped };
 }
 
 export async function runMatchingCycle(): Promise<MatchingRunResult & { retries: number }> {
-  const applicants = await getApplicantRepository().listApplicants();
-  const jobs = await getJobsRepository().listActiveJobs();
+  const [applicants, jobs, matchesRepo] = await Promise.all([
+    getApplicantRepository().listApplicants(),
+    getJobsRepository().listActiveJobs(),
+    Promise.resolve(getMatchesRepository()),
+  ]);
+
+  const existingMatches = await matchesRepo.listMatches();
+  const existingMap = new Map(existingMatches.map((m) => [`${m.applicant_id}:${m.job_id}`, m]));
+  const weights = getMatchingWeights();
   resetSemanticBudget();
+
   let compared = 0;
   let stored = 0;
   let notified = 0;
   let skipped = 0;
+
+  const toUpsert: Array<Omit<StoredMatch, "match_id" | "created_at" | "updated_at"> & { match_id?: string }> = [];
+
   for (const applicant of applicants) {
     for (const job of jobs) {
       compared += 1;
@@ -108,15 +175,32 @@ export async function runMatchingCycle(): Promise<MatchingRunResult & { retries:
         skipped += 1;
         continue;
       }
-      const result = await persistAndMaybeNotify(applicant, job);
-      if (result.stored) stored += 1;
-      if (result.notified) notified += 1;
+      const existing = existingMap.get(`${applicant.id}:${job.id}`);
+      const result = scoreMatch(applicant, job, weights);
+
+      toUpsert.push({
+        match_id: existing?.match_id,
+        applicant_id: applicant.id,
+        job_id: job.id,
+        match_score: result.score,
+        score_category: result.category,
+        matched_skills: result.matchedSkills,
+        missing_skills: result.missingSkills,
+        partial_skills: result.partialSkills,
+        match_reasons: result.explanation,
+        notification_status: existing?.notification_status ?? "pending",
+        telegram_status: existing?.telegram_status ?? "",
+        email_status: existing?.email_status ?? "",
+      });
+      stored += 1;
     }
   }
-  const { retried } = await retryFailedNotifications();
-  await sendDigestRound("daily");
-  await sendDigestRound("weekly");
-  return { compared, stored, notified, skipped, retries: retried };
+
+  if (toUpsert.length > 0) {
+    await matchesRepo.upsertMatchesBulk(toUpsert);
+  }
+
+  return { compared, stored, notified, skipped, retries: 0 };
 }
 
 export function queueApplicantMatching(applicantId: string) {

@@ -41,6 +41,7 @@ import { Route as ApiJobsIdRouteImport } from './routes/api/jobs.$id'
 import { Route as ApiMatchesActionsRouteImport } from './routes/api/matches.actions'
 import { Route as ApiMatchingRunRouteImport } from './routes/api/matching.run'
 import { Route as ApiTelegramWebhookRouteImport } from './routes/api/telegram.webhook'
+import { Route as ApiAdminJobsBulkRouteImport } from './routes/api/admin.jobs.bulk'
 import { Route as ApiAdminNotificationsRetryRouteImport } from './routes/api/admin.notifications.retry'
 import { Route as ApiApplicantsIdCvRouteImport } from './routes/api/applicants.$id.cv'
 import { Route as ApiMatchesApplicantApplicantIdRouteImport } from './routes/api/matches.applicant.$applicantId'
@@ -209,6 +210,11 @@ const ApiTelegramWebhookRoute = ApiTelegramWebhookRouteImport.update({
   path: '/api/telegram/webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAdminJobsBulkRoute = ApiAdminJobsBulkRouteImport.update({
+  id: '/bulk',
+  path: '/bulk',
+  getParentRoute: () => ApiAdminJobsRoute,
+} as any)
 const ApiAdminNotificationsRetryRoute =
   ApiAdminNotificationsRetryRouteImport.update({
     id: '/api/admin/notifications/retry',
@@ -271,7 +277,7 @@ export interface FileRoutesByFullPath {
   '/profile/$id': typeof ProfileIdRoute
   '/api/admin/analytics': typeof ApiAdminAnalyticsRoute
   '/api/admin/applicants': typeof ApiAdminApplicantsRouteWithChildren
-  '/api/admin/jobs': typeof ApiAdminJobsRoute
+  '/api/admin/jobs': typeof ApiAdminJobsRouteWithChildren
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/matching': typeof ApiAdminMatchingRoute
@@ -281,6 +287,7 @@ export interface FileRoutesByFullPath {
   '/api/matches/actions': typeof ApiMatchesActionsRoute
   '/api/matching/run': typeof ApiMatchingRunRoute
   '/api/telegram/webhook': typeof ApiTelegramWebhookRoute
+  '/api/admin/jobs/bulk': typeof ApiAdminJobsBulkRoute
   '/api/admin/notifications/retry': typeof ApiAdminNotificationsRetryRoute
   '/api/applicants/$id/cv': typeof ApiApplicantsIdCvRoute
   '/api/matches/applicant/$applicantId': typeof ApiMatchesApplicantApplicantIdRoute
@@ -312,7 +319,7 @@ export interface FileRoutesByTo {
   '/profile/$id': typeof ProfileIdRoute
   '/api/admin/analytics': typeof ApiAdminAnalyticsRoute
   '/api/admin/applicants': typeof ApiAdminApplicantsRouteWithChildren
-  '/api/admin/jobs': typeof ApiAdminJobsRoute
+  '/api/admin/jobs': typeof ApiAdminJobsRouteWithChildren
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/matching': typeof ApiAdminMatchingRoute
@@ -322,6 +329,7 @@ export interface FileRoutesByTo {
   '/api/matches/actions': typeof ApiMatchesActionsRoute
   '/api/matching/run': typeof ApiMatchingRunRoute
   '/api/telegram/webhook': typeof ApiTelegramWebhookRoute
+  '/api/admin/jobs/bulk': typeof ApiAdminJobsBulkRoute
   '/api/admin/notifications/retry': typeof ApiAdminNotificationsRetryRoute
   '/api/applicants/$id/cv': typeof ApiApplicantsIdCvRoute
   '/api/matches/applicant/$applicantId': typeof ApiMatchesApplicantApplicantIdRoute
@@ -354,7 +362,7 @@ export interface FileRoutesById {
   '/profile_/$id': typeof ProfileIdRoute
   '/api/admin/analytics': typeof ApiAdminAnalyticsRoute
   '/api/admin/applicants': typeof ApiAdminApplicantsRouteWithChildren
-  '/api/admin/jobs': typeof ApiAdminJobsRoute
+  '/api/admin/jobs': typeof ApiAdminJobsRouteWithChildren
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/matching': typeof ApiAdminMatchingRoute
@@ -364,6 +372,7 @@ export interface FileRoutesById {
   '/api/matches/actions': typeof ApiMatchesActionsRoute
   '/api/matching/run': typeof ApiMatchingRunRoute
   '/api/telegram/webhook': typeof ApiTelegramWebhookRoute
+  '/api/admin/jobs/bulk': typeof ApiAdminJobsBulkRoute
   '/api/admin/notifications/retry': typeof ApiAdminNotificationsRetryRoute
   '/api/applicants/$id/cv': typeof ApiApplicantsIdCvRoute
   '/api/matches/applicant/$applicantId': typeof ApiMatchesApplicantApplicantIdRoute
@@ -407,6 +416,7 @@ export interface FileRouteTypes {
     | '/api/matches/actions'
     | '/api/matching/run'
     | '/api/telegram/webhook'
+    | '/api/admin/jobs/bulk'
     | '/api/admin/notifications/retry'
     | '/api/applicants/$id/cv'
     | '/api/matches/applicant/$applicantId'
@@ -448,6 +458,7 @@ export interface FileRouteTypes {
     | '/api/matches/actions'
     | '/api/matching/run'
     | '/api/telegram/webhook'
+    | '/api/admin/jobs/bulk'
     | '/api/admin/notifications/retry'
     | '/api/applicants/$id/cv'
     | '/api/matches/applicant/$applicantId'
@@ -489,6 +500,7 @@ export interface FileRouteTypes {
     | '/api/matches/actions'
     | '/api/matching/run'
     | '/api/telegram/webhook'
+    | '/api/admin/jobs/bulk'
     | '/api/admin/notifications/retry'
     | '/api/applicants/$id/cv'
     | '/api/matches/applicant/$applicantId'
@@ -521,7 +533,7 @@ export interface RootRouteChildren {
   ProfileIdRoute: typeof ProfileIdRoute
   ApiAdminAnalyticsRoute: typeof ApiAdminAnalyticsRoute
   ApiAdminApplicantsRoute: typeof ApiAdminApplicantsRouteWithChildren
-  ApiAdminJobsRoute: typeof ApiAdminJobsRoute
+  ApiAdminJobsRoute: typeof ApiAdminJobsRouteWithChildren
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
   ApiAdminLogoutRoute: typeof ApiAdminLogoutRoute
   ApiAdminMatchingRoute: typeof ApiAdminMatchingRoute
@@ -762,6 +774,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiTelegramWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/admin/jobs/bulk': {
+      id: '/api/admin/jobs/bulk'
+      path: '/bulk'
+      fullPath: '/api/admin/jobs/bulk'
+      preLoaderRoute: typeof ApiAdminJobsBulkRouteImport
+      parentRoute: typeof ApiAdminJobsRoute
+    }
     '/api/admin/notifications/retry': {
       id: '/api/admin/notifications/retry'
       path: '/api/admin/notifications/retry'
@@ -860,6 +879,18 @@ const ApiAdminApplicantsRouteChildren: ApiAdminApplicantsRouteChildren = {
 const ApiAdminApplicantsRouteWithChildren =
   ApiAdminApplicantsRoute._addFileChildren(ApiAdminApplicantsRouteChildren)
 
+interface ApiAdminJobsRouteChildren {
+  ApiAdminJobsBulkRoute: typeof ApiAdminJobsBulkRoute
+}
+
+const ApiAdminJobsRouteChildren: ApiAdminJobsRouteChildren = {
+  ApiAdminJobsBulkRoute: ApiAdminJobsBulkRoute,
+}
+
+const ApiAdminJobsRouteWithChildren = ApiAdminJobsRoute._addFileChildren(
+  ApiAdminJobsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
@@ -883,7 +914,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileIdRoute: ProfileIdRoute,
   ApiAdminAnalyticsRoute: ApiAdminAnalyticsRoute,
   ApiAdminApplicantsRoute: ApiAdminApplicantsRouteWithChildren,
-  ApiAdminJobsRoute: ApiAdminJobsRoute,
+  ApiAdminJobsRoute: ApiAdminJobsRouteWithChildren,
   ApiAdminLoginRoute: ApiAdminLoginRoute,
   ApiAdminLogoutRoute: ApiAdminLogoutRoute,
   ApiAdminMatchingRoute: ApiAdminMatchingRoute,

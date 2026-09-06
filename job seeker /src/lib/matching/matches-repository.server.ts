@@ -126,6 +126,47 @@ export class MatchesRepository {
     });
   }
 
+  async upsertMatchesBulk(
+    inputs: Array<Omit<StoredMatch, "match_id" | "created_at" | "updated_at"> & { match_id?: string }>,
+  ) {
+    if (inputs.length === 0) return { stored: 0, created: 0 };
+    return withFileLock(FILE, async () => {
+      const rows = await readAll();
+      const timestamp = nowIso();
+      const existingMap = new Map(rows.map((row) => [`${row.applicant_id}:${row.job_id}`, row]));
+      let createdCount = 0;
+
+      for (const input of inputs) {
+        const key = `${input.applicant_id}:${input.job_id}`;
+        const existing = existingMap.get(key);
+        if (existing) {
+          const next: StoredMatch = {
+            ...existing,
+            ...input,
+            match_id: existing.match_id,
+            created_at: existing.created_at,
+            updated_at: timestamp,
+          };
+          const index = rows.findIndex((row) => row.match_id === existing.match_id);
+          if (index !== -1) rows[index] = next;
+          existingMap.set(key, next);
+        } else {
+          const created: StoredMatch = {
+            ...input,
+            match_id: input.match_id || randomUUID(),
+            created_at: timestamp,
+            updated_at: timestamp,
+          };
+          rows.push(created);
+          existingMap.set(key, created);
+          createdCount += 1;
+        }
+      }
+      await writeCsvFile(FILE, MATCH_COLUMNS, rows.map(toRecord));
+      return { stored: inputs.length, created: createdCount };
+    });
+  }
+
   async updateMatch(id: string, patch: Partial<StoredMatch>) {
     return withFileLock(FILE, async () => {
       const rows = await readAll();
