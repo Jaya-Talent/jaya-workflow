@@ -107,6 +107,48 @@ export class JobsRepository {
     });
   }
 
+  async bulkCreateJobs(inputs: JobInput[]) {
+    return withFileLock(FILE, async () => {
+      const jobs = await readAll();
+      const timestamp = nowIso();
+      const existingIds = new Set(jobs.map((j) => j.id));
+      const created: Job[] = [];
+
+      for (const input of inputs) {
+        const id = input.id || randomUUID();
+        if (existingIds.has(id)) {
+          // Update existing job status/apply_url
+          const idx = jobs.findIndex((j) => j.id === id);
+          if (idx !== -1 && jobs[idx]) {
+            jobs[idx] = {
+              ...jobs[idx],
+              status: input.status ?? jobs[idx].status,
+              updated_at: timestamp,
+            };
+          }
+          continue;
+        }
+
+        existingIds.add(id);
+        const job: Job = {
+          ...input,
+          id,
+          created_at: timestamp,
+          updated_at: timestamp,
+          status: input.status ?? "active",
+          source: input.source ?? "manual",
+          remote: input.remote ?? "remote",
+          salary_currency: input.salary_currency || "USD",
+        };
+        jobs.push(job);
+        created.push(job);
+      }
+
+      await writeCsvFile(FILE, JOB_COLUMNS, jobs.map(toRecord));
+      return created;
+    });
+  }
+
   async updateJob(id: string, patch: Partial<Job>) {
     return withFileLock(FILE, async () => {
       const jobs = await readAll();

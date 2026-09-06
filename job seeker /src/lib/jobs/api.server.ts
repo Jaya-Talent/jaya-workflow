@@ -3,7 +3,7 @@ import { jsonError } from "../applicants/http.ts";
 import { NotFoundError, ValidationError } from "../applicants/types.ts";
 import { queueJobMatching } from "../matching/pipeline.server.ts";
 import type { Job } from "../matching/types.ts";
-import { getJobsRepository } from "./jobs-repository.server.ts";
+import { getJobsRepository, type JobInput } from "./jobs-repository.server.ts";
 
 export async function handleListJobs() {
   const jobs = await getJobsRepository().listActiveJobs();
@@ -60,10 +60,11 @@ export async function handleBulkCreateJobs(request: Request) {
       throw new ValidationError("No jobs provided in payload.");
     }
     const repo = getJobsRepository();
-    const created: Job[] = [];
+    const inputs: JobInput[] = [];
+
     for (const item of items) {
       if (!item.title || !item.company) continue;
-      const job = await repo.createJob({
+      inputs.push({
         id: item.id,
         title: String(item.title),
         company: String(item.company),
@@ -85,8 +86,9 @@ export async function handleBulkCreateJobs(request: Request) {
         status: item.status === "closed" ? "closed" : "active",
         source: item.source || "bulk_upload",
       });
-      created.push(job);
     }
+
+    const created = await repo.bulkCreateJobs(inputs);
     return Response.json({ success: true, count: created.length }, { status: 200 });
   } catch (error) {
     return jsonError(error);
