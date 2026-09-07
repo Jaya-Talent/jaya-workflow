@@ -40,8 +40,13 @@ export const authMiddleware = createMiddleware({ type: "function" })
     // it, and so Vite does not ship `@tanstack/react-start/server` to the browser.
     const { assertSameSiteRequest } = await import("./isolation.server");
     const { requireUserId } = await import("./verify.server");
+    const { checkRateLimit } = await import("../rate-limit.server");
     // Reject scripted cross-site/sibling requests before touching per-user data.
     assertSameSiteRequest();
     const userId = await requireUserId(context.bearerToken);
+    const rl = checkRateLimit(`user-api:${userId}`, 60, 60_000);
+    if (!rl.success) {
+      throw new Error("Rate limit exceeded. Please wait a moment before trying again.");
+    }
     return next({ context: { userId } });
   });

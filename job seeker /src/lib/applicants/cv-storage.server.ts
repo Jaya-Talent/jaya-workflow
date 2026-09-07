@@ -54,6 +54,7 @@ export async function saveApplicantCv(applicantId: string, file: File) {
           Key: `cvs/${filename}`,
           Body: buffer,
           ContentType: file.type || "application/octet-stream",
+          ContentDisposition: `attachment; filename="${filename}"`,
         })
       );
       console.log(`[R2 Storage] Uploaded cvs/${filename} to bucket ${r2.bucket}`);
