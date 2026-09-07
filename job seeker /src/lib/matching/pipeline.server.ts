@@ -7,7 +7,7 @@ import { getMatchingWeights } from "./config.ts";
 import { scoreMatch, shouldPrefilter } from "./engine.ts";
 import { getMatchesRepository } from "./matches-repository.server.ts";
 import { maybeEnhanceExplanation, resetSemanticBudget } from "./semantic.server.ts";
-import type { Job } from "./types.ts";
+import type { Job, StoredMatch } from "./types.ts";
 
 export type MatchingRunResult = {
   compared: number;

@@ -16,7 +16,7 @@ const runMigration = createServerFn({ method: "GET" }).handler(async () => {
     return { success: false, error: "No CSV found at " + csvPath };
   }
 
-  const records = parseCsv(fileContents, CSV_COLUMNS);
+  const records = parseCsv(fileContents);
   const sql = await getSql();
   let migrated = 0;
 

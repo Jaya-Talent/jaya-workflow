@@ -33,7 +33,7 @@ import { betterAuth } from "better-auth";
 import { bearer, genericOAuth, magicLink } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { getCookie } from "@tanstack/react-start/server";
-import { randomBytes } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import { Pool } from "pg";
 import { ensureDbReady, getPglite } from "../db.ts";
 import { emailAndPasswordEnabled } from "./email-password.ts";

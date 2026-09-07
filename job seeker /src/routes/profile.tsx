@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import { createFileRoute, redirect, Link, useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { AlertTriangle } from "lucide-react";
@@ -5,27 +6,24 @@ import { Button } from "../components/ui.tsx";
 import { SiteHeader, SiteFooter } from "../components/site-chrome.tsx";
 
 const getProfileLoaderData = createServerFn({ method: "GET" })
-  .handler(async ({ request }) => {
-    const { auth } = await import("../lib/auth/server.ts");
+  .handler(async () => {
+    const { getSessionUser } = await import("../lib/auth/verify.server.ts");
     const { getApplicantRepository } = await import("../lib/applicants/sql-repository.server.ts");
 
-    const session = await auth.api.getSession({
-      headers: request.headers,
-    });
-
-    if (!session?.user) {
+    const user = await getSessionUser();
+    if (!user || !user.email) {
       return { user: null, applicant: null };
     }
 
     const repo = getApplicantRepository();
-    const applicant = await repo.findApplicantByEmail(session.user.email);
+    const applicant = await repo.findApplicantByEmail(user.email);
 
-    return { user: session.user, applicant };
+    return { user, applicant };
   });
 
 export const Route = createFileRoute("/profile")({
-  loader: async ({ request }) => {
-    const data = await getProfileLoaderData({ request });
+  loader: async () => {
+    const data = await getProfileLoaderData();
 
     if (!data.user) {
       throw redirect({ to: "/sign-in" });
@@ -110,7 +108,7 @@ function ProfileDashboard() {
       <SiteHeader solid />
       
       <main className="flex-1 px-4 py-12 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
-        <h1 className="text-4xl font-serif mb-8">Hello, {user.name}</h1>
+        <h1 className="text-4xl font-serif mb-8">Hello, {user.name || applicant?.full_name || "Applicant"}</h1>
         
         {!applicant ? (
           <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-8 text-center backdrop-blur-sm shadow-xs space-y-4">
