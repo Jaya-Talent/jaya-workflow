@@ -16,7 +16,7 @@ export type Category = {
   jobs: Job[];
 };
 
-export const LAST_UPDATED = "06 Sep 2026";
+export const LAST_UPDATED = "08 Sep 2026";
 
 export const dashboardData: Category[] = [
   {
@@ -27,50 +27,50 @@ export const dashboardData: Category[] = [
       {
         "num": 1,
         "company": "Trmlabs",
-        "title": "Growth Lead, Consumer Fraud Reporting",
-        "location": "United States",
-        "link": "https://jobs.ashbyhq.com/trm-labs/73b2f6bd-7f59-4378-8b9f-b0921489c8ef",
-        "date": "06 Sep 2026",
+        "title": "Business Development Executive, Public Sector (Europe)",
+        "location": "United Kingdom",
+        "link": "https://jobs.ashbyhq.com/trm-labs/fa2669bc-c77f-42a3-bae5-2c71d16ecca5",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Iftother",
-        "title": "Head of Business Development - Logos",
-        "location": "Remote (Worldwide)",
-        "link": "https://job-boards.greenhouse.io/iftother/jobs/8152733",
-        "date": "06 Sep 2026",
+        "company": "Impossiblecloud",
+        "title": "Sales Development Representative (Cloud Services)",
+        "location": "Hamburg",
+        "link": "https://jobs.lever.co/impossiblecloud/93b2b790-f749-4aa8-9896-813643c2edc9",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Impossiblecloud",
-        "title": "Inside Sales Manager  - Cloud Services",
-        "location": "Hamburg",
-        "link": "https://jobs.lever.co/impossiblecloud/046c0e1d-afba-4dec-9c85-515b4a1ca15b",
-        "date": "06 Sep 2026",
+        "company": "Gauntlet",
+        "title": "Business Development, US",
+        "location": "New York City / San Francisco / Los Angeles / Remote",
+        "link": "https://jobs.lever.co/gauntlet/cb1aba05-e9fb-4294-8c2f-865fbeaf04e9",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Orderlynetwork",
-        "title": "Associate, Ecosystem Growth & BD",
-        "location": "China",
-        "link": "https://job-boards.greenhouse.io/orderly/jobs/4570542008",
-        "date": "06 Sep 2026",
+        "company": "Blockchain",
+        "title": "Affiliate & Growth Networks Specialist",
+        "location": "Singapore",
+        "link": "https://job-boards.greenhouse.io/blockchain/jobs/8083268",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Gauntlet",
-        "title": "Business Development, APAC",
-        "location": "Singapore / Hong Kong",
-        "link": "https://jobs.lever.co/gauntlet/494b0acc-7cfa-4a58-b5dc-c3c914f5d394",
-        "date": "06 Sep 2026",
+        "company": "Bitgo",
+        "title": "Business Development Representative - MENA (Cyprus or Israel)",
+        "location": "Remote",
+        "link": "https://job-boards.greenhouse.io/bitgo/jobs/8534706002",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -84,50 +84,50 @@ export const dashboardData: Category[] = [
       {
         "num": 1,
         "company": "Coinbase",
-        "title": "Senior Market Data Engineer",
+        "title": "Senior Software Engineer, Data Layer",
         "location": "Remote - USA",
-        "link": "https://www.coinbase.com/careers/positions/8180833?gh_jid=8180833",
-        "date": "06 Sep 2026",
+        "link": "https://www.coinbase.com/careers/positions/8064873?gh_jid=8064873",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
         "company": "Coinbase",
-        "title": "Senior Network Engineer",
+        "title": "Senior Software Engineer - Frontend - Coinbase Card team",
         "location": "Remote - USA",
-        "link": "https://www.coinbase.com/careers/positions/8179311?gh_jid=8179311",
-        "date": "06 Sep 2026",
+        "link": "https://www.coinbase.com/careers/positions/8088201?gh_jid=8088201",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
         "company": "Coinbase",
-        "title": "Senior Software Engineer, Consumer",
-        "location": "Remote - Singapore",
-        "link": "https://www.coinbase.com/careers/positions/8067033?gh_jid=8067033",
-        "date": "06 Sep 2026",
+        "title": "Senior Software Engineer, Simple Trade Experience",
+        "location": "Remote - USA",
+        "link": "https://www.coinbase.com/careers/positions/8103569?gh_jid=8103569",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
         "company": "Coinbase",
-        "title": "Senior Software Engineer, Core Reliability",
-        "location": "Remote - Canada",
-        "link": "https://www.coinbase.com/careers/positions/8097944?gh_jid=8097944",
-        "date": "06 Sep 2026",
+        "title": "Senior Software Engineer, Stablecoins",
+        "location": "Remote - USA",
+        "link": "https://www.coinbase.com/careers/positions/8104873?gh_jid=8104873",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
         "company": "Coinbase",
-        "title": "Senior Software Engineer, Data Engineering Platform",
-        "location": "Remote - USA",
-        "link": "https://www.coinbase.com/careers/positions/8082199?gh_jid=8082199",
-        "date": "06 Sep 2026",
+        "title": "Senior Software Engineer - Trading",
+        "location": "Remote - Singapore",
+        "link": "https://www.coinbase.com/careers/positions/7866674?gh_jid=7866674",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -141,50 +141,50 @@ export const dashboardData: Category[] = [
       {
         "num": 1,
         "company": "Coinbase",
-        "title": "Senior Enterprise Product  Marketing Manager, Base",
+        "title": "Senior Internal Communications Manager, People",
         "location": "Remote - USA",
-        "link": "https://www.coinbase.com/careers/positions/8084049?gh_jid=8084049",
-        "date": "06 Sep 2026",
+        "link": "https://www.coinbase.com/careers/positions/8162914?gh_jid=8162914",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Crypto",
-        "title": "Social Media Manager/ Content Creator",
+        "company": "Kraken",
+        "title": "Marketing Manager, CRM Operations ",
         "location": "United States",
-        "link": "https://jobs.lever.co/crypto/ff3dc7ba-662e-4e49-82c2-e6143bb93712",
-        "date": "06 Sep 2026",
+        "link": "https://jobs.ashbyhq.com/kraken.com/3bd70487-d97d-47f1-b6f7-7700c17b3bd4",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Polymarket",
-        "title": "Polymarket 2026 Summer Internship \u2014 Marketing & Finance",
-        "location": "Remote",
-        "link": "https://jobs.ashbyhq.com/polymarket/9fbf8f68-5f92-434d-a00b-c79f99f5a10e",
-        "date": "06 Sep 2026",
+        "company": "Coinmarketcap",
+        "title": "Senior Marketing Specialist",
+        "location": "Global",
+        "link": "https://jobs.lever.co/coinmarketcap/b71b07d0-5a27-4101-b30d-ea442a2e096f",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Rain",
-        "title": "Product Marketing Manager - Money Movement",
-        "location": "New York, NY",
-        "link": "https://jobs.ashbyhq.com/rain/6aa4cf9f-58bd-45a5-bce0-e0da60ee7a8a",
-        "date": "06 Sep 2026",
+        "company": "Polymarket",
+        "title": "Performance Marketing Lead, International",
+        "location": "New York",
+        "link": "https://jobs.ashbyhq.com/polymarket/e6fc54f3-339e-4196-a221-53e8d7c2049f",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Coinmarketcap",
-        "title": "Global VP Marketing/CMO",
-        "location": "Global",
-        "link": "https://jobs.lever.co/coinmarketcap/3badc309-fe0c-41f6-8e78-5236dc331b8c",
-        "date": "06 Sep 2026",
+        "company": "Windranger",
+        "title": "Mantle Squad US \u2013 Marketing & Growth",
+        "location": "New York",
+        "link": "https://jobs.ashbyhq.com/windranger/83df91bb-55ba-4f01-b586-659f2c2c5172",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -200,7 +200,18 @@ export const dashboardData: Category[] = [
     "num": 5,
     "category": "C-Level / Executive Jobs",
     "channel": "t.me/+FPxA5a5gdlQ3MTY6",
-    "jobs": []
+    "jobs": [
+      {
+        "num": 1,
+        "company": "Bitpanda",
+        "title": "Intern, CEO Office",
+        "location": "Vienna, Vienna, Austria",
+        "link": "https://job-boards.eu.greenhouse.io/bitpanda/jobs/4959756101",
+        "date": "08 Sep 2026",
+        "notes": "Direct company job board link.",
+        "is_relisted": false
+      }
+    ]
   },
   {
     "num": 6,
@@ -210,50 +221,50 @@ export const dashboardData: Category[] = [
       {
         "num": 1,
         "company": "Anchorage",
-        "title": "Senior Derivatives Trader",
-        "location": "Cayman Islands",
-        "link": "https://jobs.lever.co/anchorage/c2b42959-0a4b-4e85-9901-8a875d586902",
-        "date": "06 Sep 2026",
+        "title": "Trading Operations Team Lead",
+        "location": "United States",
+        "link": "https://jobs.lever.co/anchorage/b3c332bc-ffc5-4a2f-ab3e-de136d326408",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
         "company": "Binance",
-        "title": "Senior Algorithmic Trader / Liquidity Researcher",
-        "location": "Taiwan, Taipei",
-        "link": "https://jobs.lever.co/binance/08a7954d-65ed-4c3c-9de6-266fb4cbddbc",
-        "date": "06 Sep 2026",
+        "title": "Senior Data Analyst, Trading",
+        "location": "Asia",
+        "link": "https://jobs.lever.co/binance/e92d8b5f-0f0a-4569-884f-4f45c8ad024c",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Kappa lab",
-        "title": "Quant Trader",
-        "location": "London, United Kingdom (Hybrid)",
-        "link": "https://jobs.gohire.io/kappa-lab-ltd-8jxmdnnt/quant-trader-297472/?ref=aHR0cHM6Ly9hcHAuZ29oaXJlLmlvLw==",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
+        "company": "Freedx",
+        "title": "Senior Trading Behavior & Flow Risk Analyst",
+        "location": "Remote",
+        "link": "https://apply.workable.com/freedx/j/53837BBE09/",
+        "date": "08 Sep 2026",
+        "notes": "Pre-scraped job from database.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Freedx",
-        "title": "Business Analyst (Middle / Senior) - Trading Team (CEX)",
-        "location": "Remote",
-        "link": "https://apply.workable.com/freedx/j/2F76FAD2AA/",
-        "date": "06 Sep 2026",
+        "company": "Robinhood",
+        "title": "Customer Experience Representative, Active Trader",
+        "location": "Chicago, IL; Denver, CO; Westlake, TX",
+        "link": "https://boards.greenhouse.io/robinhood/jobs/8011599?gh_src=NaN&gh_jid=8011599",
+        "date": "08 Sep 2026",
         "notes": "Pre-scraped job from database.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Crypto-finance",
-        "title": "Application Manager - Trading",
-        "location": "On-site",
-        "link": "https://apply.workable.com/crypto-finance/j/B2ADF0BD4D/",
-        "date": "06 Sep 2026",
+        "company": "Freedx",
+        "title": "Python Trading Research Analyst",
+        "location": "Remote",
+        "link": "https://apply.workable.com/freedx/j/C5153916B3/",
+        "date": "08 Sep 2026",
         "notes": "Pre-scraped job from database.",
         "is_relisted": false
       }
@@ -266,51 +277,51 @@ export const dashboardData: Category[] = [
     "jobs": [
       {
         "num": 1,
-        "company": "Gate.io",
-        "title": "\u533a\u5757\u94fe\u5f00\u53d1\u5de5\u7a0b\u5e08",
-        "location": "APAC-C1",
-        "link": "https://jobs.lever.co/gate/4f2aa64b-2252-4c57-8e70-a34f7c71cf63",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "Binance Accelerator Program - Research Data Scientist",
+        "location": "Asia",
+        "link": "https://jobs.lever.co/binance/ca44ee4e-392b-4745-9ad9-8e287f5a6d37",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
         "company": "Binance",
-        "title": "Binance Accelerator Program - Applied Data Scientist",
+        "title": "Binance Accelerator Program - Research On Chain Data Analyst",
         "location": "Asia",
-        "link": "https://jobs.lever.co/binance/ae1a07c1-c971-403c-906b-79d8c16e4f2d",
-        "date": "06 Sep 2026",
+        "link": "https://jobs.lever.co/binance/fb9d588a-e49e-4496-a464-9c6c5cc4ca46",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Gate.io",
-        "title": "\u6d4b\u8bd5\u8d1f\u8d23\u4eba",
-        "location": "APAC-C1",
-        "link": "https://jobs.lever.co/gate/0505a0c2-d2e9-47f5-8400-a7e184b72555",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "Business Analytics & Strategic Partnerships (Tokenisation) Manager",
+        "location": "Asia",
+        "link": "https://jobs.lever.co/binance/281f252b-ad90-45e1-b8f2-eca5e8c1a8e9",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Gate.io",
-        "title": "\u793e\u4ea4\u4ea7\u54c1\u8d1f\u8d23\u4eba",
-        "location": "APAC-C1",
-        "link": "https://jobs.lever.co/gate/41166281-1fb5-40fd-bd61-a1467d2c0418",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "Business Intelligence/ Data Analystics",
+        "location": "Asia",
+        "link": "https://jobs.lever.co/binance/e2cec219-a165-4baa-bb22-33be2e2f3063",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
         "company": "Binance",
-        "title": "Binance Accelerator Program - QA",
-        "location": "Asia",
-        "link": "https://jobs.lever.co/binance/2603f3c0-75cb-4d49-b8de-cb4ade0e8b39",
-        "date": "06 Sep 2026",
+        "title": "Chief Information Security Officer (Korea)",
+        "location": "South Korea, Seoul",
+        "link": "https://jobs.lever.co/binance/0400c0b4-c07e-42c5-a000-205995dcd8ef",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -330,50 +341,50 @@ export const dashboardData: Category[] = [
       {
         "num": 1,
         "company": "Coinbase",
-        "title": "Risk Manager - Country & Operational Risk",
-        "location": "Remote - UK",
-        "link": "https://www.coinbase.com/careers/positions/7774051?gh_jid=7774051",
-        "date": "06 Sep 2026",
+        "title": "SAM Compliance Lead Analyst",
+        "location": "Hybrid - Luxembourg",
+        "link": "https://www.coinbase.com/careers/positions/8052192?gh_jid=8052192",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
         "company": "Kraken",
-        "title": "Counsel - Regulatory (UK)",
+        "title": "Internal Audit Financial Crime & Conduct Manager",
         "location": "United Kingdom",
-        "link": "https://jobs.ashbyhq.com/kraken.com/da8b1179-9caa-464c-8eee-395132814f91",
-        "date": "06 Sep 2026",
+        "link": "https://jobs.ashbyhq.com/kraken.com/042f0568-49a6-4c25-b7a2-c578844b1e2f",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Impossiblecloud",
-        "title": "Legal Intern",
-        "location": "Hamburg",
-        "link": "https://jobs.lever.co/impossiblecloud/fdb042c2-56ae-42b7-82c4-898bc628818f",
-        "date": "06 Sep 2026",
+        "company": "Blockchain",
+        "title": "Compliance Analytics Associate ",
+        "location": "Buenos Aires",
+        "link": "https://job-boards.greenhouse.io/blockchain/jobs/8155035",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Moonpay",
-        "title": "Product Counsel",
-        "location": "New York - Hybrid",
-        "link": "https://jobs.lever.co/moonpay/eb7aeddb-a021-4ab5-9dfc-e74ec143b8de",
-        "date": "06 Sep 2026",
+        "company": "Bitgo",
+        "title": "Associate General Counsel",
+        "location": "Singapore",
+        "link": "https://job-boards.greenhouse.io/bitgo/jobs/8627534002",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Gauntlet",
-        "title": "Head of Compliance",
-        "location": "New York City / San Francisco / Los Angeles / Remote",
-        "link": "https://jobs.lever.co/gauntlet/64f960f1-3ed2-4ad5-aa7c-6e71a3c60aca",
-        "date": "06 Sep 2026",
+        "company": "Coinbase",
+        "title": "Senior Analyst, Compliance Technology",
+        "location": "Remote - USA",
+        "link": "https://www.coinbase.com/careers/positions/8067443?gh_jid=8067443",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -386,52 +397,52 @@ export const dashboardData: Category[] = [
     "jobs": [
       {
         "num": 1,
-        "company": "Ripple",
-        "title": "Customer Success Manager",
-        "location": "London, UK",
-        "link": "https://ripple.com/careers/all-jobs/job/8141304/?gh_jid=8141304",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
+        "company": "Circle",
+        "title": "Principal Product Manager, TradFi",
+        "location": "US",
+        "link": "https://careers.circle.com/us/en/job/JR100881/Principal-Product-Manager-TradFi",
+        "date": "08 Sep 2026",
+        "notes": "Pre-scraped job from database.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Ripple",
-        "title": "Renewals Manager, EMEA",
-        "location": "London, UK",
-        "link": "https://ripple.com/careers/all-jobs/job/8179167/?gh_jid=8179167",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
+        "company": "Circle",
+        "title": "VP Of Ecosystem Growth, Pakistan",
+        "location": "undefined:, Pakistan",
+        "link": "https://careers.circle.com/us/en/job/JR101031/VP-of-Ecosystem-Growth-Pakistan",
+        "date": "08 Sep 2026",
+        "notes": "Pre-scraped job from database.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Ripple",
-        "title": "Senior Manager, Marketing Analytics",
-        "location": "New York, NY, United States",
-        "link": "https://ripple.com/careers/all-jobs/job/7972221/?gh_jid=7972221",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
+        "company": "Circle",
+        "title": "Distinguished Software Engineer",
+        "location": "US",
+        "link": "https://careers.circle.com/us/en/job/JR100849/Distinguished-Software-Engineer",
+        "date": "08 Sep 2026",
+        "notes": "Pre-scraped job from database.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Ripple",
-        "title": "Senior Manager, Software Engineering \u2013 Identity Platform",
-        "location": "San Francisco, CA, United States",
-        "link": "https://ripple.com/careers/all-jobs/job/8030741/?gh_jid=8030741",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
+        "company": "Circle",
+        "title": "Senior Staff Data Engineer",
+        "location": "US",
+        "link": "https://careers.circle.com/us/en/job/JR101020/Senior-Staff-Data-Engineer",
+        "date": "08 Sep 2026",
+        "notes": "Pre-scraped job from database.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Ripple",
-        "title": "Senior Manager, Software Engineering \u2013 Payments Orchestration",
-        "location": "San Francisco, CA, United States",
-        "link": "https://ripple.com/careers/all-jobs/job/7786549/?gh_jid=7786549",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
+        "company": "Circle",
+        "title": "VP, Global Head Of Product Security And Risk",
+        "location": "US",
+        "link": "https://careers.circle.com/us/en/job/JR100878/VP-Global-Head-of-Product-Security-and-Risk",
+        "date": "08 Sep 2026",
+        "notes": "Pre-scraped job from database.",
         "is_relisted": false
       }
     ]
@@ -440,18 +451,7 @@ export const dashboardData: Category[] = [
     "num": 11,
     "category": "Dubai Jobs",
     "channel": "t.me/dubaijobscrypto",
-    "jobs": [
-      {
-        "num": 1,
-        "company": "Bybit",
-        "title": "Senior P2P Risk Strategy Analyst",
-        "location": "Abu Dhabi, UAE; Kuala Lumpur, Malaysia",
-        "link": "https://job-boards.eu.greenhouse.io/bybit/jobs/4856962101",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      }
-    ]
+    "jobs": []
   },
   {
     "num": 12,
@@ -460,51 +460,51 @@ export const dashboardData: Category[] = [
     "jobs": [
       {
         "num": 1,
-        "company": "Ripple",
-        "title": "Customer Success Manager",
-        "location": "London, UK",
-        "link": "https://ripple.com/careers/all-jobs/job/8141304/?gh_jid=8141304",
-        "date": "06 Sep 2026",
+        "company": "Coinbase",
+        "title": "SAM Compliance Lead Analyst",
+        "location": "Hybrid - Luxembourg",
+        "link": "https://www.coinbase.com/careers/positions/8052192?gh_jid=8052192",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Coinbase",
-        "title": "Engineering Manager, Market Data & Analytics",
-        "location": "Remote - USA",
-        "link": "https://www.coinbase.com/careers/positions/8179214?gh_jid=8179214",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
+        "company": "Circle",
+        "title": "Principal Product Manager, TradFi",
+        "location": "US",
+        "link": "https://careers.circle.com/us/en/job/JR100881/Principal-Product-Manager-TradFi",
+        "date": "08 Sep 2026",
+        "notes": "Pre-scraped job from database.",
         "is_relisted": false
       },
       {
         "num": 3,
         "company": "Kraken",
-        "title": "Counsel - Regulatory (UK)",
-        "location": "United Kingdom",
-        "link": "https://jobs.ashbyhq.com/kraken.com/da8b1179-9caa-464c-8eee-395132814f91",
-        "date": "06 Sep 2026",
+        "title": "Marketing Manager, CRM Operations ",
+        "location": "United States",
+        "link": "https://jobs.ashbyhq.com/kraken.com/3bd70487-d97d-47f1-b6f7-7700c17b3bd4",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Fireblocks",
-        "title": "Senior Accountant",
-        "location": "Tel Aviv-Yafo, Tel Aviv District, Israel",
-        "link": "https://www.fireblocks.com/careers/position?gh_jid=4711456006",
-        "date": "06 Sep 2026",
+        "company": "Trmlabs",
+        "title": "Business Development Executive, Public Sector (Europe)",
+        "location": "United Kingdom",
+        "link": "https://jobs.ashbyhq.com/trm-labs/fa2669bc-c77f-42a3-bae5-2c71d16ecca5",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Trmlabs",
-        "title": "Growth Lead, Consumer Fraud Reporting",
-        "location": "United States",
-        "link": "https://jobs.ashbyhq.com/trm-labs/73b2f6bd-7f59-4378-8b9f-b0921489c8ef",
-        "date": "06 Sep 2026",
+        "company": "Impossiblecloud",
+        "title": "Sales Development Representative (Cloud Services)",
+        "location": "Hamburg",
+        "link": "https://jobs.lever.co/impossiblecloud/93b2b790-f749-4aa8-9896-813643c2edc9",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -514,45 +514,13 @@ export const dashboardData: Category[] = [
     "num": 13,
     "category": "Tech Job board - general jobs in tech",
     "channel": "t.me/TechJobsme",
-    "jobs": [
-      {
-        "num": 1,
-        "company": "Coinbase",
-        "title": "Engineering Manager, Market Data & Analytics",
-        "location": "Remote - USA",
-        "link": "https://www.coinbase.com/careers/positions/8179214?gh_jid=8179214",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      },
-      {
-        "num": 2,
-        "company": "Subzero labs",
-        "title": "Engineering Manager",
-        "location": "Remote",
-        "link": "https://jobs.ashbyhq.com/subzero/f36ca76a-4fca-4ba4-8a67-c4946d6072db",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      }
-    ]
+    "jobs": []
   },
   {
     "num": 14,
     "category": "Crypto Research & Analytics Jobs",
     "channel": "t.me/+FAi6UOcaLNUyMWMy",
-    "jobs": [
-      {
-        "num": 1,
-        "company": "Fiber",
-        "title": "Business Analytics Strategic Partnerships Tokenisation Manager",
-        "location": "Remote",
-        "link": "https://web3.career/business-analytics-strategic-partnerships-tokenisation-manager-binance/153663",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      }
-    ]
+    "jobs": []
   },
   {
     "num": 15,
@@ -585,52 +553,52 @@ export const dashboardData: Category[] = [
     "jobs": [
       {
         "num": 1,
-        "company": "Trmlabs",
-        "title": "Senior International Sales Recruiter, UK/EMEA",
-        "location": "United Kingdom",
-        "link": "https://jobs.ashbyhq.com/trm-labs/b6994b6a-0b46-4311-b0f6-3b71d9b5ded9",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "HR Business Partner",
+        "location": "Asia",
+        "link": "https://jobs.lever.co/binance/d3bd1209-bce1-45af-80dc-17d03159c019",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
         "company": "Binance",
-        "title": "Pioneer Talent Program - Applied Data Scientist",
+        "title": "Pioneer Talent Program - Research Data Scientist",
         "location": "Asia",
-        "link": "https://jobs.lever.co/binance/9d5af64f-be8d-4cbf-a096-5a5a4294afbe",
-        "date": "06 Sep 2026",
+        "link": "https://jobs.lever.co/binance/efa6ff12-8332-4e08-b587-e88f7ea68177",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Whitebit",
-        "title": "Talent Programs Manager",
-        "location": "Remote",
-        "link": "https://whitebit.hurma.work/public-vacancies/1261",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "Senior Talent Acquisition Operations Specialist (Contract)",
+        "location": "Asia",
+        "link": "https://jobs.lever.co/binance/f5e9f843-fa64-40c8-af06-1f1a58943897",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Digital asset",
-        "title": "Global Talent Acquisition Coordinator",
-        "location": "New York City",
-        "link": "https://job-boards.greenhouse.io/digitalassetcorp/jobs/4392277009",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "Senior Talent Acquisition Specialist (Technical and Product)",
+        "location": "Asia",
+        "link": "https://jobs.lever.co/binance/a1124a16-3dfe-4547-b0e9-90aa402ebfde",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Dragonflycapital",
-        "title": "People Ops - Dragonfly Portfolio",
-        "location": "New York City \u2022 Hybrid",
-        "link": "https://jobs.gem.com/dragonfly-careers/4621670004",
-        "date": "06 Sep 2026",
-        "notes": "Pre-scraped job from database.",
+        "company": "Binance",
+        "title": "Talent Acquisition Specialist",
+        "location": "UAE, Dubai",
+        "link": "https://jobs.lever.co/binance/89670300-3ec1-438d-b7b4-ff59441c03af",
+        "date": "08 Sep 2026",
+        "notes": "Direct company job board link.",
         "is_relisted": false
       }
     ]
@@ -642,51 +610,51 @@ export const dashboardData: Category[] = [
     "jobs": [
       {
         "num": 1,
-        "company": "Kraken",
-        "title": "Platform Product Manager \u2014 Payward Services",
-        "location": "Canada",
-        "link": "https://jobs.ashbyhq.com/kraken.com/c6298ed5-978b-49ea-8cec-ce90f275d540",
-        "date": "06 Sep 2026",
+        "company": "Bitpanda",
+        "title": "Senior Product Manager \u2013 Securities & Commodities",
+        "location": "Vienna, Vienna, Austria",
+        "link": "https://job-boards.eu.greenhouse.io/bitpanda/jobs/4954725101",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Moonpay",
-        "title": "Product Manager, Identity",
-        "location": "London - Hybrid",
-        "link": "https://jobs.lever.co/moonpay/d9e4fd9d-5b4e-4ba1-b637-a21f9eec54b4",
-        "date": "06 Sep 2026",
+        "company": "Crypto",
+        "title": "Senior Product Manager - Exchange, Trading",
+        "location": "United States",
+        "link": "https://jobs.lever.co/crypto/fbb256a2-46a3-41b7-942d-5ba87018c0dc",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Bitpanda",
-        "title": "Senior Product Manager - Growth, Engagement & Retention",
-        "location": "Vienna, Vienna, Austria",
-        "link": "https://job-boards.eu.greenhouse.io/bitpanda/jobs/4959025101",
-        "date": "06 Sep 2026",
+        "company": "Bastion",
+        "title": "Product Manager",
+        "location": "US Remote",
+        "link": "https://jobs.ashbyhq.com/Bastion/04a403af-fcae-4e10-9960-b9970243a4aa",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
         "company": "Okx",
-        "title": "Principal Product Manager, Affiliate & KOL - Onshore Markets",
-        "location": "Hong Kong, Hong Kong SAR; Singapore, Singapore",
-        "link": "https://job-boards.greenhouse.io/okx/jobs/7777902003",
-        "date": "06 Sep 2026",
+        "title": "Principal Product Manager, Growth",
+        "location": "San Jose, California, United States",
+        "link": "https://job-boards.greenhouse.io/okx/jobs/7713617003",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Moonpay",
-        "title": "Senior Product Manager, KYB - MoonPay Enterprise",
-        "location": "London - Hybrid",
-        "link": "https://jobs.lever.co/moonpay/91e69ea7-bfc1-4b8a-bbc5-8439bacfcb57",
-        "date": "06 Sep 2026",
+        "company": "Crypto",
+        "title": "Senior Product Manager - Predictions, OG",
+        "location": "San Francisco",
+        "link": "https://jobs.lever.co/crypto/f6a19e4d-1150-476a-8566-ea0e7f2fd96a",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -700,50 +668,50 @@ export const dashboardData: Category[] = [
       {
         "num": 1,
         "company": "Okx",
-        "title": "Senior Product Designer, Defi",
+        "title": "Senior Product Designer, Wallets",
         "location": "Hong Kong, Hong Kong SAR",
-        "link": "https://job-boards.greenhouse.io/okx/jobs/7747651003",
-        "date": "06 Sep 2026",
+        "link": "https://job-boards.greenhouse.io/okx/jobs/7985087003",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Crypto",
-        "title": "Product Designer - Predictions, OG",
-        "location": "California",
-        "link": "https://jobs.lever.co/crypto/629ce48a-c8ed-4b22-bf29-5b516241e3f9",
-        "date": "06 Sep 2026",
+        "company": "Polymarket",
+        "title": "Creative Ops Lead",
+        "location": "New York",
+        "link": "https://jobs.ashbyhq.com/polymarket/031c38a6-3c76-4440-8569-b070c744d9a9",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Polymarket",
-        "title": "Sports Design Lead",
-        "location": "New York",
-        "link": "https://jobs.ashbyhq.com/polymarket/3a42a698-7569-4eb8-9bec-9214c7b51692",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "Binance Accelerator Program - Graphic Design (MENA)",
+        "location": "UAE, Dubai",
+        "link": "https://jobs.lever.co/binance/3785f1c4-3d3a-494a-9d0b-51e68f84ac08",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Stellar",
-        "title": "Brand Designer",
-        "location": "San Francisco",
-        "link": "https://jobs.ashbyhq.com/stellar/72644c96-916c-4644-aff3-3382fc4eb0ff",
-        "date": "06 Sep 2026",
+        "company": "Alpaca",
+        "title": "Senior Graphic Designer",
+        "location": "Remote - North America",
+        "link": "https://job-boards.greenhouse.io/alpaca/jobs/5744207004",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Symbiotic.fi",
-        "title": "Senior Product Designer",
-        "location": "New York",
-        "link": "https://jobs.ashbyhq.com/Symbiotic/ffc40ecb-169d-4027-bd5b-326e5710b897",
-        "date": "06 Sep 2026",
+        "company": "Asterdex",
+        "title": "Creative Designer",
+        "location": "APAC",
+        "link": "https://jobs.lever.co/pioneer-services/d9ad7005-3b50-44de-ba62-d4ce48c3c907",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -763,50 +731,50 @@ export const dashboardData: Category[] = [
       {
         "num": 1,
         "company": "Coinbase",
-        "title": "Sr. Systems Analyst, Finance, Enterprise Apps ",
+        "title": "Strategic Finance Manager, Platform",
         "location": "Remote - USA",
-        "link": "https://www.coinbase.com/careers/positions/8154856?gh_jid=8154856",
-        "date": "06 Sep 2026",
+        "link": "https://www.coinbase.com/careers/positions/8148248?gh_jid=8148248",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Fireblocks",
-        "title": "Senior Accountant",
-        "location": "Tel Aviv-Yafo, Tel Aviv District, Israel",
-        "link": "https://www.fireblocks.com/careers/position?gh_jid=4711456006",
-        "date": "06 Sep 2026",
+        "company": "Crypto",
+        "title": "Assistant Financial Controller",
+        "location": "Chicago,IL",
+        "link": "https://jobs.lever.co/crypto/bf231bb5-1c89-481a-b856-29771cdf5656",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
         "company": "Okx",
-        "title": "Senior Finance Analyst ",
-        "location": "Sliema, Malta",
-        "link": "https://job-boards.greenhouse.io/okx/jobs/7805828003",
-        "date": "06 Sep 2026",
+        "title": "Senior Finance Manager - Group Consolidation",
+        "location": "Singapore, Singapore",
+        "link": "https://job-boards.greenhouse.io/okx/jobs/7802200003",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Animocabrands",
-        "title": "Senior Associate, Accounting",
-        "location": "Hong Kong",
-        "link": "https://jobs.lever.co/animocabrands/bb994ec6-4017-47ea-8291-224a7358566f",
-        "date": "06 Sep 2026",
+        "company": "Solanafoundation",
+        "title": "Senior Accountant, Financial Operations",
+        "location": "Remote-International",
+        "link": "https://jobs.ashbyhq.com/Solana%20Foundation/e9a5aba3-4b4d-4635-b26a-57b7d4591dfd",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Xapo",
-        "title": "Treasury Manager (Remote - Work from Anywhere)",
-        "location": "Gibraltar - Remote",
-        "link": "https://job-boards.greenhouse.io/xapo61/jobs/7812568003",
-        "date": "06 Sep 2026",
+        "company": "Crypto",
+        "title": "Assistant Manager, Financial and Management Reporting",
+        "location": "Hong Kong",
+        "link": "https://jobs.lever.co/crypto/b8182b66-c109-4a81-a091-ca00ccd7201c",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -819,21 +787,11 @@ export const dashboardData: Category[] = [
     "jobs": [
       {
         "num": 1,
-        "company": "Polymarket",
-        "title": "Fraud Operations Manager",
-        "location": "Remote",
-        "link": "https://jobs.ashbyhq.com/polymarket/6703b7cd-2b97-4bed-9445-3ab8d74150f0",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      },
-      {
-        "num": 2,
-        "company": "Foundation",
-        "title": "Customer Success Manager/Lead",
-        "location": "San Francisco or Boulder",
-        "link": "https://jobs.ashbyhq.com/foundation/e209bb72-3d83-4f74-b8de-6f44773bde6f",
-        "date": "06 Sep 2026",
+        "company": "Bitpanda",
+        "title": "Associate, Customer Support - Live chat ",
+        "location": "Vienna, Vienna, Austria",
+        "link": "https://job-boards.eu.greenhouse.io/bitpanda/jobs/4969789101",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -846,51 +804,51 @@ export const dashboardData: Category[] = [
     "jobs": [
       {
         "num": 1,
-        "company": "Crypto",
-        "title": "Merchandising Operations Manager - Surface,  OG",
-        "location": "San Francisco",
-        "link": "https://jobs.lever.co/crypto/ed7f015a-45b0-4072-9bfc-27345a4e8db8",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "Binance Accelerator Program - Product Operations (Earn & TradFi)",
+        "location": "Hong Kong",
+        "link": "https://jobs.lever.co/binance/77d4c5cf-a604-454f-9e35-79d5ce32c318",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Trust-wallet",
-        "title": "Operations Lead",
-        "location": "Remote - Global",
-        "link": "https://jobs.ashbyhq.com/trust-wallet/044e897e-1f08-42a2-b6b9-9272e60622f4",
-        "date": "06 Sep 2026",
+        "company": "Alpaca",
+        "title": "Crypto Operations Associate - APAC",
+        "location": "Remote - Anywhere ",
+        "link": "https://job-boards.greenhouse.io/alpaca/jobs/4431262004",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Alpaca",
-        "title": "Brokerage Operations Manager - Saudi ",
-        "location": "Remote - EMEA",
-        "link": "https://job-boards.greenhouse.io/alpaca/jobs/5857441004",
-        "date": "06 Sep 2026",
+        "company": "Hyperbolic",
+        "title": "GTM (Operations)",
+        "location": "Remote",
+        "link": "https://jobs.ashbyhq.com/hyperbolic/51206c65-0350-4b22-8340-e86f70debb70",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
         "company": "Binance",
-        "title": "Binance Accelerator Program - Operations (Web3)",
-        "location": "Asia",
-        "link": "https://jobs.lever.co/binance/ff9b1c8a-b0de-4bb4-a81e-d2cd51f57e31",
-        "date": "06 Sep 2026",
+        "title": "Operational Risk / Enterprise Risk Management Framework (ERMF) Specialist",
+        "location": "Hong Kong",
+        "link": "https://jobs.lever.co/binance/744cb1d2-2f53-4819-8b5f-ef82a4460776",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Alpaca",
-        "title": "Corporate Operations Lead  ",
-        "location": "Remote - North America  and Remote  - EMEA",
-        "link": "https://job-boards.greenhouse.io/alpaca/jobs/6172681004",
-        "date": "06 Sep 2026",
+        "company": "Binance",
+        "title": "Operations Analyst - Brazil",
+        "location": "Brazil, Sao Paulo",
+        "link": "https://jobs.lever.co/binance/1b148889-f898-4579-84f7-dbccfa5fee4a",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -900,18 +858,7 @@ export const dashboardData: Category[] = [
     "num": 26,
     "category": "SF Crypto Jobs",
     "channel": "t.me/+KuA8mS1Rju1hMzcy",
-    "jobs": [
-      {
-        "num": 1,
-        "company": "Foundation",
-        "title": "Software Engineering",
-        "location": "San Francisco, Boulder, or Austin",
-        "link": "https://jobs.ashbyhq.com/foundation/2fffc9a2-7e3a-461c-8bb1-675540024014",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      }
-    ]
+    "jobs": []
   },
   {
     "num": 27,
@@ -920,51 +867,51 @@ export const dashboardData: Category[] = [
     "jobs": [
       {
         "num": 1,
-        "company": "Polymarket",
-        "title": "Lifecycle Director",
-        "location": "New York",
-        "link": "https://jobs.ashbyhq.com/polymarket/0fe656ba-7e91-466e-ab7a-f719f7f96a1c",
-        "date": "06 Sep 2026",
+        "company": "Okx",
+        "title": "Workplace IT Specialist",
+        "location": "New York, United States",
+        "link": "https://job-boards.greenhouse.io/okx/jobs/7808492003",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Chainalysis",
-        "title": "Deal Desk Manager (Fixed-Term)",
+        "company": "Polymarket",
+        "title": "Senior Data Scientist / Analyst, Institutional",
         "location": "New York",
-        "link": "https://jobs.ashbyhq.com/chainalysis-careers/8d8570f8-17b6-446a-9a3c-c65d5484da63",
-        "date": "06 Sep 2026",
+        "link": "https://jobs.ashbyhq.com/polymarket/4bcdc897-3126-4d8e-ba8a-d398255cad6e",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Polymarket",
-        "title": "Senior Payment Risk Analyst",
+        "company": "Chainalysis",
+        "title": "Senior People Systems & Integrations Analyst",
         "location": "New York",
-        "link": "https://jobs.ashbyhq.com/polymarket/62e81b7f-d045-495b-9f36-0c91392870f3",
-        "date": "06 Sep 2026",
+        "link": "https://jobs.ashbyhq.com/chainalysis-careers/f28e555e-ba54-4ea5-a41b-4c534438d019",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Polymarket",
-        "title": "Senior Data Scientist / Analyst, Product",
-        "location": "New York",
-        "link": "https://jobs.ashbyhq.com/polymarket/ddcc0048-6175-4c9b-847a-ce02e4508377",
-        "date": "06 Sep 2026",
+        "company": "Meshpay",
+        "title": "Head of Forward Deployed Engineering",
+        "location": "New York, NY",
+        "link": "https://job-boards.greenhouse.io/mesh/jobs/5380179008",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
-        "company": "Polymarket",
-        "title": "Product Lead, Data Licensing",
-        "location": "New York",
-        "link": "https://jobs.ashbyhq.com/polymarket/f7ece09b-5045-421e-8d7f-1d1b88fd97d8",
-        "date": "06 Sep 2026",
+        "company": "Rwa.xyz",
+        "title": "Senior Research Analyst",
+        "location": "New York City",
+        "link": "https://jobs.ashbyhq.com/RWA.xyz/b3b035a7-3067-4639-998b-863476b22ae3",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -974,45 +921,13 @@ export const dashboardData: Category[] = [
     "num": 28,
     "category": "London Crypto Jobs",
     "channel": "t.me/+KPy0IcQLBnVlNGYy",
-    "jobs": [
-      {
-        "num": 1,
-        "company": "Blockchain",
-        "title": "Business Lead",
-        "location": "London",
-        "link": "https://job-boards.greenhouse.io/blockchain/jobs/8045350",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      }
-    ]
+    "jobs": []
   },
   {
     "num": 29,
     "category": "Swiss Crypto Jobs",
     "channel": "t.me/+TOZl7q7MmwhiNDc6",
-    "jobs": [
-      {
-        "num": 1,
-        "company": "Tangem",
-        "title": "Web Attribution Analyst",
-        "location": "Remote / Zug, Switzerland",
-        "link": "https://careers.tangem.com/web-attribution-analyst",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      },
-      {
-        "num": 2,
-        "company": "Tangem",
-        "title": "UX Writer",
-        "location": "Remote / Zug, Switzerland",
-        "link": "https://careers.tangem.com/ux-writer",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      }
-    ]
+    "jobs": []
   },
   {
     "num": 30,
@@ -1030,18 +945,7 @@ export const dashboardData: Category[] = [
     "num": 32,
     "category": "Community Manager Jobs",
     "channel": "t.me/+b3phRT_N51M5NWIy",
-    "jobs": [
-      {
-        "num": 1,
-        "company": "Sahara ai",
-        "title": "Community Manager",
-        "location": "Seoul",
-        "link": "https://jobs.ashbyhq.com/sahara/ba33f05b-0858-4b5e-92cf-630852b624f1",
-        "date": "06 Sep 2026",
-        "notes": "Direct company job board link.",
-        "is_relisted": false
-      }
-    ]
+    "jobs": []
   },
   {
     "num": 33,
@@ -1057,50 +961,50 @@ export const dashboardData: Category[] = [
       {
         "num": 1,
         "company": "Trmlabs",
-        "title": "Backend Engineer, Agent Tools",
+        "title": "Staff Data Engineer - AI Platform",
         "location": "United States",
-        "link": "https://jobs.ashbyhq.com/trm-labs/1eff4d33-7cf1-4682-a548-dcc4abd913f3",
-        "date": "06 Sep 2026",
+        "link": "https://jobs.ashbyhq.com/trm-labs/74fc12c1-be22-496e-812d-1316276c91e8",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 2,
-        "company": "Impossiblecloud",
-        "title": "Product Manager / Director \u2013 GPU & AI Services",
-        "location": "Hamburg",
-        "link": "https://jobs.lever.co/impossiblecloud/78255efa-0423-4cf3-9bd8-8229e150616b",
-        "date": "06 Sep 2026",
+        "company": "Okx",
+        "title": "AI Agent Security Research Engineer",
+        "location": "APAC; Hong Kong, Hong Kong SAR; Singapore, Singapore",
+        "link": "https://job-boards.greenhouse.io/okx/jobs/7650023003",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 3,
-        "company": "Moonpay",
-        "title": "Staff Machine Learning Engineer",
-        "location": "London - Hybrid",
-        "link": "https://jobs.lever.co/moonpay/a12369da-ded2-4798-b176-b22928e9cf21",
-        "date": "06 Sep 2026",
+        "company": "Trmlabs",
+        "title": "Data Platform Engineer - AI Platform",
+        "location": "United States",
+        "link": "https://jobs.ashbyhq.com/trm-labs/2a784630-702d-4b49-a033-5cbd0d9c8a94",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 4,
-        "company": "Okx",
-        "title": "AI Agent Product Expert (Middleware) ",
-        "location": "Hong Kong, Hong Kong SAR",
-        "link": "https://job-boards.greenhouse.io/okx/jobs/7731745003",
-        "date": "06 Sep 2026",
+        "company": "Trmlabs",
+        "title": "Senior Data Platform Engineer - AI Platform",
+        "location": "United States",
+        "link": "https://jobs.ashbyhq.com/trm-labs/cf1c3e90-d709-4a64-825f-7c0f0768965a",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       },
       {
         "num": 5,
         "company": "Trmlabs",
-        "title": "Senior Data Engineer - AI Platform",
+        "title": "Staff Data Platform Engineer - AI Platform",
         "location": "United States",
-        "link": "https://jobs.ashbyhq.com/trm-labs/45e886bf-748d-41cb-9748-258440d12b61",
-        "date": "06 Sep 2026",
+        "link": "https://jobs.ashbyhq.com/trm-labs/a1ed36fb-8be9-40a9-8452-5641996130c3",
+        "date": "08 Sep 2026",
         "notes": "Direct company job board link.",
         "is_relisted": false
       }
@@ -1110,7 +1014,18 @@ export const dashboardData: Category[] = [
     "num": 35,
     "category": "Digital Assets Jobs",
     "channel": "t.me/+1v2qJM6gKLZiYWUy",
-    "jobs": []
+    "jobs": [
+      {
+        "num": 1,
+        "company": "Binance",
+        "title": "Treasury Asset Management",
+        "location": "Hong Kong",
+        "link": "https://jobs.lever.co/binance/c3d1aa01-9df6-4778-953f-9320b995a791",
+        "date": "08 Sep 2026",
+        "notes": "Direct company job board link.",
+        "is_relisted": false
+      }
+    ]
   }
 ];
 
