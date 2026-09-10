@@ -296,7 +296,7 @@ function ProfileDashboard() {
                 </p>
                 <div className="space-y-3">
                   <a 
-                    href="https://calendly.com/" 
+                    href="https://calendly.com/jayatalent" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="block w-full text-center rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-bg hover:bg-ink/90 transition-colors shadow-xs"

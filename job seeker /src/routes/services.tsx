@@ -98,7 +98,7 @@ function ServicesPage() {
 
               <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                 <a
-                  href="https://calendly.com/"
+                  href="https://calendly.com/jayatalent"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition-colors shadow-sm"
@@ -148,7 +148,7 @@ function ServicesPage() {
 
               <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                 <a
-                  href="https://calendly.com/"
+                  href="https://calendly.com/jayatalent"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-ink px-5 py-3 text-sm font-semibold text-bg hover:bg-ink/90 transition-colors shadow-sm"
@@ -189,7 +189,7 @@ function ServicesPage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
               <a
-                href="https://calendly.com/"
+                href="https://calendly.com/jayatalent"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition-colors"

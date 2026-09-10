@@ -171,7 +171,7 @@ function Home() {
 
                   <div className="mt-8 flex flex-col sm:flex-row gap-3">
                     <a 
-                      href="https://calendly.com/" 
+                      href="https://calendly.com/jayatalent" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex-1 text-center rounded-md border border-transparent bg-purple-600 px-4 py-3 text-sm font-semibold text-white hover:bg-purple-700 transition-colors shadow-md"
@@ -227,7 +227,7 @@ function Home() {
 
                   <div className="mt-8 flex flex-col sm:flex-row gap-3">
                     <a 
-                      href="https://calendly.com/" 
+                      href="https://calendly.com/jayatalent" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex-1 text-center rounded-md border border-transparent bg-purple-600 px-4 py-3 text-sm font-semibold text-white hover:bg-purple-700 transition-colors shadow-md"
