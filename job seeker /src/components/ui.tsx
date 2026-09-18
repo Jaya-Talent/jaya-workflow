@@ -11,22 +11,22 @@ import type {
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 font-medium transition-all duration-150 disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-[0.5px] cursor-pointer",
+  "inline-flex items-center justify-center gap-2 font-medium transition-all duration-150 disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-[1px] cursor-pointer rounded-none tracking-tight select-none",
   {
     variants: {
       variant: {
         primary:
-          "bg-gradient-to-b from-[#8E12BD] to-[#7B00A6] text-white shadow-[0_1px_2px_rgba(0,0,0,0.12),0_3px_12px_rgba(123,0,166,0.28),inset_0_1px_0_rgba(255,255,255,0.22)] border border-[#7B00A6] hover:from-[#9B1DCC] hover:to-[#8602B3] hover:shadow-[0_2px_4px_rgba(0,0,0,0.12),0_6px_18px_rgba(123,0,166,0.35)]",
+          "bg-[#7B00A6] text-white border border-[#640087] shadow-[0_2px_0_#4E006A,inset_0_1px_0_rgba(255,255,255,0.25)] hover:bg-[#8B08BA] hover:shadow-[0_2px_0_#5B007A] active:shadow-none active:translate-y-[2px]",
         secondary:
-          "bg-white/95 text-ink border border-line/90 shadow-[0_1px_3px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.95)] hover:bg-surface-muted hover:border-ink/20 hover:shadow-xs",
+          "bg-white text-ink border border-line shadow-[0_2px_0_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] hover:bg-surface-muted hover:border-ink/20 active:shadow-none active:translate-y-[2px]",
         ghost: "bg-transparent text-ink hover:bg-surface-muted/90",
         outline:
-          "border border-ink/15 bg-white/70 backdrop-blur-xs text-ink shadow-2xs hover:bg-white hover:border-ink/30 hover:shadow-xs",
+          "border border-ink/20 bg-white/80 text-ink shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:bg-white hover:border-accent hover:text-accent active:translate-y-[1px]",
       },
       size: {
-        sm: "h-9 rounded-xl px-4 text-xs font-semibold tracking-tight",
-        md: "h-11 rounded-xl px-5 text-sm font-semibold tracking-tight",
-        lg: "h-13 rounded-2xl px-6 text-base font-semibold tracking-tight",
+        sm: "h-8.5 px-3.5 text-xs font-bold uppercase tracking-wider",
+        md: "h-10.5 px-5 text-sm font-semibold",
+        lg: "h-12 px-6 text-base font-semibold",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },
@@ -47,9 +47,9 @@ export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElem
   return (
     <input
       className={cn(
-        "h-11 w-full rounded-xl border border-line/90 bg-white px-4 text-sm text-ink shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]",
+        "h-10.5 w-full rounded-none border border-line bg-white px-3.5 text-sm text-ink shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]",
         "placeholder:text-subtle transition-all duration-150",
-        "focus-visible:outline-none focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/15",
+        "focus-visible:outline-none focus-visible:border-accent focus-visible:ring-1 focus-visible:ring-accent",
         "disabled:opacity-50",
         className,
       )}
@@ -62,9 +62,9 @@ export function Textarea({ className, ...props }: TextareaHTMLAttributes<HTMLTex
   return (
     <textarea
       className={cn(
-        "min-h-32 w-full rounded-xl border border-line/90 bg-white px-4 py-3 text-sm text-ink shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]",
+        "min-h-32 w-full rounded-none border border-line bg-white px-3.5 py-3 text-sm text-ink shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]",
         "placeholder:text-subtle transition-all duration-150",
-        "focus-visible:outline-none focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/15",
+        "focus-visible:outline-none focus-visible:border-accent focus-visible:ring-1 focus-visible:ring-accent",
         className,
       )}
       {...props}
@@ -89,8 +89,8 @@ export function Select({ className, children, ...props }: SelectHTMLAttributes<H
   return (
     <select
       className={cn(
-        "h-11 w-full appearance-none rounded-xl border border-line/90 bg-white bg-[length:1rem] bg-[right_0.9rem_center] bg-no-repeat px-4 pr-10 text-sm text-ink shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]",
-        "focus-visible:outline-none focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/15",
+        "h-10.5 w-full appearance-none rounded-none border border-line bg-white bg-[length:1rem] bg-[right_0.9rem_center] bg-no-repeat px-3.5 pr-10 text-sm text-ink shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]",
+        "focus-visible:outline-none focus-visible:border-accent focus-visible:ring-1 focus-visible:ring-accent",
         className,
       )}
       style={{
@@ -116,10 +116,10 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-lg px-2.5 py-1 text-[11px] font-semibold tracking-tight transition-colors",
-        tone === "neutral" && "bg-surface-muted/90 text-ink/80 border border-line/70 shadow-2xs",
-        tone === "accent" && "bg-accent/[0.08] text-accent border border-accent/25 shadow-2xs font-semibold",
-        tone === "success" && "bg-emerald-500/[0.09] text-emerald-800 border border-emerald-500/25 shadow-2xs font-semibold",
+        "inline-flex items-center rounded-none px-2.5 py-0.5 text-[11px] font-mono font-medium tracking-tight transition-colors border",
+        tone === "neutral" && "bg-surface-muted text-ink/80 border-line shadow-2xs",
+        tone === "accent" && "bg-accent/[0.07] text-accent border-accent/25 shadow-2xs font-semibold",
+        tone === "success" && "bg-emerald-50 text-emerald-800 border-emerald-300 shadow-2xs font-semibold",
         className,
       )}
     >
@@ -132,10 +132,11 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        "rounded-2xl border border-line/80 bg-white p-6 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_6px_24px_-4px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all duration-200",
+        "rounded-none border border-line bg-white p-6 sm:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.03)] relative transition-all duration-200",
         className,
       )}
       {...props}
     />
   );
 }
+

@@ -113,12 +113,12 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
             <>
               <Link
                 to="/sign-in"
-                className="px-3.5 py-2 text-sm font-medium text-muted hover:text-ink transition-colors rounded-lg hover:bg-surface-muted"
+                className="px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-muted hover:text-ink transition-colors hover:bg-surface-muted"
               >
                 Log In
               </Link>
               <Link to="/apply">
-                <Button size="sm" className="shadow-sm hover:shadow-md transition-all gap-1.5 rounded-xl px-5">
+                <Button size="sm" className="px-5">
                   Create profile
                 </Button>
               </Link>
@@ -126,7 +126,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           ) : (
             <>
               <Link to="/profile">
-                <Button size="sm" className="shadow-sm hover:shadow-md transition-all bg-accent text-white hover:bg-accent-hover border-transparent rounded-xl px-5 gap-1.5 font-semibold">
+                <Button size="sm" className="px-5 gap-1.5 font-semibold">
                   <User className="size-3.5" />
                   My Profile
                 </Button>
@@ -135,7 +135,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
                 size="sm"
                 variant="outline"
                 onClick={handleSignOut}
-                className="rounded-xl hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
+                className="hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
                 title="Sign Out"
               >
                 <LogOut className="size-3.5" />
@@ -148,13 +148,13 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         <div className="flex items-center gap-2 md:hidden">
           {!session?.user ? (
             <Link to="/apply">
-              <Button size="sm" className="rounded-xl px-4 text-xs">
+              <Button size="sm" className="px-3 text-xs">
                 Create profile
               </Button>
             </Link>
           ) : (
             <Link to="/profile">
-              <Button size="sm" className="rounded-xl px-3 text-xs bg-accent text-ink">
+              <Button size="sm" className="px-3 text-xs">
                 Profile
               </Button>
             </Link>
@@ -163,7 +163,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex size-10 items-center justify-center rounded-xl border border-line bg-white/80 p-2 text-ink shadow-xs hover:bg-surface focus:outline-none transition-colors"
+            className="inline-flex size-9 items-center justify-center rounded-none border border-line bg-white/80 p-2 text-ink shadow-xs hover:bg-surface focus:outline-none transition-colors"
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle navigation menu"
           >
@@ -174,11 +174,11 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
 
       {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-x-0 top-16 z-50 border-b border-line bg-white/95 p-6 backdrop-blur-2xl shadow-lift md:hidden animate-in slide-in-from-top-2 duration-200">
-          <nav className="flex flex-col gap-4 text-base font-medium">
+        <div className="fixed inset-x-0 top-16 z-50 border-b border-line bg-white/98 p-6 backdrop-blur-2xl shadow-lift md:hidden animate-in slide-in-from-top-2 duration-200">
+          <nav className="flex flex-col gap-2 text-base font-medium">
             <Link
               to="/jobs"
-              className="flex items-center justify-between rounded-xl px-4 py-3 text-ink hover:bg-surface-muted transition-colors"
+              className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="flex items-center gap-3">
@@ -189,7 +189,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
 
             <Link
               to="/weekend-intelligence"
-              className="flex items-center justify-between rounded-xl px-4 py-3 text-ink hover:bg-surface-muted transition-colors"
+              className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span>Weekend Intelligence</span>
@@ -198,7 +198,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
 
             <Link
               to="/services"
-              className="flex items-center justify-between rounded-xl px-4 py-3 text-ink hover:bg-surface-muted transition-colors"
+              className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="flex items-center gap-3 text-accent font-semibold">
@@ -211,7 +211,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
               href="https://www.jayatalent.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between rounded-xl px-4 py-3 text-ink hover:bg-surface-muted transition-colors"
+              className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
             >
               <span>Companies</span>
               <ChevronRight className="size-4 text-subtle" />
@@ -221,7 +221,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
               href="https://www.jayatalent.com/candidates"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between rounded-xl px-4 py-3 text-ink hover:bg-surface-muted transition-colors"
+              className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
             >
               <span>Community</span>
               <ChevronRight className="size-4 text-subtle" />
@@ -231,7 +231,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
               href="https://www.jayatalent.com/team"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between rounded-xl px-4 py-3 text-ink hover:bg-surface-muted transition-colors"
+              className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
             >
               <span>Team</span>
               <ChevronRight className="size-4 text-subtle" />
