@@ -38,8 +38,11 @@ async function readJsonOrForm(request: Request) {
   return { payload, cv: null as File | null };
 }
 
+import { enforceRateLimit } from "../security/rate-limit.server.ts";
+
 export async function handleCreateApplicant(request: Request) {
   try {
+    enforceRateLimit(request, "create-applicant", 10, 60);
     const { payload, cv } = await readJsonOrForm(request);
     const input = sanitizeInput(parseApplicantPayload(payload));
     const repo = getApplicantRepository();
@@ -87,6 +90,7 @@ export async function handlePatchApplicant(id: string, request: Request) {
 
 export async function handleUploadCv(id: string, request: Request) {
   try {
+    enforceRateLimit(request, "upload-cv", 5, 60);
     const repo = getApplicantRepository();
     const applicant = await repo.getApplicant(id);
     if (!applicant) throw new NotFoundError();
