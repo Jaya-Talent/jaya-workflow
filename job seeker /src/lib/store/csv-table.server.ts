@@ -5,26 +5,8 @@ import { getDataDir } from "../applicants/paths.server.ts";
 
 const locks = new Map<string, Promise<unknown>>();
 
-// Bundled static seed CSV files compiled at build-time by Vite/Nitro
-// Ensures serverless environments (like Vercel) have access to jobs.csv & seed data
-const seedCsvFiles = (
-  typeof import.meta !== "undefined" && typeof import.meta.glob === "function"
-    ? import.meta.glob(["../../../data/*.csv", "../../data/*.csv", "../data/*.csv", "/data/*.csv", "**/data/*.csv"], {
-        query: "?raw",
-        import: "default",
-        eager: true,
-      })
-    : {}
-) as Record<string, string>;
-
-function getInlinedSeedCsv(filename: string): string | null {
-  for (const [key, content] of Object.entries(seedCsvFiles)) {
-    if (key.endsWith(`/${filename}`) || key.endsWith(`\\${filename}`) || key === filename) {
-      if (typeof content === "string" && content.trim().length > 0) {
-        return content;
-      }
-    }
-  }
+// Server-only CSV disk and seed access
+function getInlinedSeedCsv(_filename: string): string | null {
   return null;
 }
 

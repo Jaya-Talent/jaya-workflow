@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   BarChart3,
   TrendingUp,
@@ -22,7 +22,10 @@ import {
   Award,
   Layers,
   Check,
-  ArrowRight
+  ArrowRight,
+  Send,
+  ExternalLink,
+  RefreshCw
 } from "lucide-react";
 import { AdminGate } from "@/components/admin-gate";
 import { AdminShell } from "@/components/admin-shell";
@@ -112,6 +115,8 @@ function AnalyticsDashboard() {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [telegramCopied, setTelegramCopied] = useState(false);
+  const [refreshingReport, setRefreshingReport] = useState(false);
 
   // Timeframe Controls
   const [timeframePreset, setTimeframePreset] = useState<"sept_2026" | "last_7" | "last_30" | "all" | "custom">("all");
@@ -525,6 +530,34 @@ ${locationsList}
     printWindow.document.close();
   };
 
+  const copyTelegramBroadcast = async () => {
+    try {
+      const res = await fetch("/api/intelligence/telegram");
+      if (res.ok) {
+        const text = await res.text();
+        if (typeof window !== "undefined") {
+          await navigator.clipboard.writeText(text);
+          setTelegramCopied(true);
+          setTimeout(() => setTelegramCopied(false), 2500);
+        }
+      }
+    } catch (err) {
+      console.error("Failed copying telegram broadcast:", err);
+    }
+  };
+
+  const refreshIntelligenceReport = async () => {
+    try {
+      setRefreshingReport(true);
+      await fetch("/api/intelligence?refresh=true");
+      alert("Weekly Intelligence Report cache refreshed from live job database!");
+    } catch (err) {
+      console.error("Failed refreshing report:", err);
+    } finally {
+      setRefreshingReport(false);
+    }
+  };
+
   return (
     <div className="space-y-8">
       {/* Header Banner */}
@@ -885,6 +918,56 @@ ${locationsList}
             <pre className="whitespace-pre-wrap font-sans text-xs bg-surface p-4 rounded-xl border border-line text-ink leading-relaxed max-h-72 overflow-y-auto">
               {generateReportText()}
             </pre>
+          </div>
+
+          {/* Weekend Intelligence Automation & Broadcast Hub */}
+          <div className="rounded-2xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xl font-serif font-bold text-ink">Jaya Talent Weekend Intelligence Hub</span>
+                  <Badge tone="accent">Automation Ready</Badge>
+                </div>
+                <p className="text-xs text-muted mt-1">
+                  Manage weekly career intelligence broadcasts, telegram syndication, and live data recalculation.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={refreshIntelligenceReport}
+                  disabled={refreshingReport}
+                  className="text-xs gap-1.5"
+                >
+                  <RefreshCw className={`h-3.5 w-3.5 ${refreshingReport ? "animate-spin" : ""}`} />
+                  {refreshingReport ? "Recalculating..." : "Recalculate Report"}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={copyTelegramBroadcast}
+                  className="text-xs gap-1.5 bg-blue-50/50 text-blue-800 border-blue-200 hover:bg-blue-100"
+                >
+                  {telegramCopied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Send className="h-3.5 w-3.5 text-blue-600" />}
+                  {telegramCopied ? "Telegram Markdown Copied!" : "Copy Telegram Markdown"}
+                </Button>
+                <Link to="/weekend-intelligence" target="_blank">
+                  <Button size="sm" className="text-xs gap-1.5 bg-accent text-white">
+                    View Live Page <ExternalLink className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-xl bg-surface-muted border border-line text-xs space-y-2">
+              <p className="font-semibold text-ink">Public Endpoints for n8n / Python Automation Pipelines:</p>
+              <div className="flex flex-col gap-1 font-mono text-muted text-[11px]">
+                <div>• <strong className="text-ink">JSON Intelligence Report:</strong> <code className="bg-white px-2 py-0.5 rounded border border-line">GET /api/intelligence</code> (Query params: <code className="text-accent">?refresh=true</code>, <code className="text-accent">?archives=true</code>, <code className="text-accent">?slug=YYYY-MM-DD-to-YYYY-MM-DD</code>)</div>
+                <div>• <strong className="text-ink">Telegram Bot Formatted Text:</strong> <code className="bg-white px-2 py-0.5 rounded border border-line">GET /api/intelligence/telegram</code></div>
+              </div>
+            </div>
           </div>
         </>
       )}
