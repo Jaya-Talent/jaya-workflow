@@ -45,7 +45,7 @@ export function emailHtml(applicant: Applicant, job: Job, match: StoredMatch, vi
 <html>
 <body style="margin:0;padding:0;background:#f6f4f1;font-family:Arial,sans-serif;color:#1a1523;">
   <div style="max-width:560px;margin:0 auto;padding:24px 16px;">
-    <p style="letter-spacing:0.16em;text-transform:uppercase;color:#5c3dcc;font-size:12px;font-weight:600;">Meridian</p>
+    <p style="letter-spacing:0.16em;text-transform:uppercase;color:#7B00A6;font-size:12px;font-weight:700;">Jaya Talent</p>
     <h1 style="font-size:24px;line-height:1.3;margin:8px 0 16px;">Hi ${escapeHtml(first)},</h1>
     <p style="color:#6b6578;font-size:15px;line-height:1.6;">We found a new opportunity that closely matches your profile.</p>
     <div style="background:#ffffff;border-radius:16px;padding:20px;margin:20px 0;box-shadow:0 0 0 1px rgba(26,21,35,0.06);">
@@ -90,7 +90,7 @@ export function digestHtml(
 <html>
 <body style="margin:0;padding:0;background:#f6f4f1;font-family:Arial,sans-serif;color:#1a1523;">
   <div style="max-width:560px;margin:0 auto;padding:24px 16px;">
-    <p style="letter-spacing:0.16em;text-transform:uppercase;color:#5c3dcc;font-size:12px;font-weight:600;">Meridian</p>
+    <p style="letter-spacing:0.16em;text-transform:uppercase;color:#7B00A6;font-size:12px;font-weight:700;">Jaya Talent</p>
     <h1 style="font-size:24px;margin:8px 0 16px;">Hi ${escapeHtml(first)},</h1>
     <p style="color:#6b6578;font-size:15px;line-height:1.6;">We found ${total} jobs matching your profile ${period}.</p>
     <div style="background:#ffffff;border-radius:16px;padding:20px;margin:20px 0;">

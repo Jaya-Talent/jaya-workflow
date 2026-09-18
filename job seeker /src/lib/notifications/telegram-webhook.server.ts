@@ -31,7 +31,7 @@ export async function handleTelegramWebhook(request: Request) {
     } else if (chatId) {
       await sendTelegramText(
         chatId,
-        "Open your Meridian profile and tap Connect Telegram so we can link this chat.",
+        "Open your Jaya Talent profile and tap Connect Telegram so we can link this chat.",
       );
     }
     return Response.json({ ok: true });
