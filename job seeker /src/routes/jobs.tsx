@@ -184,7 +184,7 @@ function JobsPage() {
           </div>
 
           {/* Search & Filter Bar */}
-          <div className="rounded-2xl border border-line bg-white p-5 shadow-sm space-y-4">
+          <div className="rounded-none border border-line bg-white p-5 shadow-[0_2px_6px_rgba(0,0,0,0.03)] space-y-4">
             {/* Top Row: Search & Sort */}
             <div className="grid gap-3 sm:grid-cols-12">
               <div className="relative sm:col-span-8">
@@ -219,7 +219,7 @@ function JobsPage() {
               <Select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="h-10 text-xs sm:text-sm"
+                className="h-10 text-xs sm:text-sm font-mono"
               >
                 <option value="">All Categories</option>
                 {JOB_CATEGORIES.map((item) => (
@@ -232,7 +232,7 @@ function JobsPage() {
               <Select
                 value={remote}
                 onChange={(e) => setRemote(e.target.value)}
-                className="h-10 text-xs sm:text-sm"
+                className="h-10 text-xs sm:text-sm font-mono"
               >
                 <option value="">All Work Types</option>
                 <option value="remote">Remote Only</option>
@@ -243,7 +243,7 @@ function JobsPage() {
               <Select
                 value={seniority}
                 onChange={(e) => setSeniority(e.target.value)}
-                className="h-10 text-xs sm:text-sm"
+                className="h-10 text-xs sm:text-sm font-mono"
               >
                 <option value="">All Seniorities</option>
                 {EXPERIENCE_LEVELS.map((item) => (
@@ -256,7 +256,7 @@ function JobsPage() {
               <Select
                 value={employmentType}
                 onChange={(e) => setEmploymentType(e.target.value)}
-                className="h-10 text-xs sm:text-sm"
+                className="h-10 text-xs sm:text-sm font-mono"
               >
                 <option value="">All Job Types</option>
                 {EMPLOYMENT_TYPES.map((item) => (
@@ -268,8 +268,8 @@ function JobsPage() {
             </div>
 
             {/* Active Filters Bar & Status */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs text-muted border-t border-line">
-              <span className="font-medium">
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs font-mono text-muted border-t border-line">
+              <span>
                 Showing <strong className="text-ink font-semibold tabular-nums">{visibleJobs.length}</strong> of{" "}
                 <strong className="text-ink font-semibold tabular-nums">{filteredAndSorted.length}</strong> matching roles
               </span>
@@ -278,7 +278,7 @@ function JobsPage() {
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="inline-flex items-center gap-1 text-accent hover:underline font-semibold"
+                  className="inline-flex items-center gap-1 text-accent hover:underline font-bold uppercase tracking-wider"
                 >
                   <RotateCcw className="size-3" /> Reset Filters
                 </button>
@@ -289,7 +289,7 @@ function JobsPage() {
           {/* Job Listings Grid */}
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {filteredAndSorted.length === 0 && (
-              <div className="col-span-full py-16 text-center rounded-2xl border border-line bg-white p-8">
+              <div className="col-span-full py-16 text-center rounded-none border border-line bg-white p-8">
                 <Filter className="size-10 text-subtle mx-auto mb-3" />
                 <h3 className="text-lg font-bold text-ink">No roles match your search filters</h3>
                 <p className="text-sm text-muted mt-1 max-w-sm mx-auto">
@@ -298,7 +298,7 @@ function JobsPage() {
                 <Button
                   onClick={resetFilters}
                   variant="outline"
-                  className="mt-6 rounded-xl px-5 text-xs"
+                  className="mt-6 rounded-none px-5 text-xs"
                 >
                   Clear All Filters
                 </Button>
@@ -324,7 +324,7 @@ function JobsPage() {
             <div className="mt-12 text-center">
               <Button
                 onClick={() => setPage((p) => p + 1)}
-                className="rounded-xl px-8 py-3 text-sm font-semibold shadow-sm hover:shadow-md transition-all"
+                className="rounded-none px-8 py-3 text-sm font-semibold shadow-[0_2px_0_#4E006A] hover:shadow-[0_2px_0_#5B007A]"
               >
                 Load More Roles ({filteredAndSorted.length - visibleJobs.length} remaining)
               </Button>
