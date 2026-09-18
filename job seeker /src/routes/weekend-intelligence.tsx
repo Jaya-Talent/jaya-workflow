@@ -64,21 +64,62 @@ export const Route = createFileRoute("/weekend-intelligence")({
             "Weekly data-driven insights into Web3 jobs, salaries, hiring trends, skills and career opportunities from Jaya Talent.",
         },
         {
+          property: "og:site_name",
+          content: "Jaya Talent",
+        },
+        {
           property: "og:title",
-          content: `Jaya Talent Weekend Intelligence | Web3 Job Market Insights`,
+          content: `Jaya Talent Weekend Intelligence (${period}) | Web3 Market Insights`,
         },
         {
           property: "og:description",
           content:
-            "Your weekly data-driven snapshot of the Web3 job market. In-demand skills, salary data, hiring protocols, and career recommendations.",
+            "Weekly data-driven insights into Web3 jobs, salaries, hiring trends, skills and career opportunities from Jaya Talent.",
         },
         {
           property: "og:type",
           content: "article",
         },
         {
+          property: "og:image",
+          content: "https://job.jayatalent.com/og-intelligence.png",
+        },
+        {
+          property: "og:image:secure_url",
+          content: "https://job.jayatalent.com/og-intelligence.png",
+        },
+        {
+          property: "og:image:type",
+          content: "image/png",
+        },
+        {
+          property: "og:image:width",
+          content: "1200",
+        },
+        {
+          property: "og:image:height",
+          content: "630",
+        },
+        {
           name: "twitter:card",
           content: "summary_large_image",
+        },
+        {
+          name: "twitter:site",
+          content: "@JayaTalent",
+        },
+        {
+          name: "twitter:title",
+          content: `Jaya Talent Weekend Intelligence (${period})`,
+        },
+        {
+          name: "twitter:description",
+          content:
+            "Weekly data-driven insights into Web3 jobs, salaries, hiring trends, skills and career opportunities from Jaya Talent.",
+        },
+        {
+          name: "twitter:image",
+          content: "https://job.jayatalent.com/og-intelligence.png",
         },
       ],
     };
