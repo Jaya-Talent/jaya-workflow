@@ -80,6 +80,20 @@ function ProfileDashboard() {
   const handleCvUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!applicant || !e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
+    
+    if (file.size > 10 * 1024 * 1024) {
+      setCvMessage("CV file must be 10MB or smaller.");
+      if (e.target) e.target.value = "";
+      return;
+    }
+
+    const lowerName = file.name.toLowerCase();
+    if (!lowerName.endsWith(".pdf") && !lowerName.endsWith(".doc") && !lowerName.endsWith(".docx")) {
+      setCvMessage("Only PDF, DOC, or DOCX formats are accepted.");
+      if (e.target) e.target.value = "";
+      return;
+    }
+
     setUploadingCv(true);
     setCvMessage("");
 
@@ -92,15 +106,17 @@ function ProfileDashboard() {
         body: formData,
       });
       if (res.ok) {
-        setCvMessage("CV uploaded successfully");
+        setCvMessage("CV uploaded successfully!");
         router.invalidate();
       } else {
-        setCvMessage("Failed to upload CV");
+        const data = await res.json().catch(() => ({}));
+        setCvMessage(data.error || "Failed to upload CV. Please try again.");
       }
     } catch (error) {
-      setCvMessage("Error uploading CV");
+      setCvMessage("Network error uploading CV.");
     }
     setUploadingCv(false);
+    if (e.target) e.target.value = "";
   };
 
   return (
@@ -210,19 +226,22 @@ function ProfileDashboard() {
                   <div>
                     <input 
                       type="file" 
-                      accept=".pdf,.doc,.docx" 
+                      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
                       className="hidden" 
                       ref={cvInputRef}
                       onChange={handleCvUpload}
                     />
-                    <Button 
-                      variant="outline" 
-                      onClick={() => cvInputRef.current?.click()}
-                      disabled={uploadingCv}
-                      className="rounded-xl"
-                    >
-                      {uploadingCv ? "Uploading..." : "Upload New CV"}
-                    </Button>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                      <Button 
+                        variant="outline" 
+                        onClick={() => cvInputRef.current?.click()}
+                        disabled={uploadingCv}
+                        className="rounded-xl"
+                      >
+                        {uploadingCv ? "Uploading..." : "Upload New CV"}
+                      </Button>
+                      <span className="text-xs text-muted">Accepted: PDF, DOC, DOCX (Max 10MB)</span>
+                    </div>
                     {cvMessage && <p className="text-sm mt-2 text-muted">{cvMessage}</p>}
                   </div>
                 </div>

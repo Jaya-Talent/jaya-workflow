@@ -130,6 +130,10 @@ const LOCAL_DEV_ORIGINS: string[] = [
 const PROD_ORIGINS: string[] = [
   "https://jayatalent-job-seeker.vercel.app",
   "http://jayatalent-job-seeker.vercel.app",
+  "https://job.jayatalent.com",
+  "http://job.jayatalent.com",
+  "https://jobs.jayatalent.com",
+  "http://jobs.jayatalent.com",
   "https://jayatalent.com",
   "https://www.jayatalent.com",
   "http://jayatalent.com",
