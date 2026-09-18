@@ -1,1 +1,9 @@
-{"title":"Jaya Talent","card":"custom"}
+{
+  "title": "Jaya Talent",
+  "name": "Jaya Talent",
+  "tagline": "Your Web3 Recruitment Partner",
+  "description": "Connecting top-tier Web3 developers, founders, and executives with high-conviction crypto startups backed by leading venture capital.",
+  "card": "custom",
+  "image": "/og.png"
+}
+
