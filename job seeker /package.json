@@ -19,6 +19,7 @@
     "matching": "node --experimental-strip-types scripts/matching.mjs",
     "test": "node --test 'scripts/**/*.test.mjs' && node --experimental-strip-types --test src/lib/app-data/app-data.test.ts src/lib/auth/gate-identity.test.ts src/lib/auth/sign-in-gate.test.ts src/lib/matching/engine.test.ts",
     "test:matching": "node --experimental-strip-types --test src/lib/matching/engine.test.ts",
+    "test:telegram": "node scripts/test-telegram.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
