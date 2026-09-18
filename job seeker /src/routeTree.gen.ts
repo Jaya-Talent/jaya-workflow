@@ -20,12 +20,14 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SuccessRouteImport } from './routes/success'
+import { Route as WeekendIntelligenceRouteImport } from './routes/weekend-intelligence'
 import { Route as AdminIdRouteImport } from './routes/admin_.$id'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin_.analytics'
 import { Route as AdminJobsRouteImport } from './routes/admin_.jobs'
 import { Route as AdminMatchingRouteImport } from './routes/admin_.matching'
 import { Route as ApiApplicantsRouteImport } from './routes/api/applicants'
 import { Route as ApiHealthRouteImport } from './routes/api/health'
+import { Route as ApiIntelligenceRouteImport } from './routes/api/intelligence'
 import { Route as ApiJobsRouteImport } from './routes/api/jobs'
 import { Route as JobsIdRouteImport } from './routes/jobs_.$id'
 import { Route as ProfileIdRouteImport } from './routes/profile_.$id'
@@ -37,6 +39,7 @@ import { Route as ApiAdminLogoutRouteImport } from './routes/api/admin.logout'
 import { Route as ApiAdminMatchingRouteImport } from './routes/api/admin.matching'
 import { Route as ApiApplicantsIdRouteImport } from './routes/api/applicants.$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ApiIntelligenceTelegramRouteImport } from './routes/api/intelligence.telegram'
 import { Route as ApiJobsIdRouteImport } from './routes/api/jobs.$id'
 import { Route as ApiMatchesActionsRouteImport } from './routes/api/matches.actions'
 import { Route as ApiMatchingRunRouteImport } from './routes/api/matching.run'
@@ -105,6 +108,11 @@ const SuccessRoute = SuccessRouteImport.update({
   path: '/success',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WeekendIntelligenceRoute = WeekendIntelligenceRouteImport.update({
+  id: '/weekend-intelligence',
+  path: '/weekend-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIdRoute = AdminIdRouteImport.update({
   id: '/admin_/$id',
   path: '/admin/$id',
@@ -133,6 +141,11 @@ const ApiApplicantsRoute = ApiApplicantsRouteImport.update({
 const ApiHealthRoute = ApiHealthRouteImport.update({
   id: '/api/health',
   path: '/api/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiIntelligenceRoute = ApiIntelligenceRouteImport.update({
+  id: '/api/intelligence',
+  path: '/api/intelligence',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiJobsRoute = ApiJobsRouteImport.update({
@@ -189,6 +202,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ApiIntelligenceTelegramRoute = ApiIntelligenceTelegramRouteImport.update({
+  id: '/telegram',
+  path: '/telegram',
+  getParentRoute: () => ApiIntelligenceRoute,
 } as any)
 const ApiJobsIdRoute = ApiJobsIdRouteImport.update({
   id: '/$id',
@@ -266,12 +284,14 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
+  '/weekend-intelligence': typeof WeekendIntelligenceRoute
   '/admin/$id': typeof AdminIdRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/jobs': typeof AdminJobsRoute
   '/admin/matching': typeof AdminMatchingRoute
   '/api/applicants': typeof ApiApplicantsRouteWithChildren
   '/api/health': typeof ApiHealthRoute
+  '/api/intelligence': typeof ApiIntelligenceRouteWithChildren
   '/api/jobs': typeof ApiJobsRouteWithChildren
   '/jobs/$id': typeof JobsIdRoute
   '/profile/$id': typeof ProfileIdRoute
@@ -283,6 +303,7 @@ export interface FileRoutesByFullPath {
   '/api/admin/matching': typeof ApiAdminMatchingRoute
   '/api/applicants/$id': typeof ApiApplicantsIdRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/intelligence/telegram': typeof ApiIntelligenceTelegramRoute
   '/api/jobs/$id': typeof ApiJobsIdRoute
   '/api/matches/actions': typeof ApiMatchesActionsRoute
   '/api/matching/run': typeof ApiMatchingRunRoute
@@ -308,12 +329,14 @@ export interface FileRoutesByTo {
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
+  '/weekend-intelligence': typeof WeekendIntelligenceRoute
   '/admin/$id': typeof AdminIdRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/jobs': typeof AdminJobsRoute
   '/admin/matching': typeof AdminMatchingRoute
   '/api/applicants': typeof ApiApplicantsRouteWithChildren
   '/api/health': typeof ApiHealthRoute
+  '/api/intelligence': typeof ApiIntelligenceRouteWithChildren
   '/api/jobs': typeof ApiJobsRouteWithChildren
   '/jobs/$id': typeof JobsIdRoute
   '/profile/$id': typeof ProfileIdRoute
@@ -325,6 +348,7 @@ export interface FileRoutesByTo {
   '/api/admin/matching': typeof ApiAdminMatchingRoute
   '/api/applicants/$id': typeof ApiApplicantsIdRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/intelligence/telegram': typeof ApiIntelligenceTelegramRoute
   '/api/jobs/$id': typeof ApiJobsIdRoute
   '/api/matches/actions': typeof ApiMatchesActionsRoute
   '/api/matching/run': typeof ApiMatchingRunRoute
@@ -351,12 +375,14 @@ export interface FileRoutesById {
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
+  '/weekend-intelligence': typeof WeekendIntelligenceRoute
   '/admin_/$id': typeof AdminIdRoute
   '/admin_/analytics': typeof AdminAnalyticsRoute
   '/admin_/jobs': typeof AdminJobsRoute
   '/admin_/matching': typeof AdminMatchingRoute
   '/api/applicants': typeof ApiApplicantsRouteWithChildren
   '/api/health': typeof ApiHealthRoute
+  '/api/intelligence': typeof ApiIntelligenceRouteWithChildren
   '/api/jobs': typeof ApiJobsRouteWithChildren
   '/jobs_/$id': typeof JobsIdRoute
   '/profile_/$id': typeof ProfileIdRoute
@@ -368,6 +394,7 @@ export interface FileRoutesById {
   '/api/admin/matching': typeof ApiAdminMatchingRoute
   '/api/applicants/$id': typeof ApiApplicantsIdRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/intelligence/telegram': typeof ApiIntelligenceTelegramRoute
   '/api/jobs/$id': typeof ApiJobsIdRoute
   '/api/matches/actions': typeof ApiMatchesActionsRoute
   '/api/matching/run': typeof ApiMatchingRunRoute
@@ -395,12 +422,14 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/success'
+    | '/weekend-intelligence'
     | '/admin/$id'
     | '/admin/analytics'
     | '/admin/jobs'
     | '/admin/matching'
     | '/api/applicants'
     | '/api/health'
+    | '/api/intelligence'
     | '/api/jobs'
     | '/jobs/$id'
     | '/profile/$id'
@@ -412,6 +441,7 @@ export interface FileRouteTypes {
     | '/api/admin/matching'
     | '/api/applicants/$id'
     | '/api/auth/$'
+    | '/api/intelligence/telegram'
     | '/api/jobs/$id'
     | '/api/matches/actions'
     | '/api/matching/run'
@@ -437,12 +467,14 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/success'
+    | '/weekend-intelligence'
     | '/admin/$id'
     | '/admin/analytics'
     | '/admin/jobs'
     | '/admin/matching'
     | '/api/applicants'
     | '/api/health'
+    | '/api/intelligence'
     | '/api/jobs'
     | '/jobs/$id'
     | '/profile/$id'
@@ -454,6 +486,7 @@ export interface FileRouteTypes {
     | '/api/admin/matching'
     | '/api/applicants/$id'
     | '/api/auth/$'
+    | '/api/intelligence/telegram'
     | '/api/jobs/$id'
     | '/api/matches/actions'
     | '/api/matching/run'
@@ -479,12 +512,14 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/success'
+    | '/weekend-intelligence'
     | '/admin_/$id'
     | '/admin_/analytics'
     | '/admin_/jobs'
     | '/admin_/matching'
     | '/api/applicants'
     | '/api/health'
+    | '/api/intelligence'
     | '/api/jobs'
     | '/jobs_/$id'
     | '/profile_/$id'
@@ -496,6 +531,7 @@ export interface FileRouteTypes {
     | '/api/admin/matching'
     | '/api/applicants/$id'
     | '/api/auth/$'
+    | '/api/intelligence/telegram'
     | '/api/jobs/$id'
     | '/api/matches/actions'
     | '/api/matching/run'
@@ -522,12 +558,14 @@ export interface RootRouteChildren {
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
   SuccessRoute: typeof SuccessRoute
+  WeekendIntelligenceRoute: typeof WeekendIntelligenceRoute
   AdminIdRoute: typeof AdminIdRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminJobsRoute: typeof AdminJobsRoute
   AdminMatchingRoute: typeof AdminMatchingRoute
   ApiApplicantsRoute: typeof ApiApplicantsRouteWithChildren
   ApiHealthRoute: typeof ApiHealthRoute
+  ApiIntelligenceRoute: typeof ApiIntelligenceRouteWithChildren
   ApiJobsRoute: typeof ApiJobsRouteWithChildren
   JobsIdRoute: typeof JobsIdRoute
   ProfileIdRoute: typeof ProfileIdRoute
@@ -627,6 +665,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SuccessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/weekend-intelligence': {
+      id: '/weekend-intelligence'
+      path: '/weekend-intelligence'
+      fullPath: '/weekend-intelligence'
+      preLoaderRoute: typeof WeekendIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin_/$id': {
       id: '/admin_/$id'
       path: '/admin/$id'
@@ -667,6 +712,13 @@ declare module '@tanstack/react-router' {
       path: '/api/health'
       fullPath: '/api/health'
       preLoaderRoute: typeof ApiHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/intelligence': {
+      id: '/api/intelligence'
+      path: '/api/intelligence'
+      fullPath: '/api/intelligence'
+      preLoaderRoute: typeof ApiIntelligenceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/jobs': {
@@ -745,6 +797,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/auth/$'
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/api/intelligence/telegram': {
+      id: '/api/intelligence/telegram'
+      path: '/telegram'
+      fullPath: '/api/intelligence/telegram'
+      preLoaderRoute: typeof ApiIntelligenceTelegramRouteImport
+      parentRoute: typeof ApiIntelligenceRoute
     }
     '/api/jobs/$id': {
       id: '/api/jobs/$id'
@@ -857,6 +916,18 @@ const ApiApplicantsRouteWithChildren = ApiApplicantsRoute._addFileChildren(
   ApiApplicantsRouteChildren,
 )
 
+interface ApiIntelligenceRouteChildren {
+  ApiIntelligenceTelegramRoute: typeof ApiIntelligenceTelegramRoute
+}
+
+const ApiIntelligenceRouteChildren: ApiIntelligenceRouteChildren = {
+  ApiIntelligenceTelegramRoute: ApiIntelligenceTelegramRoute,
+}
+
+const ApiIntelligenceRouteWithChildren = ApiIntelligenceRoute._addFileChildren(
+  ApiIntelligenceRouteChildren,
+)
+
 interface ApiJobsRouteChildren {
   ApiJobsIdRoute: typeof ApiJobsIdRoute
 }
@@ -903,12 +974,14 @@ const rootRouteChildren: RootRouteChildren = {
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
   SuccessRoute: SuccessRoute,
+  WeekendIntelligenceRoute: WeekendIntelligenceRoute,
   AdminIdRoute: AdminIdRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminJobsRoute: AdminJobsRoute,
   AdminMatchingRoute: AdminMatchingRoute,
   ApiApplicantsRoute: ApiApplicantsRouteWithChildren,
   ApiHealthRoute: ApiHealthRoute,
+  ApiIntelligenceRoute: ApiIntelligenceRouteWithChildren,
   ApiJobsRoute: ApiJobsRouteWithChildren,
   JobsIdRoute: JobsIdRoute,
   ProfileIdRoute: ProfileIdRoute,
