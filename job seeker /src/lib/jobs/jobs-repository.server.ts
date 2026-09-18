@@ -100,6 +100,22 @@ function fromSqlRecord(record: any): Job {
   };
 }
 
+const NON_CRYPTO_COMPANIES = new Set([
+  "anthropic", "openai", "box", "crusoe", "shieldai", "xai", "elevenlabs", "scaleai",
+  "harvey", "cohere", "perplexityai", "langchain", "glean", "baseten", "palantir",
+  "veeam", "affirm", "addepar", "vercel", "ashby", "kong", "qonto", "yuno", "snaplogic",
+  "workato", "sentry", "sentry.io", "scribe", "scribe.com", "replit", "modal", "modal.com",
+  "hightouch", "blackforestlabs", "cerebras.ai", "characterai", "coderabbit", "cognition",
+  "cradle.bio", "cursor", "deepmind", "dust", "eliseai", "isomorphiclabs", "lakera.ai",
+  "llamaindex", "lovable", "lumalabs.ai", "meilisearch", "mistral", "modular", "neptuneai",
+  "netomi", "polyai", "pony.ai", "radicalai", "retellai", "radai", "soundhound", "stackblitz",
+  "temporal", "temporal.io", "uipath", "v7labs", "vectara.com", "you.com", "zushealth",
+  "citadel securities", "jane street", "hudson river trading", "clearstreet", "pwc",
+  "atticus.com", "baton corporation", "dr. now", "earnin", "life360", "moneybox",
+  "rillet.com", "smartasset", "smartx", "swingdev", "tenable", "yugabyte", "complyadvantage",
+  "9fin", "truelayer", "capitalontap", "trading212", "onepay.com", "flex", "capital", "finyard",
+]);
+
 let inMemoryJobs: Job[] | null = null;
 
 async function readAll(): Promise<Job[]> {
@@ -111,16 +127,22 @@ async function readAll(): Promise<Job[]> {
     const sql = await getSql();
     const rows = await sql`SELECT * FROM jobs ORDER BY updated_at DESC`;
     if (rows.length > 0) {
-      const loaded = rows.map(fromSqlRecord);
-      inMemoryJobs = loaded;
-      return loaded;
+      const loaded = rows
+        .map(fromSqlRecord)
+        .filter((j) => j.id && j.title && !NON_CRYPTO_COMPANIES.has((j.company || "").trim().toLowerCase()));
+      if (loaded.length > 0) {
+        inMemoryJobs = loaded;
+        return loaded;
+      }
     }
   } catch {
     // Fallback to CSV if SQL query fails
   }
 
   await ensureCsvFile(FILE, JOB_COLUMNS);
-  const loaded = (await readCsvFile(FILE)).map(fromRecord).filter((row) => row.id && row.title);
+  const loaded = (await readCsvFile(FILE))
+    .map(fromRecord)
+    .filter((row) => row.id && row.title && !NON_CRYPTO_COMPANIES.has((row.company || "").trim().toLowerCase()));
   if (loaded.length > 0) {
     inMemoryJobs = loaded;
     void seedSqlFromJobs(loaded);
@@ -130,23 +152,7 @@ async function readAll(): Promise<Job[]> {
 
 async function seedSqlFromJobs(jobs: Job[]) {
   try {
-    const sql = await getSql();
-    for (const j of jobs) {
-      await sql`
-        INSERT INTO jobs (
-          id, created_at, updated_at, title, company, location, remote, employment_type,
-          seniority, years_min, years_max, salary_min, salary_max, salary_currency,
-          category, required_skills, preferred_skills, technologies, description, apply_url, status, source
-        ) VALUES (
-          ${j.id}, ${j.created_at || nowIso()}, ${j.updated_at || nowIso()},
-          ${j.title}, ${j.company}, ${j.location}, ${j.remote}, ${j.employment_type},
-          ${j.seniority}, ${j.years_min}, ${j.years_max}, ${j.salary_min}, ${j.salary_max}, ${j.salary_currency},
-          ${j.category}, ${j.required_skills}, ${j.preferred_skills}, ${j.technologies}, ${j.description}, ${j.apply_url}, ${j.status}, ${j.source}
-        ) ON CONFLICT (id) DO UPDATE SET
-          status = EXCLUDED.status,
-          updated_at = EXCLUDED.updated_at
-      `;
-    }
+    await batchInsertJobsSql(jobs);
   } catch (err) {
     console.error("Async SQL job seed error:", err);
   }

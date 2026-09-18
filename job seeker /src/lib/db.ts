@@ -100,6 +100,14 @@ function createNeonSql(): Promise<Sql> {
 }
 
 async function createPgliteSql(): Promise<Sql> {
+  // Fail-safe check: in production, never silently run on ephemeral PGlite
+  if (typeof process !== "undefined" && process.env.NODE_ENV === "production" && !getDatabaseUrl()) {
+    const errorMsg =
+      "[DATABASE CONFIG ERROR] DATABASE_URL is not set in production. Ephemeral in-memory PGlite cannot be used on serverless production deployments because data will not persist across lambda instances. Please configure DATABASE_URL in your hosting environment variables.";
+    console.error(errorMsg);
+    throw new Error(errorMsg);
+  }
+
   // Embedded Postgres, imported on demand so it never loads on the Neon path.
   // One in-memory instance per process, shared across HMR module instances, so
   // data survives source edits (it resets on dev-server restart).
