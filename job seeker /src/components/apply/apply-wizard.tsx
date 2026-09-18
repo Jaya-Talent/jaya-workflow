@@ -191,16 +191,16 @@ export function ApplyWizard() {
         <h1 className="mt-2 font-serif text-4xl leading-tight text-ink sm:text-5xl">
           {STEPS[step]}
         </h1>
-        <p className="mt-3 text-sm text-muted">Profile completeness: {completion}%</p>
-        <div className="mt-3 h-1 overflow-hidden rounded-full bg-line">
+        <p className="mt-3 text-sm font-mono text-muted">Profile completeness: {completion}%</p>
+        <div className="mt-3 h-1.5 overflow-hidden rounded-none bg-line border border-line/60">
           <div
-            className="h-full rounded-full bg-accent transition-[width] duration-300"
+            className="h-full rounded-none bg-accent transition-[width] duration-300"
             style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
           />
         </div>
       </div>
 
-      <div className="rounded-2xl bg-surface p-5 shadow-[var(--shadow-card)] sm:p-8">
+      <div className="rounded-none border border-line bg-surface p-5 shadow-[0_2px_8px_rgba(0,0,0,0.03)] sm:p-8">
         {step === 0 && (
           <div className="grid gap-5">
             <div>
@@ -491,7 +491,7 @@ export function ApplyWizard() {
         )}
 
         {formError && (
-          <p className="mt-6 rounded-lg bg-danger/10 px-4 py-3 text-sm text-danger">{formError}</p>
+          <p className="mt-6 rounded-none border border-danger/30 bg-danger/10 px-4 py-3 text-xs font-mono font-bold text-danger">{formError}</p>
         )}
       </div>
 

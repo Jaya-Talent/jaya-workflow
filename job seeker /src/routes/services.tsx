@@ -70,10 +70,10 @@ function ServicesPage() {
               Whether you are a Web3 professional aiming for your next career milestone or a crypto protocol building an elite team, we provide personalized guidance and talent solutions.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a href="#job-seekers" className="inline-flex items-center gap-2 rounded-xl bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent hover:bg-accent/20 transition-colors">
+              <a href="#job-seekers" className="inline-flex items-center gap-2 rounded-none bg-accent/10 px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-accent border border-accent/25 hover:bg-accent/20 transition-colors shadow-[0_2px_0_rgba(123,0,166,0.15)]">
                 <User className="size-4" /> For Job Seekers
               </a>
-              <a href="#employers" className="inline-flex items-center gap-2 rounded-xl bg-ink/5 px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ink/10 transition-colors">
+              <a href="#employers" className="inline-flex items-center gap-2 rounded-none bg-ink/5 px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-ink border border-line hover:bg-ink/10 transition-colors shadow-[0_2px_0_rgba(0,0,0,0.06)]">
                 <Building2 className="size-4" /> For Employers
               </a>
             </div>
@@ -85,7 +85,7 @@ function ServicesPage() {
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-md bg-accent/10 px-3 py-1 text-xs font-semibold text-accent uppercase tracking-wider">
+                <span className="inline-flex items-center gap-2 rounded-none bg-accent/10 border border-accent/25 px-3 py-1 text-xs font-mono font-bold text-accent uppercase tracking-wider">
                   <User className="size-3.5" /> For Candidates & Job Seekers
                 </span>
                 <h2 className="mt-4 font-serif text-4xl sm:text-5xl text-ink">
@@ -101,13 +101,13 @@ function ServicesPage() {
                   href="https://calendly.com/jayatalent"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition-colors shadow-sm"
+                  className="inline-flex items-center justify-center gap-2 rounded-none bg-accent px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-white hover:bg-accent-hover transition-colors shadow-[0_2px_0_#4E006A]"
                 >
                   <Calendar className="size-4" /> Book Candidate Session
                 </a>
                 <a
                   href="mailto:marketing@jayatalent.com?subject=Job%20Seeker%20Consultation%20Inquiry"
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-medium text-ink hover:bg-surface transition-colors"
+                  className="inline-flex items-center justify-center gap-2 rounded-none border border-line bg-white px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-ink hover:bg-surface transition-colors shadow-[0_2px_0_rgba(0,0,0,0.04)]"
                 >
                   <Mail className="size-4" /> Email Us
                 </a>
@@ -116,9 +116,9 @@ function ServicesPage() {
 
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {JOB_SEEKER_OFFERINGS.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-line bg-surface p-6 hover:shadow-md hover:border-accent/30 transition-all flex flex-col justify-between">
+                <div key={item.title} className="rounded-none border border-line bg-surface p-6 hover:shadow-md hover:border-accent/40 transition-all flex flex-col justify-between">
                   <div>
-                    <div className="inline-flex p-3 rounded-xl bg-accent/10 text-accent mb-5">
+                    <div className="inline-flex p-3 rounded-none bg-accent/10 border border-accent/20 text-accent mb-5 font-mono">
                       <item.icon className="size-6" />
                     </div>
                     <h3 className="text-xl font-bold text-ink mb-2">{item.title}</h3>
@@ -135,7 +135,7 @@ function ServicesPage() {
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-md bg-ink text-bg px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+                <span className="inline-flex items-center gap-2 rounded-none bg-ink text-bg px-3 py-1 text-xs font-mono font-bold uppercase tracking-wider">
                   <Building2 className="size-3.5" /> For Companies & Employers
                 </span>
                 <h2 className="mt-4 font-serif text-4xl sm:text-5xl text-ink">
@@ -151,13 +151,13 @@ function ServicesPage() {
                   href="https://calendly.com/jayatalent"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-ink px-5 py-3 text-sm font-semibold text-bg hover:bg-ink/90 transition-colors shadow-sm"
+                  className="inline-flex items-center justify-center gap-2 rounded-none bg-ink px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-bg hover:bg-ink/90 transition-colors shadow-[0_2px_0_rgba(0,0,0,0.3)]"
                 >
                   <Calendar className="size-4" /> Book Employer Consultation
                 </a>
                 <a
                   href="mailto:marketing@jayatalent.com?subject=Employer%20Sourcing%20Inquiry"
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-line bg-white px-5 py-3 text-sm font-medium text-ink hover:bg-surface transition-colors"
+                  className="inline-flex items-center justify-center gap-2 rounded-none border border-line bg-white px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-ink hover:bg-surface transition-colors shadow-[0_2px_0_rgba(0,0,0,0.04)]"
                 >
                   <Mail className="size-4" /> Email Sourcing Team
                 </a>
@@ -166,9 +166,9 @@ function ServicesPage() {
 
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {EMPLOYER_OFFERINGS.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-line bg-white p-6 hover:shadow-md hover:border-ink/20 transition-all flex flex-col justify-between">
+                <div key={item.title} className="rounded-none border border-line bg-white p-6 hover:shadow-md hover:border-ink/20 transition-all flex flex-col justify-between">
                   <div>
-                    <div className="inline-flex p-3 rounded-xl bg-ink/5 text-ink mb-5">
+                    <div className="inline-flex p-3 rounded-none bg-ink/5 border border-line text-ink mb-5 font-mono">
                       <item.icon className="size-6" />
                     </div>
                     <h3 className="text-xl font-bold text-ink mb-2">{item.title}</h3>
@@ -192,13 +192,13 @@ function ServicesPage() {
                 href="https://calendly.com/jayatalent"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-none bg-accent px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider text-white hover:bg-accent-hover transition-colors shadow-[0_2px_0_#4E006A]"
               >
                 Schedule via Calendly <ArrowRight className="size-4" />
               </a>
               <a
                 href="mailto:marketing@jayatalent.com"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md border border-bg/30 px-6 py-3 text-sm font-medium text-bg hover:bg-bg/10 transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-none border border-bg/30 px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider text-bg hover:bg-bg/10 transition-colors"
               >
                 marketing@jayatalent.com
               </a>
