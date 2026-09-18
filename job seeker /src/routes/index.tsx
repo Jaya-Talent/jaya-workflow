@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, Briefcase, Check, Globe, Target } from "lucide-react";
+import { ArrowRight, Bell, Briefcase, Check, Globe, Target, TrendingUp } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { Button } from "@/components/ui";
 import { SITE_DESCRIPTION } from "@/lib/site";
@@ -77,6 +77,39 @@ function Home() {
               </Link>
             </div>
             <p className="mt-6 text-sm text-subtle">Join the network trusted by top VC-backed founders.</p>
+          </div>
+        </section>
+
+        {/* Compact Weekend Intelligence Promo Banner */}
+        <section className="px-5 pb-12 sm:px-8">
+          <div className="mx-auto max-w-6xl">
+            <div className="rounded-2xl border border-accent/20 bg-gradient-to-r from-purple-50/70 via-white to-purple-50/40 p-6 sm:p-7 shadow-xs hover:shadow-sm transition-all flex flex-col md:flex-row md:items-center justify-between gap-5 relative overflow-hidden">
+              <div className="flex items-start sm:items-center gap-4 relative z-10">
+                <div className="flex size-12 items-center justify-center rounded-xl bg-accent text-white shrink-0 shadow-sm">
+                  <TrendingUp className="size-6" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-accent">New Feature</span>
+                    <span className="text-xs text-muted">· Weekly Career Intelligence</span>
+                  </div>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-ink mt-0.5">
+                    Jaya Talent Weekend Intelligence
+                  </h3>
+                  <p className="text-sm text-muted mt-1 max-w-xl">
+                    The latest data-driven snapshot and hiring insights from the Web3 job market.
+                  </p>
+                </div>
+              </div>
+
+              <div className="shrink-0 relative z-10">
+                <Link to="/weekend-intelligence">
+                  <Button size="md" className="rounded-xl px-5 text-sm gap-2 w-full sm:w-auto shadow-xs hover:shadow-sm">
+                    Explore This Week's Intelligence <ArrowRight className="size-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
 

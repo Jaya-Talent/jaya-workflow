@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useRouter } from "@tanstack/react-router";
-import { Menu, X, User, LogOut, LogIn, Sparkles, Briefcase, ChevronRight } from "lucide-react";
+import { Menu, X, User, LogOut, LogIn, Briefcase, ChevronRight } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui";
 import { readStoredProfileId } from "@/lib/jobs/format";
@@ -48,6 +48,13 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
             activeProps={{ className: "text-ink font-semibold" }}
           >
             Jobs
+          </Link>
+          <Link
+            to="/weekend-intelligence"
+            className="hover:text-ink transition-colors"
+            activeProps={{ className: "text-ink font-semibold" }}
+          >
+            Weekend Intelligence
           </Link>
           <Link
             to="/services"
@@ -181,6 +188,15 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
             </Link>
 
             <Link
+              to="/weekend-intelligence"
+              className="flex items-center justify-between rounded-xl px-4 py-3 text-ink hover:bg-surface-muted transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Weekend Intelligence</span>
+              <ChevronRight className="size-4 text-subtle" />
+            </Link>
+
+            <Link
               to="/services"
               className="flex items-center justify-between rounded-xl px-4 py-3 text-ink hover:bg-surface-muted transition-colors"
               onClick={() => setMobileMenuOpen(false)}
@@ -306,6 +322,7 @@ export function SiteFooter() {
             <a href="https://www.jayatalent.com/meditation" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Meditation</a>
             <a href="https://www.jayatalent.com/zhannamanzyk" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">Our CEO</a>
             <Link to="/jobs" className="text-sm text-muted hover:text-accent transition-colors">Jobs</Link>
+            <Link to="/weekend-intelligence" className="text-sm text-muted hover:text-accent transition-colors">Weekend Intelligence</Link>
             <Link to="/services" className="text-sm text-muted hover:text-accent transition-colors">Consultation Services</Link>
             <Link to="/apply" className="text-sm text-muted hover:text-accent transition-colors">Create Profile</Link>
           </div>
