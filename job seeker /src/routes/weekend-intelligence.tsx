@@ -181,15 +181,15 @@ function WeekendIntelligencePage() {
           <div className="mx-auto max-w-6xl relative z-10">
             {/* Tag & Archive Selector Bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent/5 px-3 py-1.5 text-[11px] font-mono font-semibold tracking-wider text-accent uppercase">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="inline-flex items-center gap-1.5 rounded-xl border border-accent/30 bg-accent/[0.08] px-3.5 py-1.5 text-[11px] font-mono font-bold tracking-widest text-accent uppercase shadow-2xs">
                   Weekend Intelligence
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-white/90 px-3 py-1.5 text-xs font-medium text-ink shadow-2xs">
+                <span className="inline-flex items-center gap-1.5 rounded-xl border border-line/90 bg-white/95 px-3.5 py-1.5 text-xs font-semibold text-ink shadow-[0_1px_2px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.9)]">
                   <Calendar className="size-3.5 text-accent" /> {report.periodLabel}
                 </span>
                 {report.isDemoData && (
-                  <span className="inline-flex items-center gap-1 rounded-lg bg-amber-50/80 border border-amber-200/80 px-2.5 py-1 text-xs font-medium text-amber-900">
+                  <span className="inline-flex items-center gap-1 rounded-xl bg-amber-500/[0.08] border border-amber-500/30 px-3 py-1 text-xs font-semibold text-amber-900 shadow-2xs">
                     Demo Data
                   </span>
                 )}
@@ -201,25 +201,25 @@ function WeekendIntelligencePage() {
                   onClick={handleShare}
                   variant="outline"
                   size="sm"
-                  className="rounded-lg gap-2 text-xs font-medium h-9 bg-white border-line shadow-2xs hover:border-ink/20 hover:bg-surface-muted transition-all"
+                  className="rounded-xl gap-2 text-xs font-semibold h-10 px-4 bg-white/95 border-line shadow-2xs hover:border-accent/40 hover:bg-white hover:shadow-xs transition-all"
                 >
-                  <Share2 className="size-3.5 text-muted" />
+                  <Share2 className="size-3.5 text-accent" />
                   Share Report
                 </Button>
                 <Button
                   onClick={handleCopyLink}
                   variant="outline"
                   size="sm"
-                  className="rounded-lg gap-2 text-xs font-medium h-9 bg-white border-line shadow-2xs hover:border-ink/20 hover:bg-surface-muted transition-all"
+                  className="rounded-xl gap-2 text-xs font-semibold h-10 px-4 bg-white/95 border-line shadow-2xs hover:border-accent/40 hover:bg-white hover:shadow-xs transition-all"
                 >
-                  {copied ? <Check className="size-3.5 text-emerald-600" /> : <Copy className="size-3.5 text-muted" />}
+                  {copied ? <Check className="size-3.5 text-emerald-600" /> : <Copy className="size-3.5 text-accent" />}
                   {copied ? "Link Copied!" : "Copy Link"}
                 </Button>
               </div>
             </div>
 
             {/* Title & Tagline */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-ink leading-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-ink leading-tight font-bold">
               Jaya Talent <span className="italic text-accent">Weekend Intelligence</span>
             </h1>
             <p className="mt-4 max-w-2xl text-base sm:text-lg text-muted leading-relaxed">
@@ -227,7 +227,7 @@ function WeekendIntelligencePage() {
             </p>
 
             {/* Data Provenance Notice */}
-            <div className="mt-6 inline-flex items-center gap-2 rounded-xl bg-surface-muted border border-line px-4 py-2.5 text-xs text-muted">
+            <div className="mt-6 inline-flex items-center gap-2.5 rounded-xl bg-surface-muted/80 border border-line/80 px-4 py-2.5 text-xs text-muted shadow-2xs">
               <Info className="size-4 text-accent shrink-0" />
               <span>{report.dataNotice}</span>
             </div>
@@ -240,27 +240,27 @@ function WeekendIntelligencePage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-bold tracking-[0.2em] text-accent uppercase">Executive Summary</p>
-                <h2 className="font-serif text-2xl sm:text-3xl text-ink mt-1">Market Snapshot</h2>
+                <h2 className="font-serif text-2xl sm:text-3xl text-ink mt-1 font-bold">Market Snapshot</h2>
               </div>
-              <span className="text-xs text-muted font-medium">Updated weekly</span>
+              <span className="text-xs text-muted font-medium bg-surface-muted px-2.5 py-1 rounded-lg border border-line/60">Updated weekly</span>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
-              <div className="rounded-2xl border border-line bg-white p-5 shadow-xs transition-all hover:border-accent/40">
-                <p className="text-xs font-medium text-muted flex items-center gap-1.5">
+              <div className="rounded-2xl border border-line/90 bg-gradient-to-b from-white to-surface/40 p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_4px_16px_-2px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all hover:border-accent/40 hover:-translate-y-0.5">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted flex items-center gap-1.5">
                   <Briefcase className="size-3.5 text-accent" /> Jobs Tracked
                 </p>
-                <p className="mt-2 font-serif text-3xl sm:text-4xl text-ink tabular-nums">
+                <p className="mt-3 font-serif text-3xl sm:text-4xl text-ink font-bold tabular-nums">
                   {report.marketSnapshot.jobsTracked.toLocaleString()}
                 </p>
                 <p className="mt-1 text-xs text-muted">Active opportunities</p>
               </div>
 
-              <div className="rounded-2xl border border-line bg-white p-5 shadow-xs transition-all hover:border-accent/40">
-                <p className="text-xs font-medium text-muted flex items-center gap-1.5">
+              <div className="rounded-2xl border border-line/90 bg-gradient-to-b from-white to-surface/40 p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_4px_16px_-2px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all hover:border-accent/40 hover:-translate-y-0.5">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted flex items-center gap-1.5">
                   <Globe className="size-3.5 text-accent" /> Remote Roles
                 </p>
-                <p className="mt-2 font-serif text-3xl sm:text-4xl text-ink tabular-nums">
+                <p className="mt-3 font-serif text-3xl sm:text-4xl text-ink font-bold tabular-nums">
                   {report.marketSnapshot.remoteCount.toLocaleString()}
                 </p>
                 <p className="mt-1 text-xs text-accent font-semibold">
@@ -268,11 +268,11 @@ function WeekendIntelligencePage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-line bg-white p-5 shadow-xs transition-all hover:border-accent/40">
-                <p className="text-xs font-medium text-muted flex items-center gap-1.5">
+              <div className="rounded-2xl border border-line/90 bg-gradient-to-b from-white to-surface/40 p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_4px_16px_-2px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all hover:border-accent/40 hover:-translate-y-0.5">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted flex items-center gap-1.5">
                   <Layers className="size-3.5 text-accent" /> Engineering
                 </p>
-                <p className="mt-2 font-serif text-3xl sm:text-4xl text-ink tabular-nums">
+                <p className="mt-3 font-serif text-3xl sm:text-4xl text-ink font-bold tabular-nums">
                   {report.marketSnapshot.engineeringCount.toLocaleString()}
                 </p>
                 <p className="mt-1 text-xs text-muted">
@@ -280,21 +280,21 @@ function WeekendIntelligencePage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-line bg-white p-5 shadow-xs transition-all hover:border-accent/40">
-                <p className="text-xs font-medium text-muted flex items-center gap-1.5">
+              <div className="rounded-2xl border border-line/90 bg-gradient-to-b from-white to-surface/40 p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_4px_16px_-2px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all hover:border-accent/40 hover:-translate-y-0.5">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted flex items-center gap-1.5">
                   <Building2 className="size-3.5 text-accent" /> Companies Hiring
                 </p>
-                <p className="mt-2 font-serif text-3xl sm:text-4xl text-ink tabular-nums">
+                <p className="mt-3 font-serif text-3xl sm:text-4xl text-ink font-bold tabular-nums">
                   {report.marketSnapshot.companiesHiringCount.toLocaleString()}
                 </p>
                 <p className="mt-1 text-xs text-muted">Distinct active teams</p>
               </div>
 
-              <div className="col-span-2 lg:col-span-1 rounded-2xl border border-line bg-white p-5 shadow-xs transition-all hover:border-accent/40">
-                <p className="text-xs font-medium text-muted flex items-center gap-1.5">
+              <div className="col-span-2 lg:col-span-1 rounded-2xl border border-line/90 bg-gradient-to-b from-white to-surface/40 p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_4px_16px_-2px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all hover:border-accent/40 hover:-translate-y-0.5">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted flex items-center gap-1.5">
                   <DollarSign className="size-3.5 text-accent" /> Salary Disclosed
                 </p>
-                <p className="mt-2 font-serif text-3xl sm:text-4xl text-ink tabular-nums">
+                <p className="mt-3 font-serif text-3xl sm:text-4xl text-ink font-bold tabular-nums">
                   {report.marketSnapshot.salaryDisclosedCount.toLocaleString()}
                 </p>
                 <p className="mt-1 text-xs text-muted">
@@ -310,34 +310,34 @@ function WeekendIntelligencePage() {
             <section id="top-skills" className="lg:col-span-7 space-y-4">
               <div>
                 <p className="text-xs font-bold tracking-[0.2em] text-accent uppercase">Skill Extraction</p>
-                <h2 className="font-serif text-2xl sm:text-3xl text-ink mt-1">Skills Employers Are Hiring For</h2>
+                <h2 className="font-serif text-2xl sm:text-3xl text-ink mt-1 font-bold">Skills Employers Are Hiring For</h2>
                 <p className="text-sm text-muted mt-1">
                   Most frequently requested skills and protocol stacks extracted from active job descriptions.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-line bg-white p-6 shadow-xs space-y-4">
+              <div className="rounded-2xl border border-line/90 bg-white p-6 sm:p-7 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_6px_20px_-4px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.9)] space-y-4">
                 {report.topSkills.length === 0 ? (
                   <p className="text-sm text-muted py-6 text-center">No skill records found for this period.</p>
                 ) : (
                   report.topSkills.map((item, idx) => (
                     <div key={item.skill} className="space-y-1.5 group">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="font-medium text-ink flex items-center gap-2">
-                          <span className="inline-flex size-5 items-center justify-center rounded-md bg-surface-muted text-xs font-bold text-muted group-hover:bg-accent group-hover:text-white transition-colors">
+                        <span className="font-semibold text-ink flex items-center gap-2.5">
+                          <span className="inline-flex size-6 items-center justify-center rounded-lg bg-surface-muted border border-line/60 text-xs font-bold text-muted group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-colors">
                             {idx + 1}
                           </span>
                           {item.skill}
                         </span>
                         <div className="flex items-center gap-3 text-xs text-muted tabular-nums">
-                          <span className="font-semibold text-ink">{item.jobCount} jobs</span>
+                          <span className="font-bold text-ink">{item.jobCount} jobs</span>
                           <span className="text-subtle">({item.percentage}%)</span>
                         </div>
                       </div>
                       {/* Horizontal bar meter */}
-                      <div className="h-2.5 w-full rounded-full bg-surface-muted overflow-hidden">
+                      <div className="h-2 w-full rounded-md bg-surface-muted overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-accent to-purple-500 transition-all duration-500"
+                          className="h-full rounded-md bg-gradient-to-r from-accent to-purple-500 transition-all duration-500"
                           style={{ width: `${Math.max(6, Math.min(100, item.percentage * 2.8))}%` }}
                         />
                       </div>
@@ -351,27 +351,27 @@ function WeekendIntelligencePage() {
             <section id="where-is-web3-hiring" className="lg:col-span-5 space-y-4">
               <div>
                 <p className="text-xs font-bold tracking-[0.2em] text-accent uppercase">Geographic Distribution</p>
-                <h2 className="font-serif text-2xl sm:text-3xl text-ink mt-1">Where Is Web3 Hiring?</h2>
+                <h2 className="font-serif text-2xl sm:text-3xl text-ink mt-1 font-bold">Where Is Web3 Hiring?</h2>
                 <p className="text-sm text-muted mt-1">
                   Among jobs tracked by Jaya Talent this week.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-line bg-white p-6 shadow-xs space-y-4">
+              <div className="rounded-2xl border border-line/90 bg-white p-6 sm:p-7 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_6px_20px_-4px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.9)] space-y-4">
                 {report.geoDistribution.map((geo) => (
                   <div key={geo.region} className="space-y-1.5">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="font-medium text-ink flex items-center gap-2">
+                      <span className="font-semibold text-ink flex items-center gap-2">
                         <Globe className="size-3.5 text-accent shrink-0" />
                         {geo.region}
                       </span>
-                      <span className="text-xs font-semibold text-ink tabular-nums">
+                      <span className="text-xs font-bold text-ink tabular-nums">
                         {geo.jobCount} <span className="text-muted font-normal">({geo.percentage}%)</span>
                       </span>
                     </div>
-                    <div className="h-2 w-full rounded-full bg-surface-muted overflow-hidden">
+                    <div className="h-2 w-full rounded-md bg-surface-muted overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-accent/80"
+                        className="h-full rounded-md bg-accent/80"
                         style={{ width: `${Math.max(5, geo.percentage)}%` }}
                       />
                     </div>
@@ -407,25 +407,29 @@ function WeekendIntelligencePage() {
                   {report.salaryIntelligence.roles.map((item, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl border border-line bg-white p-5 shadow-xs hover:border-accent/40 transition-all flex flex-col justify-between"
+                      className="group relative rounded-2xl border border-line/90 bg-white p-5 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-4px_rgba(123,0,166,0.12)] hover:border-accent/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden"
                     >
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-accent/[0.04] to-transparent pointer-events-none" />
                       <div>
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="text-xs font-semibold text-accent uppercase tracking-wider">
+                        <div className="flex items-center justify-between gap-2 mb-3">
+                          <span className="text-[11px] font-mono font-bold text-accent uppercase tracking-wider bg-accent/8 border border-accent/15 px-2 py-0.5 rounded-md">
                             {item.category.split("/")[0]}
                           </span>
-                          <span className="text-xs font-medium text-muted bg-surface-muted px-2 py-0.5 rounded-md">
+                          <span className="text-xs font-semibold text-muted bg-surface-muted border border-line/80 px-2 py-0.5 rounded-md">
                             {item.experienceLevel}
                           </span>
                         </div>
-                        <h3 className="font-semibold text-base text-ink line-clamp-1">{item.role}</h3>
-                        <p className="font-serif text-2xl text-ink font-bold mt-3 text-accent">
-                          {item.salaryFormatted}
-                        </p>
+                        <h3 className="font-semibold text-base text-ink line-clamp-1 group-hover:text-accent transition-colors">{item.role}</h3>
+                        <div className="mt-3 p-3 rounded-xl bg-surface-muted/60 border border-line/60">
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-muted block">Benchmark Median</span>
+                          <p className="font-serif text-2xl text-ink font-bold mt-0.5 text-accent">
+                            {item.salaryFormatted}
+                          </p>
+                        </div>
                       </div>
                       <div className="mt-4 pt-3 border-t border-line flex items-center justify-between text-xs text-muted">
-                        <span>{item.remote}</span>
-                        <span>{item.sampleCount} tracked role{item.sampleCount > 1 ? "s" : ""}</span>
+                        <span className="font-medium">{item.remote}</span>
+                        <span className="text-subtle">{item.sampleCount} verified role{item.sampleCount > 1 ? "s" : ""}</span>
                       </div>
                     </div>
                   ))}
@@ -460,18 +464,23 @@ function WeekendIntelligencePage() {
               {report.topCompanies.map((c) => (
                 <div
                   key={c.company}
-                  className="rounded-2xl border border-line bg-white p-6 shadow-xs hover:shadow-sm hover:border-accent/40 transition-all flex flex-col justify-between"
+                  className="group rounded-2xl border border-line/90 bg-white p-6 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-4px_rgba(123,0,166,0.12)] hover:border-accent/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <h3 className="font-serif text-xl font-bold text-ink">{c.company}</h3>
-                        <p className="text-xs text-accent font-semibold mt-0.5">
-                          {c.activeJobsCount} active {c.activeJobsCount === 1 ? "opportunity" : "opportunities"}
-                        </p>
+                      <div className="flex items-start gap-3">
+                        <div className="size-10 rounded-xl bg-accent-soft border border-accent/15 flex items-center justify-center font-bold text-accent text-sm shrink-0 shadow-2xs group-hover:bg-accent group-hover:text-white transition-colors">
+                          {c.company.slice(0, 2).toUpperCase()}
+                        </div>
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-ink group-hover:text-accent transition-colors">{c.company}</h3>
+                          <p className="text-xs text-accent font-semibold mt-0.5">
+                            {c.activeJobsCount} active {c.activeJobsCount === 1 ? "opportunity" : "opportunities"}
+                          </p>
+                        </div>
                       </div>
                       {c.hasRemote && (
-                        <span className="inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-[11px] font-semibold text-emerald-700 border border-emerald-200">
+                        <span className="inline-flex items-center rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700 border border-emerald-200 uppercase tracking-wider">
                           Remote
                         </span>
                       )}
@@ -481,7 +490,7 @@ function WeekendIntelligencePage() {
                       {c.categories.map((cat) => (
                         <span
                           key={cat}
-                          className="rounded-md bg-surface-muted px-2 py-0.5 text-xs text-muted"
+                          className="rounded-md bg-surface-muted border border-line/70 px-2 py-0.5 text-[11px] font-medium text-muted"
                         >
                           {cat}
                         </span>
@@ -496,7 +505,7 @@ function WeekendIntelligencePage() {
                     <Link
                       to="/jobs"
                       search={{ query: c.company }}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline group-hover:translate-x-0.5 transition-transform"
                     >
                       View Jobs <ArrowRight className="size-3" />
                     </Link>
@@ -515,9 +524,9 @@ function WeekendIntelligencePage() {
                 <h2 className="font-serif text-2xl sm:text-3xl text-ink mt-1">Role of the Week</h2>
               </div>
 
-              <div className="rounded-2xl border border-accent/20 bg-gradient-to-br from-white to-purple-50/40 p-6 sm:p-8 shadow-xs space-y-6">
+              <div className="rounded-2xl border border-accent/25 bg-gradient-to-br from-white via-purple-50/20 to-purple-50/50 p-6 sm:p-8 shadow-[0_4px_24px_-4px_rgba(123,0,166,0.08)] space-y-6">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 rounded-md bg-accent/10 border border-accent/25 px-2.5 py-1 text-[11px] font-mono font-bold tracking-wider text-accent uppercase">
+                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-accent/10 border border-accent/25 px-2.5 py-1 text-[11px] font-mono font-bold tracking-wider text-accent uppercase shadow-2xs">
                     <Award className="size-3.5" /> High Demand Protocol Stack
                   </span>
                   <h3 className="font-serif text-2xl sm:text-3xl text-ink font-bold mt-3">
@@ -529,7 +538,7 @@ function WeekendIntelligencePage() {
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="rounded-xl border border-line bg-white/90 p-4">
+                  <div className="rounded-xl border border-line/90 bg-white p-4 shadow-2xs">
                     <h4 className="text-xs font-bold text-muted uppercase tracking-wider mb-2">Most Requested Skills</h4>
                     <div className="flex flex-wrap gap-1.5">
                       {report.roleOfTheWeek.mostRequestedSkills.map((s) => (
@@ -540,14 +549,14 @@ function WeekendIntelligencePage() {
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-line bg-white/90 p-4">
+                  <div className="rounded-xl border border-line/90 bg-white p-4 shadow-2xs">
                     <h4 className="text-xs font-bold text-muted uppercase tracking-wider mb-2">Experience Expectation</h4>
                     <p className="text-sm font-semibold text-ink">{report.roleOfTheWeek.typicalExperience}</p>
                     <p className="text-xs text-muted mt-1">Hands-on technical depth prioritized over years</p>
                   </div>
                 </div>
 
-                <div className="space-y-2.5">
+                <div className="space-y-2.5 rounded-xl bg-white/70 border border-line/80 p-4">
                   <h4 className="text-xs font-bold text-ink uppercase tracking-wider">How to become competitive</h4>
                   <ul className="space-y-2">
                     {report.roleOfTheWeek.competitiveAdvice.map((advice, i) => (
@@ -568,9 +577,10 @@ function WeekendIntelligencePage() {
                 <h2 className="font-serif text-2xl sm:text-3xl text-ink mt-1">Your Weekend Career Action</h2>
               </div>
 
-              <div className="rounded-2xl border border-line bg-ink text-white p-6 sm:p-8 shadow-md space-y-6 flex flex-col justify-between">
+              <div className="rounded-2xl border border-line bg-ink text-white p-6 sm:p-8 shadow-md space-y-6 flex flex-col justify-between relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
                 <div>
-                  <span className="inline-flex items-center gap-1.5 rounded-md bg-purple-500/25 px-2.5 py-1 text-xs font-semibold text-purple-300 border border-purple-400/30 uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-purple-500/20 px-2.5 py-1 text-xs font-semibold text-purple-300 border border-purple-400/30 uppercase tracking-wider shadow-2xs">
                     <Zap className="size-3.5" /> Action Plan
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl text-white font-bold mt-3">
@@ -586,7 +596,7 @@ function WeekendIntelligencePage() {
                   <ul className="space-y-2.5">
                     {report.careerAction.actionItems.map((step, idx) => (
                       <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-bg/90">
-                        <span className="flex size-5 items-center justify-center rounded-md bg-purple-500/30 text-purple-200 font-bold shrink-0 text-xs">
+                        <span className="flex size-5 items-center justify-center rounded-md bg-purple-500/30 text-purple-200 font-bold shrink-0 text-xs border border-purple-400/20">
                           {idx + 1}
                         </span>
                         <span>{step}</span>
@@ -597,7 +607,7 @@ function WeekendIntelligencePage() {
 
                 <div className="pt-4 border-t border-white/15">
                   <Link to="/apply">
-                    <Button size="sm" className="w-full bg-purple-600 hover:bg-purple-700 text-white rounded-xl">
+                    <Button size="sm" className="w-full text-white">
                       Update Profile & Matches →
                     </Button>
                   </Link>
@@ -651,18 +661,23 @@ function WeekendIntelligencePage() {
                 <Link
                   key={opp.id}
                   to={opp.applyUrl as any}
-                  className="rounded-2xl border border-line bg-white p-6 shadow-xs hover:border-accent/40 hover:shadow-sm transition-all flex flex-col justify-between group"
+                  className="group rounded-2xl border border-line/90 bg-white p-6 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-4px_rgba(123,0,166,0.12)] hover:border-accent/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-start justify-between gap-2">
-                      <span className="text-xs font-bold text-muted">{opp.company}</span>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="size-9 rounded-xl bg-accent-soft border border-accent/15 flex items-center justify-center font-bold text-accent text-xs shrink-0 shadow-2xs group-hover:bg-accent group-hover:text-white transition-colors">
+                          {opp.company.slice(0, 2).toUpperCase()}
+                        </div>
+                        <span className="text-xs font-bold text-muted uppercase tracking-wider">{opp.company}</span>
+                      </div>
                       {opp.salaryFormatted && (
-                        <span className="text-xs font-bold text-accent tabular-nums bg-accent-soft px-2 py-0.5 rounded-md">
+                        <span className="text-[11px] font-bold text-emerald-800 tabular-nums bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
                           {opp.salaryFormatted}
                         </span>
                       )}
                     </div>
-                    <h3 className="font-serif text-lg font-semibold text-ink group-hover:text-accent transition-colors mt-1.5">
+                    <h3 className="font-serif text-lg font-semibold text-ink group-hover:text-accent transition-colors mt-3">
                       {opp.title}
                     </h3>
                     <p className="text-xs text-muted mt-2">
@@ -677,8 +692,8 @@ function WeekendIntelligencePage() {
                   </div>
 
                   <div className="mt-6 pt-4 border-t border-line flex items-center justify-between text-xs">
-                    <span className="text-muted">{opp.highlights.join(" · ")}</span>
-                    <span className="font-semibold text-accent group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1">
+                    <span className="text-muted font-medium">{opp.highlights.join(" · ")}</span>
+                    <span className="font-bold text-accent group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1">
                       Apply <ArrowRight className="size-3" />
                     </span>
                   </div>
@@ -697,9 +712,9 @@ function WeekendIntelligencePage() {
                 <p className="text-xs text-muted mt-1">{report.hiringSignals.note}</p>
               </div>
 
-              <div className="rounded-2xl border border-line bg-white p-6 shadow-xs space-y-5">
+              <div className="rounded-2xl border border-line/90 bg-white p-6 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)] space-y-5">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md mb-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md mb-2">
                     <TrendingUp className="size-3.5" /> Rising Demand
                   </span>
                   <div className="flex flex-wrap gap-2 mt-1">
@@ -715,7 +730,7 @@ function WeekendIntelligencePage() {
                 </div>
 
                 <div className="pt-2 border-t border-line">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md mb-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-md mb-2">
                     • Stable Demand
                   </span>
                   <div className="flex flex-wrap gap-2 mt-1">
@@ -731,14 +746,14 @@ function WeekendIntelligencePage() {
                 </div>
 
                 <div className="pt-2 border-t border-line">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md mb-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-accent bg-accent-soft border border-accent/20 px-2.5 py-1 rounded-md mb-2">
                     Emerging Signals
                   </span>
                   <div className="flex flex-wrap gap-2 mt-1">
                     {report.hiringSignals.emerging.map((item) => (
                       <span
                         key={item}
-                        className="rounded-lg bg-purple-50 border border-purple-200 px-3 py-1.5 text-xs font-semibold text-accent"
+                        className="rounded-lg bg-accent-soft border border-accent/20 px-3 py-1.5 text-xs font-semibold text-accent"
                       >
                         {item}
                       </span>
@@ -756,7 +771,7 @@ function WeekendIntelligencePage() {
                 <p className="text-xs text-muted mt-1">{report.weekOverWeek.note}</p>
               </div>
 
-              <div className="rounded-2xl border border-line bg-white p-6 shadow-xs">
+              <div className="rounded-2xl border border-line/90 bg-white p-6 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)]">
                 <div className="divide-y divide-line">
                   {report.weekOverWeek.metrics.map((metric) => (
                     <div key={metric.key} className="py-3.5 first:pt-0 last:pb-0 flex items-center justify-between">
@@ -806,18 +821,18 @@ function WeekendIntelligencePage() {
                   search={{ week: arch.slug }}
                   className={`rounded-2xl border p-5 transition-all block ${
                     arch.slug === report.slug
-                      ? "border-accent bg-accent/5 ring-2 ring-accent/20"
-                      : "border-line bg-white hover:border-accent/40"
+                      ? "border-accent bg-accent/5 ring-2 ring-accent/20 shadow-xs"
+                      : "border-line/90 bg-white hover:border-accent/40 hover:shadow-[0_4px_16px_-2px_rgba(123,0,166,0.1)] hover:-translate-y-0.5"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-bold text-accent uppercase">
+                    <span className="text-xs font-mono font-bold text-accent uppercase">
                       {arch.isCurrent ? "Current Issue" : "Archived Edition"}
                     </span>
-                    <span className="text-xs text-muted tabular-nums">{arch.jobsTracked} jobs</span>
+                    <span className="text-xs text-muted tabular-nums font-medium">{arch.jobsTracked} jobs</span>
                   </div>
-                  <h3 className="font-serif text-lg font-bold text-ink mt-1">{arch.periodLabel}</h3>
-                  <p className="text-xs text-muted mt-1">Top focus: {arch.topSkill}</p>
+                  <h3 className="font-serif text-lg font-bold text-ink mt-1.5">{arch.periodLabel}</h3>
+                  <p className="text-xs text-muted mt-1">Top focus: <span className="font-semibold text-ink">{arch.topSkill}</span></p>
                 </Link>
               ))}
             </div>

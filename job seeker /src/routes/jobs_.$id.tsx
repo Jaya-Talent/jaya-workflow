@@ -95,7 +95,7 @@ function JobDetailPage() {
           <h1 className="text-3xl font-bold font-serif mb-4">Role Not Found</h1>
           <p className="text-muted mb-8">The requested job listing may have expired or been removed.</p>
           <Link to="/jobs">
-            <Button className="rounded-full px-6">Explore Active Roles</Button>
+            <Button className="rounded-xl px-6">Explore Active Roles</Button>
           </Link>
         </main>
         <SiteFooter />
@@ -128,16 +128,21 @@ function JobDetailPage() {
             </Link>
           </div>
 
-          <article className="rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-10 relative">
+          <article className="rounded-2xl border border-line/90 bg-white p-6 sm:p-10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)] relative">
             {/* Header / Company Info */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-              <div>
-                <span className="text-sm font-semibold text-accent uppercase tracking-wider block">
-                  {job.company}
-                </span>
-                <h1 className="mt-1 font-serif text-3xl sm:text-4xl text-ink leading-tight">
-                  {job.title}
-                </h1>
+              <div className="flex items-start gap-4">
+                <div className="size-12 rounded-xl bg-accent-soft border border-accent/15 flex items-center justify-center font-bold text-accent text-lg shrink-0 shadow-2xs">
+                  {job.company.slice(0, 2).toUpperCase()}
+                </div>
+                <div>
+                  <span className="text-xs font-bold tracking-widest text-accent uppercase block">
+                    {job.company}
+                  </span>
+                  <h1 className="mt-1 font-serif text-2xl sm:text-3xl lg:text-4xl text-ink leading-tight">
+                    {job.title}
+                  </h1>
+                </div>
               </div>
             </div>
 

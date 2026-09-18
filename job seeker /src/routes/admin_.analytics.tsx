@@ -592,7 +592,7 @@ ${locationsList}
             <Calendar className="h-4 w-4 text-accent" />
             <span>Customizable Analysis Timeframe</span>
           </div>
-          <div className="text-xs font-medium text-muted bg-surface-muted px-3 py-1.5 rounded-full border border-line">
+          <div className="text-xs font-medium text-muted bg-surface-muted px-3 py-1.5 rounded-lg border border-line">
             Showing analysis for: <strong className="text-ink">{filteredMetrics.timeframeText}</strong>
           </div>
         </div>
@@ -888,7 +888,7 @@ ${locationsList}
                         <td className="py-3 px-3 tabular-nums text-muted">{row.matches}</td>
                         <td className="py-3 px-3 tabular-nums font-semibold text-ink">{row.clicks}</td>
                         <td className="py-3 px-3">
-                          <span className="inline-flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                          <span className="inline-flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
                             {row.conversion}%
                           </span>
                         </td>
