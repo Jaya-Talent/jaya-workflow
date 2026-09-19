@@ -5,6 +5,7 @@ import { ArrowLeft, ExternalLink, Bookmark, Check, ShieldCheck, MapPin, Briefcas
 import { MatchActions, recordMatchAction } from "@/components/match-actions";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { Badge, Button } from "@/components/ui";
+import { authClient } from "@/lib/auth/client";
 import { categoryCopy, formatLocation, formatSalary, readStoredProfileId, scoreTone } from "@/lib/jobs/format";
 import type { Job, StoredMatch } from "@/lib/matching/types";
 import { SITE_NAME } from "@/lib/site";
@@ -48,6 +49,8 @@ function JobDetailPage() {
   const search = Route.useSearch();
   const loaderData = Route.useLoaderData();
   const job = loaderData?.job ?? null;
+  const { data: session } = authClient.useSession();
+  const isSignedIn = Boolean(session?.user);
 
   const [match, setMatch] = useState<StoredMatch | null>(null);
   const [applicantId, setApplicantId] = useState("");
@@ -55,6 +58,12 @@ function JobDetailPage() {
   const loggedView = useRef(false);
 
   useEffect(() => {
+    if (!isSignedIn) {
+      setMatch(null);
+      setApplicantId("");
+      return;
+    }
+
     const stored = search.applicant || readStoredProfileId();
     setApplicantId(stored);
 
@@ -85,7 +94,7 @@ function JobDetailPage() {
         }
       })();
     }
-  }, [id, search.applicant, search.match, job]);
+  }, [id, search.applicant, search.match, job, isSignedIn]);
 
   if (!job) {
     return (
@@ -172,8 +181,8 @@ function JobDetailPage() {
               ))}
             </div>
 
-            {/* Match Score Box */}
-            {match && (
+            {/* Match Score Box - Only shown when account is signed in */}
+            {isSignedIn && match && (
               <div className="mt-8 rounded-none bg-surface-muted border border-line p-5">
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge tone={scoreTone(match.match_score)} className="tabular-nums font-mono text-xs py-1 px-3">

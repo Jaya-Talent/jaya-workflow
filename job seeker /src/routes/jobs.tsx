@@ -6,6 +6,7 @@ import { JobCard } from "@/components/job-card";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { Button, Input, Select } from "@/components/ui";
 import { JOB_CATEGORIES, EMPLOYMENT_TYPES, EXPERIENCE_LEVELS } from "@/lib/applicants/constants";
+import { authClient } from "@/lib/auth/client";
 import { matchesJobSearch, readStoredProfileId } from "@/lib/jobs/format";
 import type { Job, StoredMatch } from "@/lib/matching/types";
 import { SITE_NAME } from "@/lib/site";
@@ -32,6 +33,8 @@ const PAGE_SIZE = 24;
 function JobsPage() {
   const loaderData = Route.useLoaderData();
   const initialJobs = loaderData?.jobs ?? [];
+  const { data: session } = authClient.useSession();
+  const isSignedIn = Boolean(session?.user);
 
   const [jobs] = useState<Job[]>(initialJobs);
   const [matches, setMatches] = useState<StoredMatch[]>([]);
@@ -47,6 +50,13 @@ function JobsPage() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    // Only load profile matches IF user is actively signed in!
+    if (!isSignedIn) {
+      setMatches([]);
+      setProfileId("");
+      return;
+    }
+
     const id = readStoredProfileId();
     setProfileId(id);
 
@@ -63,7 +73,7 @@ function JobsPage() {
         }
       })();
     }
-  }, []);
+  }, [isSignedIn]);
 
   const matchByJob = useMemo(() => {
     const map = new Map<string, StoredMatch>();
@@ -294,14 +304,14 @@ function JobsPage() {
             )}
 
             {visibleJobs.map((job) => {
-              const match = matchByJob.get(job.id);
+              const match = isSignedIn ? matchByJob.get(job.id) : undefined;
               return (
                 <JobCard
                   key={job.id}
                   job={job}
-                  score={match?.match_score}
-                  category={match?.score_category}
-                  applicantId={profileId}
+                  score={isSignedIn ? match?.match_score : undefined}
+                  category={isSignedIn ? match?.score_category : undefined}
+                  applicantId={isSignedIn ? profileId : undefined}
                 />
               );
             })}

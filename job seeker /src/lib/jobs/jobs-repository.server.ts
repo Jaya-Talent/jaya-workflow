@@ -144,31 +144,39 @@ async function readAll(): Promise<Job[]> {
     return inMemoryJobs;
   }
 
+  // Always read from jobs.csv as the primary source of truth for active verified jobs
+  try {
+    await ensureCsvFile(FILE, JOB_COLUMNS);
+    const loaded = (await readCsvFile(FILE))
+      .map(fromRecord)
+      .filter((row) => row.id && row.title && !NON_CRYPTO_COMPANIES.has((row.company || "").trim().toLowerCase()));
+
+    if (loaded.length > 0) {
+      inMemoryJobs = loaded;
+      return loaded;
+    }
+  } catch (err) {
+    console.error("Error reading jobs.csv:", err);
+  }
+
+  // Fallback to SQL if CSV read returns empty
   try {
     const sql = await getSql();
     const rows = await sql`SELECT * FROM jobs ORDER BY updated_at DESC`;
     if (rows.length > 0) {
-      const loaded = rows
+      const sqlLoaded = rows
         .map(fromSqlRecord)
         .filter((j) => j.id && j.title && !NON_CRYPTO_COMPANIES.has((j.company || "").trim().toLowerCase()));
-      if (loaded.length > 0) {
-        inMemoryJobs = loaded;
-        return loaded;
+      if (sqlLoaded.length > 0) {
+        inMemoryJobs = sqlLoaded;
+        return sqlLoaded;
       }
     }
   } catch {
-    // Fallback to CSV if SQL query fails
+    // Ignore
   }
 
-  await ensureCsvFile(FILE, JOB_COLUMNS);
-  const loaded = (await readCsvFile(FILE))
-    .map(fromRecord)
-    .filter((row) => row.id && row.title && !NON_CRYPTO_COMPANIES.has((row.company || "").trim().toLowerCase()));
-  if (loaded.length > 0) {
-    inMemoryJobs = loaded;
-    void seedSqlFromJobs(loaded);
-  }
-  return loaded;
+  return [];
 }
 
 async function seedSqlFromJobs(jobs: Job[]) {
