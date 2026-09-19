@@ -72,3 +72,38 @@ export function getJobSlug(job: Pick<Job, "id" | "title" | "company">): string {
   }
   return `${titleSlug || "role"}-${cleanId}`;
 }
+
+function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+export function matchesSearchTerm(text: string, term: string): boolean {
+  if (!text || !term) return false;
+  const escaped = escapeRegExp(term);
+  const pattern = new RegExp(`(?:^|[^a-zA-Z0-9_])${escaped}`, "i");
+  return pattern.test(text);
+}
+
+export function matchesJobSearch(job: Job, query: string): boolean {
+  const trimmed = query.trim();
+  if (!trimmed) return true;
+
+  const terms = trimmed.toLowerCase().split(/\s+/).filter(Boolean);
+  if (terms.length === 0) return true;
+
+  const searchableTexts = [
+    job.title,
+    job.company,
+    job.location,
+    job.category,
+    job.employment_type,
+    job.seniority,
+    ...(job.required_skills || []),
+    ...(job.preferred_skills || []),
+    ...(job.technologies || []),
+  ].filter(Boolean);
+
+  return terms.every((term) =>
+    searchableTexts.some((text) => matchesSearchTerm(text, term)),
+  );
+}

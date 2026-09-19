@@ -10,7 +10,7 @@ import {
   EXPERIENCE_LEVELS,
   JOB_CATEGORIES,
 } from "@/lib/applicants/constants";
-import { categoryCopy, formatLocation, formatSalary, scoreTone } from "@/lib/jobs/format";
+import { categoryCopy, formatLocation, formatSalary, matchesJobSearch, scoreTone } from "@/lib/jobs/format";
 import type { Job, StoredMatch } from "@/lib/matching/types";
 import { SITE_NAME } from "@/lib/site";
 
@@ -74,14 +74,9 @@ function JobsDashboard() {
   }
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.trim();
     if (!q) return jobs;
-    return jobs.filter((job) =>
-      [job.title, job.company, job.location, job.category, job.required_skills.join(" ")]
-        .join(" ")
-        .toLowerCase()
-        .includes(q),
-    );
+    return jobs.filter((job) => matchesJobSearch(job, q));
   }, [jobs, query]);
 
   const active = jobs.filter((job) => job.status === "active").length;

@@ -6,7 +6,7 @@ import { JobCard } from "@/components/job-card";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { Button, Input, Select } from "@/components/ui";
 import { JOB_CATEGORIES, EMPLOYMENT_TYPES, EXPERIENCE_LEVELS } from "@/lib/applicants/constants";
-import { readStoredProfileId } from "@/lib/jobs/format";
+import { matchesJobSearch, readStoredProfileId } from "@/lib/jobs/format";
 import type { Job, StoredMatch } from "@/lib/matching/types";
 import { SITE_NAME } from "@/lib/site";
 
@@ -74,23 +74,11 @@ function JobsPage() {
   // Filter & Sort Logic
   const filteredAndSorted = useMemo(() => {
     let rows = jobs;
-    const q = query.trim().toLowerCase();
+    const q = query.trim();
 
     // 1. Text Search
     if (q) {
-      rows = rows.filter((job) =>
-        [
-          job.title,
-          job.company,
-          job.location,
-          job.required_skills.join(" "),
-          job.category,
-          job.technologies.join(" "),
-        ]
-          .join(" ")
-          .toLowerCase()
-          .includes(q),
-      );
+      rows = rows.filter((job) => matchesJobSearch(job, q));
     }
 
     // 2. Category Filter
