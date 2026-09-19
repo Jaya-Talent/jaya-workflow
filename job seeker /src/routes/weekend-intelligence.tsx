@@ -2,7 +2,6 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import {
-  TrendingUp,
   Globe,
   Briefcase,
   DollarSign,
@@ -15,8 +14,6 @@ import {
   Calendar,
   Layers,
   CheckCircle2,
-  Award,
-  Zap,
   ChevronRight,
   Info,
 } from "lucide-react";
@@ -526,7 +523,7 @@ function WeekendIntelligencePage() {
               <div className="rounded-none border border-accent/30 bg-white p-6 sm:p-8 shadow-[0_2px_12px_rgba(123,0,166,0.08)] space-y-6">
                 <div>
                   <span className="inline-flex items-center gap-1.5 rounded-none bg-accent/10 border border-accent px-2.5 py-1 text-[11px] font-mono font-bold tracking-wider text-accent uppercase">
-                    <Award className="size-3.5" /> High Demand Protocol Stack
+                    High Demand Protocol Stack
                   </span>
                   <h3 className="font-serif text-2xl sm:text-3xl text-ink font-bold mt-3">
                     {report.roleOfTheWeek.roleTitle}
@@ -579,7 +576,7 @@ function WeekendIntelligencePage() {
               <div className="rounded-none border border-line bg-ink text-white p-6 sm:p-8 shadow-md space-y-6 flex flex-col justify-between relative">
                 <div>
                   <span className="inline-flex items-center gap-1.5 rounded-none bg-purple-500/20 px-2.5 py-1 text-xs font-mono font-bold text-purple-300 border border-purple-400/40 uppercase tracking-wider">
-                    <Zap className="size-3.5" /> Action Plan
+                    Action Plan
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl text-white font-bold mt-3">
                     {report.careerAction.skillHeadline}
@@ -713,7 +710,7 @@ function WeekendIntelligencePage() {
               <div className="rounded-none border border-line bg-white p-6 shadow-[0_2px_6px_rgba(0,0,0,0.03)] space-y-5">
                 <div>
                   <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-300 px-2.5 py-1 rounded-none mb-2">
-                    <TrendingUp className="size-3.5" /> Rising Demand
+                    Rising Demand
                   </span>
                   <div className="flex flex-wrap gap-2 mt-1">
                     {report.hiringSignals.rising.map((item) => (
