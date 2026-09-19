@@ -39,9 +39,30 @@ function toRecord(job: Job): Record<string, string> {
   };
 }
 
+function sanitizeJobSkills(job: Job): Job {
+  const titleLower = (job.title || "").toLowerCase();
+  const companyLower = (job.company || "").toLowerCase();
+  const hasTrust = titleLower.includes("trust") || companyLower.includes("trust");
+  const hasRustWord =
+    titleLower.includes("rust") &&
+    (titleLower.split(/\s+/).some((w) => w.replace(/[^a-z0-9+#]/g, "") === "rust") ||
+      titleLower.includes("c++/rust") ||
+      titleLower.includes("(rust)"));
+
+  if (hasTrust && !hasRustWord) {
+    return {
+      ...job,
+      required_skills: (job.required_skills || []).filter((s) => s.toLowerCase() !== "rust"),
+      preferred_skills: (job.preferred_skills || []).filter((s) => s.toLowerCase() !== "rust"),
+      technologies: (job.technologies || []).filter((s) => s.toLowerCase() !== "rust"),
+    };
+  }
+  return job;
+}
+
 function fromRecord(record: Record<string, string>): Job {
   const remote = record.remote === "hybrid" || record.remote === "onsite" ? record.remote : "remote";
-  return {
+  return sanitizeJobSkills({
     id: record.id ?? "",
     created_at: record.created_at ?? "",
     updated_at: record.updated_at ?? "",
@@ -64,7 +85,7 @@ function fromRecord(record: Record<string, string>): Job {
     apply_url: record.apply_url ?? "",
     status: record.status === "closed" ? "closed" : "active",
     source: record.source ?? "manual",
-  };
+  });
 }
 
 function fromSqlRecord(record: any): Job {
@@ -74,7 +95,7 @@ function fromSqlRecord(record: any): Job {
     if (typeof val === "string") return splitList(val);
     return [];
   };
-  return {
+  return sanitizeJobSkills({
     id: record.id ?? "",
     created_at: typeof record.created_at === "object" ? record.created_at?.toISOString() || "" : String(record.created_at || ""),
     updated_at: typeof record.updated_at === "object" ? record.updated_at?.toISOString() || "" : String(record.updated_at || ""),
@@ -97,7 +118,7 @@ function fromSqlRecord(record: any): Job {
     apply_url: record.apply_url ?? "",
     status: record.status === "closed" ? "closed" : "active",
     source: record.source ?? "manual",
-  };
+  });
 }
 
 const NON_CRYPTO_COMPANIES = new Set([
