@@ -89,24 +89,16 @@ const mainHtml = `
       box-shadow: 0 4px 20px rgba(123, 0, 166, 0.5);
     }
     .badge {
-      background: rgba(168, 85, 247, 0.15);
+      background: rgba(168, 85, 247, 0.12);
       border: 1px solid rgba(168, 85, 247, 0.35);
       color: #D8B4FE;
-      padding: 10px 22px;
-      border-radius: 9999px;
-      font-size: 16px;
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-size: 15px;
       font-weight: 600;
       letter-spacing: 0.5px;
       display: flex;
       align-items: center;
-      gap: 8px;
-    }
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22C55E;
-      box-shadow: 0 0 10px #22C55E;
     }
     .headline {
       font-family: 'Outfit', sans-serif;
@@ -143,12 +135,13 @@ const mainHtml = `
     }
     .feature-pill {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       padding: 8px 18px;
-      border-radius: 10px;
+      border-radius: 4px;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       color: #E2E8F0;
+      letter-spacing: 0.2px;
     }
     .domain {
       font-family: 'Outfit', sans-serif;
@@ -171,7 +164,6 @@ const mainHtml = `
         <div class="logo-pill">talent.</div>
       </div>
       <div class="badge">
-        <div class="badge-dot"></div>
         Web3 Recruitment Portal
       </div>
     </div>
@@ -182,9 +174,9 @@ const mainHtml = `
 
   <div class="footer content">
     <div class="pills">
-      <div class="feature-pill">⚡ 10,000+ Curated Roles</div>
-      <div class="feature-pill">🎯 Smart Job Matching</div>
-      <div class="feature-pill">🔒 Private CV Vault</div>
+      <div class="feature-pill">10,000+ Curated Roles</div>
+      <div class="feature-pill">Smart Job Matching</div>
+      <div class="feature-pill">Private CV Vault</div>
     </div>
     <div class="domain">job.jayatalent.com</div>
   </div>
