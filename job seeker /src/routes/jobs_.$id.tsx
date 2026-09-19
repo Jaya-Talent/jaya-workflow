@@ -221,7 +221,6 @@ function JobDetailPage() {
                   onChanged={(action) => {
                     if (action === "save") setNotice("Saved to your matches.");
                     if (action === "not_relevant") setNotice("We’ll use that to improve future matches.");
-                    if (action === "apply") setNotice("Application click recorded.");
                   }}
                 />
               ) : (
