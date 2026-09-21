@@ -15,7 +15,7 @@ import urllib.request
 import urllib.parse
 import ssl
 
-DEFAULT_APP_URL = "https://jayatalent-job-seeker.vercel.app"
+DEFAULT_APP_URL = "https://job.jayatalent.com"
 DEFAULT_ADMIN_PASS = "meridian-admin"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JOBS_CSV_PATH = os.path.join(BASE_DIR, "job seeker ", "data", "jobs.csv")
@@ -95,8 +95,8 @@ def load_jobs_from_csv() -> list[dict]:
         for row in reader:
             if not row.get("title") or not row.get("company"):
                 continue
-            # Include only active jobs (exclude closed jobs)
-            if row.get("status") == "closed":
+            # Include only active jobs (exclude closed or archived jobs)
+            if row.get("status") != "active":
                 continue
 
             jobs.append({

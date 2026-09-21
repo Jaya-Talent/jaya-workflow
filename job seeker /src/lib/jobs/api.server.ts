@@ -7,7 +7,14 @@ import { getJobsRepository, type JobInput } from "./jobs-repository.server.ts";
 
 export async function handleListJobs() {
   const jobs = await getJobsRepository().listActiveJobs();
-  return Response.json({ jobs });
+  return Response.json(
+    { jobs, total: jobs.length },
+    {
+      headers: {
+        "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60",
+      },
+    },
+  );
 }
 
 export async function handleGetJob(id: string) {

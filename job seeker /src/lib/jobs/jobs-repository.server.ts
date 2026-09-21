@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { joinList, splitList } from "../applicants/csv.server.ts";
-import { getSql } from "../db.ts";
+import { getDatabaseUrl, getSql } from "../db.ts";
 import type { Job } from "../matching/types.ts";
 import { ensureCsvFile, readCsvFile, withFileLock, writeCsvFile } from "../store/csv-table.server.ts";
 import { JOB_COLUMNS } from "./columns.ts";
@@ -137,14 +137,44 @@ const NON_CRYPTO_COMPANIES = new Set([
   "9fin", "truelayer", "capitalontap", "trading212", "onepay.com", "flex", "capital", "finyard",
 ]);
 
-let inMemoryJobs: Job[] | null = null;
+interface CacheEntry {
+  jobs: Job[];
+  timestamp: number;
+}
+
+let cachedJobs: CacheEntry | null = null;
+const CACHE_TTL_MS = 30_000; // 30s cache TTL to balance sub-second performance with real-time updates
+
+function invalidateCache() {
+  cachedJobs = null;
+}
 
 async function readAll(): Promise<Job[]> {
-  if (inMemoryJobs && inMemoryJobs.length > 0) {
-    return inMemoryJobs;
+  const now = Date.now();
+  if (cachedJobs && now - cachedJobs.timestamp < CACHE_TTL_MS) {
+    return cachedJobs.jobs;
   }
 
-  // Always read from jobs.csv as the primary source of truth for active verified jobs
+  // 1. Neon PostgreSQL is the primary authoritative source of truth in production
+  if (getDatabaseUrl()) {
+    try {
+      const sql = await getSql();
+      const rows = await sql`SELECT * FROM jobs ORDER BY updated_at DESC`;
+      if (rows.length > 0) {
+        const sqlLoaded = rows
+          .map(fromSqlRecord)
+          .filter((j) => j.id && j.title && !NON_CRYPTO_COMPANIES.has((j.company || "").trim().toLowerCase()));
+        if (sqlLoaded.length > 0) {
+          cachedJobs = { jobs: sqlLoaded, timestamp: now };
+          return sqlLoaded;
+        }
+      }
+    } catch (err) {
+      console.error("SQL read error in jobs repository:", err);
+    }
+  }
+
+  // 2. Fallback to reading disk CSV (for local offline dev / build step)
   try {
     await ensureCsvFile(FILE, JOB_COLUMNS);
     const loaded = (await readCsvFile(FILE))
@@ -152,28 +182,11 @@ async function readAll(): Promise<Job[]> {
       .filter((row) => row.id && row.title && !NON_CRYPTO_COMPANIES.has((row.company || "").trim().toLowerCase()));
 
     if (loaded.length > 0) {
-      inMemoryJobs = loaded;
+      cachedJobs = { jobs: loaded, timestamp: now };
       return loaded;
     }
   } catch (err) {
-    console.error("Error reading jobs.csv:", err);
-  }
-
-  // Fallback to SQL if CSV read returns empty
-  try {
-    const sql = await getSql();
-    const rows = await sql`SELECT * FROM jobs ORDER BY updated_at DESC`;
-    if (rows.length > 0) {
-      const sqlLoaded = rows
-        .map(fromSqlRecord)
-        .filter((j) => j.id && j.title && !NON_CRYPTO_COMPANIES.has((j.company || "").trim().toLowerCase()));
-      if (sqlLoaded.length > 0) {
-        inMemoryJobs = sqlLoaded;
-        return sqlLoaded;
-      }
-    }
-  } catch {
-    // Ignore
+    console.error("Error reading jobs.csv fallback:", err);
   }
 
   return [];
@@ -236,7 +249,19 @@ async function batchInsertJobsSql(jobs: Job[]) {
         ) VALUES ${placeholders.join(", ")}
         ON CONFLICT (id) DO UPDATE SET
           status = EXCLUDED.status,
-          updated_at = EXCLUDED.updated_at
+          updated_at = EXCLUDED.updated_at,
+          title = EXCLUDED.title,
+          company = EXCLUDED.company,
+          location = EXCLUDED.location,
+          remote = EXCLUDED.remote,
+          employment_type = EXCLUDED.employment_type,
+          seniority = EXCLUDED.seniority,
+          category = EXCLUDED.category,
+          required_skills = EXCLUDED.required_skills,
+          preferred_skills = EXCLUDED.preferred_skills,
+          technologies = EXCLUDED.technologies,
+          description = EXCLUDED.description,
+          apply_url = EXCLUDED.apply_url
       `;
       await sql.query(queryText, params);
     }
@@ -257,6 +282,11 @@ export class JobsRepository {
 
   async listActiveJobs() {
     return (await readAll()).filter((job) => job.status === "active");
+  }
+
+  async countActiveJobs(): Promise<number> {
+    const active = await this.listActiveJobs();
+    return active.length;
   }
 
   async getJob(idOrSlug: string) {
@@ -296,11 +326,7 @@ export class JobsRepository {
       salary_currency: input.salary_currency || "USD",
     };
 
-    if (inMemoryJobs) {
-      inMemoryJobs.push(job);
-    } else {
-      inMemoryJobs = [job];
-    }
+    invalidateCache();
 
     try {
       const sql = await getSql();
@@ -316,7 +342,19 @@ export class JobsRepository {
           ${job.technologies}, ${job.description}, ${job.apply_url}, ${job.status}, ${job.source}
         ) ON CONFLICT (id) DO UPDATE SET
           status = EXCLUDED.status,
-          updated_at = EXCLUDED.updated_at
+          updated_at = EXCLUDED.updated_at,
+          title = EXCLUDED.title,
+          company = EXCLUDED.company,
+          location = EXCLUDED.location,
+          remote = EXCLUDED.remote,
+          employment_type = EXCLUDED.employment_type,
+          seniority = EXCLUDED.seniority,
+          category = EXCLUDED.category,
+          required_skills = EXCLUDED.required_skills,
+          preferred_skills = EXCLUDED.preferred_skills,
+          technologies = EXCLUDED.technologies,
+          description = EXCLUDED.description,
+          apply_url = EXCLUDED.apply_url
       `;
     } catch (err) {
       console.error("SQL createJob error:", err);
@@ -353,7 +391,7 @@ export class JobsRepository {
       jobs.push(job);
     }
 
-    inMemoryJobs = jobs;
+    invalidateCache();
 
     try {
       const sql = await getSql();
@@ -372,50 +410,33 @@ export class JobsRepository {
 
   async bulkCreateJobs(inputs: JobInput[]) {
     const timestamp = nowIso();
-    const current = await readAll();
-    const existingIds = new Set(current.map((j) => j.id));
-    const created: Job[] = [];
-    const inputsToInsert: Job[] = [];
+    const inputsToUpsert: Job[] = [];
 
     for (const input of inputs) {
       const id = input.id || randomUUID();
-      if (existingIds.has(id)) {
-        const idx = current.findIndex((j) => j.id === id);
-        if (idx !== -1 && current[idx]) {
-          current[idx] = {
-            ...current[idx],
-            status: input.status ?? current[idx].status,
-            updated_at: timestamp,
-          };
-          inputsToInsert.push(current[idx]!);
-        }
-        continue;
-      }
-
-      existingIds.add(id);
       const job: Job = {
         ...input,
         id,
-        created_at: timestamp,
+        created_at: input.created_at || timestamp,
         updated_at: timestamp,
         status: input.status ?? "active",
-        source: input.source ?? "manual",
+        source: input.source ?? "bulk_upload",
         remote: input.remote ?? "remote",
         salary_currency: input.salary_currency || "USD",
       };
-      current.push(job);
-      created.push(job);
-      inputsToInsert.push(job);
+      inputsToUpsert.push(job);
     }
 
-    inMemoryJobs = current;
-    await batchInsertJobsSql(inputsToInsert);
+    invalidateCache();
+    await batchInsertJobsSql(inputsToUpsert);
 
+    // Update local CSV backup asynchronously without blocking the response
     void withFileLock(FILE, async () => {
-      await writeCsvFile(FILE, JOB_COLUMNS, current.map(toRecord));
+      const allJobs = await readAll();
+      await writeCsvFile(FILE, JOB_COLUMNS, allJobs.map(toRecord));
     });
 
-    return created;
+    return inputsToUpsert;
   }
 
   async updateJob(id: string, patch: Partial<Job>) {
@@ -425,8 +446,8 @@ export class JobsRepository {
     const current = jobs[index];
     if (!current) return null;
     const next: Job = { ...current, ...patch, id, updated_at: nowIso() };
-    jobs[index] = next;
-    inMemoryJobs = jobs;
+
+    invalidateCache();
 
     try {
       const sql = await getSql();
@@ -448,7 +469,8 @@ export class JobsRepository {
     }
 
     void withFileLock(FILE, async () => {
-      await writeCsvFile(FILE, JOB_COLUMNS, jobs.map(toRecord));
+      const all = await readAll();
+      await writeCsvFile(FILE, JOB_COLUMNS, all.map(toRecord));
     });
 
     return next;

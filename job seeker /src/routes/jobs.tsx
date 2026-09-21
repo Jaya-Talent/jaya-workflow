@@ -173,11 +173,11 @@ function JobsPage() {
                 Discover active roles compiled from top crypto projects and protocols. Create a profile to view personalized match scores.
               </p>
             </div>
-            <div className="text-right hidden md:block">
-              <span className="text-2xl font-bold font-serif text-ink tabular-nums">
+            <div className="flex items-baseline justify-between md:block md:text-right pt-3 md:pt-0 border-t border-line/60 md:border-t-0">
+              <span className="text-2xl sm:text-3xl font-bold font-serif text-ink tabular-nums">
                 {jobs.length.toLocaleString()}
               </span>
-              <span className="block text-xs text-muted uppercase tracking-wider">Active Roles Live</span>
+              <span className="block text-xs text-muted uppercase tracking-wider mt-0.5">Active Roles Live</span>
             </div>
           </div>
 
