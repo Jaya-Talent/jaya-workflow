@@ -65,27 +65,9 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           </Link>
           <a
             href="https://www.jayatalent.com"
-            target="_blank"
-            rel="noopener noreferrer"
             className="hover:text-ink transition-colors"
           >
             Companies
-          </a>
-          <a
-            href="https://www.jayatalent.com/candidates"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-ink transition-colors"
-          >
-            Community
-          </a>
-          <a
-            href="https://www.jayatalent.com/team"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-ink transition-colors"
-          >
-            Team
           </a>
           {profileId && !session?.user && (
             <Link
@@ -209,31 +191,9 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
 
             <a
               href="https://www.jayatalent.com"
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
             >
               <span>Companies</span>
-              <ChevronRight className="size-4 text-subtle" />
-            </a>
-
-            <a
-              href="https://www.jayatalent.com/candidates"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
-            >
-              <span>Community</span>
-              <ChevronRight className="size-4 text-subtle" />
-            </a>
-
-            <a
-              href="https://www.jayatalent.com/team"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between rounded-none px-4 py-3 text-ink hover:bg-surface-muted transition-colors border border-transparent hover:border-line"
-            >
-              <span>Team</span>
               <ChevronRight className="size-4 text-subtle" />
             </a>
 
