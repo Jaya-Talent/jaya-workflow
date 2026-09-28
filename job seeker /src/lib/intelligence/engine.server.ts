@@ -330,7 +330,7 @@ export function buildWeeklyIntelligenceReport(
         metrics: [],
       },
       telegramSummary: "Jaya Talent Weekend Intelligence — No Web3 jobs tracked yet.",
-      socialShareText: "Explore Web3 career insights at Jaya Talent: https://jobs.jayatalent.com/weekend-intelligence",
+      socialShareText: "Explore Web3 career insights at Jaya Talent: https://job.jayatalent.com/weekend-intelligence",
     };
   }
 
@@ -697,9 +697,9 @@ ${topSkills
 *Role of the Week:* ${roleOfTheWeek.roleTitle}
 *Weekend Career Action:* ${careerAction.actionItems[0]}
 
-Read the full data report & apply: https://jobs.jayatalent.com/weekend-intelligence`;
+Read the full data report & apply: https://job.jayatalent.com/weekend-intelligence`;
 
-  const socialShareText = `Jaya Talent Weekend Intelligence (${periodLabel}) is live! Top skills this week: ${topSkills.slice(0, 3).map((s) => s.skill).join(", ")}. Explore the Web3 job market snapshot: https://jobs.jayatalent.com/weekend-intelligence`;
+  const socialShareText = `Jaya Talent Weekend Intelligence (${periodLabel}) is live! Top skills this week: ${topSkills.slice(0, 3).map((s) => s.skill).join(", ")}. Explore the Web3 job market snapshot: https://job.jayatalent.com/weekend-intelligence`;
 
   return {
     id: `report_${weekStartIso}`,

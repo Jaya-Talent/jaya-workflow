@@ -142,7 +142,7 @@ function WeekendIntelligencePage() {
         await navigator.share({
           title: "Jaya Talent Weekend Intelligence",
           text: report.socialShareText,
-          url: typeof window !== "undefined" ? window.location.href : "https://jobs.jayatalent.com/weekend-intelligence",
+          url: typeof window !== "undefined" ? window.location.href : "https://job.jayatalent.com/weekend-intelligence",
         });
       } catch {
         handleCopyLink();

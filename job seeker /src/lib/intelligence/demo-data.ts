@@ -226,6 +226,6 @@ _Your weekly data-driven snapshot of the Web3 job market (Sep 14–20, 2026)_
 *Role of the Week:* Smart Contract / Blockchain Developer
 *Weekend Action:* Build a dApp pairing Solidity contracts with a TypeScript UI.
 
-Read full report & opportunities: https://jobs.jayatalent.com/weekend-intelligence`,
-  socialShareText: "Check out this week's data-driven snapshot of the Web3 job market from Jaya Talent Weekend Intelligence! Top skills, compensation ranges, and hiring companies: https://jobs.jayatalent.com/weekend-intelligence",
+Read full report & opportunities: https://job.jayatalent.com/weekend-intelligence`,
+  socialShareText: "Check out this week's data-driven snapshot of the Web3 job market from Jaya Talent Weekend Intelligence! Top skills, compensation ranges, and hiring companies: https://job.jayatalent.com/weekend-intelligence",
 };
